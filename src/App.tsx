@@ -1,9 +1,9 @@
 import React from 'react'
-import Home from './paginas/home/home'
+import Sobre from './paginas/sobre/Sobre'
 
 function App() {
   return (
-    <Home/>
+    <Sobre/>
   )
 }
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import './home.css';
+import './Home.css';
 import { SlidersHorizontal, Heart, Plus } from '@phosphor-icons/react'
 
 function home() {
