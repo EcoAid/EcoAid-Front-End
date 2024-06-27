@@ -6,6 +6,7 @@ import { SlSocialFacebook } from "react-icons/sl";
 import { SlSocialLinkedin } from "react-icons/sl";
 import { SlSocialGoogle } from "react-icons/sl";
 import { TfiApple } from "react-icons/tfi";
+import { Link } from "react-router-dom";
 
 function Cadastro() {
 
@@ -48,7 +49,7 @@ function Cadastro() {
                     </button>
                     <div className="my-8 text-onyx flex gap-1.5">
                         <p>Já tem uma conta?</p>
-                        <a href="" className="text-violetblue font-bold ">Faça Login</a> {/* SERÁ MUDADO PARA LINK TO DEPOIS */}
+                        <Link to="/login" className="text-violetblue font-bold ">Faça Login</Link>
                     </div>
 
                     <p className="mb-4">Ou cadastre-se com </p>

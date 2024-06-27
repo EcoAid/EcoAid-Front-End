@@ -8,8 +8,8 @@ function Footer() {
         <p className="text-xl font-bold">Projeto Eco Aid | Copyright:</p>
         <p className="text-xl font-bold">Generation Brasil</p>
         <p className="text-lg">Acesse nosso Linktree</p>
-        <div className="flex gap-2">
-          <PiLinktreeLogoBold size={48} weight="bold" />
+        <div className="flex gap-2 font-bold">
+          <PiLinktreeLogoBold size={48} />
         </div>
       </div>
     </div>

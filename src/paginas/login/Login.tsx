@@ -6,6 +6,7 @@ import { TfiApple } from "react-icons/tfi";
 import { useState } from "react";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function Login() {
     const [senha, setSenha] = useState("");
@@ -45,7 +46,7 @@ function Login() {
                     </button>
                     <div className="my-8 text-onyx flex gap-1.5">
                         <p>Não tem uma conta?</p>
-                        <a href="" className="text-violetblue font-bold ">Cadastre-se</a> {/* SERÁ MUDADO PARA LINK TO DEPOIS */}
+                        <Link to="/cadastro" className="text-violetblue font-bold ">Cadastre-se</Link>
                     </div>
                     <p className="mb-4">Ou entre com </p>
                     <div className="flex w-full justify-around items-center">

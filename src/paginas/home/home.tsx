@@ -27,7 +27,7 @@ function home() {
                     <h1>Doações recomendadas</h1>
                     <h2 className='text-4xl sm:text-2xl md:text-3xl lg:text-4xl text-[#3D4DA6]'>Novas doações</h2>
                     <div className='flex flex-row gap-24'>
-                        <div className='bg-white w-2/7 sm:w-1/7 lg:w-2/7 shadow-2xl flex flex-col gap-4 justify-center box-border p-12 px-24 rounded-3xl text-center'>
+                        <div className='w-2/7 sm:w-1/7 lg:w-2/7 shadow-2xl flex flex-col gap-4 justify-center box-border p-12 px-24 rounded-3xl text-center bg-[#FFFFFF]'>
                             <Heart className='ml-auto' size={64} color="#407C44" />
                             <img className='rounded-full' src="https://cdn.betterttv.net/emote/658f28f95e7e78960777148d/3x.webp" alt="PlaceHolder" />
                             <h1 className='text-[#414141]'><span>Cesta básica</span></h1>
@@ -36,7 +36,7 @@ function home() {
                                 <button className='rounded-full bg-[#F7F3ED] p-6'><Plus size={32} color="#407C44" /></button>
                             </div>
                         </div>
-                        <div className='bg-white w-2/7 sm:w-1/7 lg:w-2/7 shadow-2xl flex flex-col gap-4 justify-center box-border p-12 px-24 rounded-3xl text-center'>
+                        <div className='w-2/7 sm:w-1/7 lg:w-2/7 shadow-2xl flex flex-col gap-4 justify-center box-border p-12 px-24 rounded-3xl text-center bg-[#FFFFFF]'>
                             <Heart className='ml-auto' size={64} color="#407C44" />
                             <img className='rounded-full' src="https://cdn.betterttv.net/emote/658f28f95e7e78960777148d/3x.webp" alt="PlaceHolder" />
                             <h1 className='text-[#414141]'><span>Cesta básica</span></h1>
@@ -45,7 +45,7 @@ function home() {
                                 <button className='rounded-full bg-[#F7F3ED] p-6'><Plus size={32} color="#407C44" /></button>
                             </div>
                         </div>
-                        <div className='bg-white w-2/7 sm:w-1/7 lg:w-2/7 shadow-2xl flex flex-col gap-4 justify-center box-border p-12 px-24 rounded-3xl text-center'>
+                        <div className='w-2/7 sm:w-1/7 lg:w-2/7 shadow-2xl flex flex-col gap-4 justify-center box-border p-12 px-24 rounded-3xl text-center bg-[#FFFFFF]'>
                             <Heart className='ml-auto' size={64} color="#407C44" />
                             <img className='rounded-full' src="https://cdn.betterttv.net/emote/658f28f95e7e78960777148d/3x.webp" alt="PlaceHolder" />
                             <h1 className='text-[#414141]'><span>Cesta básica</span></h1>
@@ -64,7 +64,7 @@ function home() {
                         <button className='text-4xl md:text-3xl sm:text-2xl text-[#3D4DA6]'>Top doações</button>
                     </div>
                     <div className='flex flex-row gap-24'>
-                    <div className='bg-white w-2/7 sm:w-1/7 lg:w-2/7 shadow-2xl flex flex-col gap-4 justify-center box-border p-12 px-24 rounded-3xl text-center'>
+                    <div className='w-2/7 sm:w-1/7 lg:w-2/7 shadow-2xl flex flex-col gap-4 justify-center box-border p-12 px-24 rounded-3xl text-center bg-[#FFFFFF]'>
                             <Heart className='ml-auto' size={64} color="#407C44" />
                             <img className='rounded-full' src="https://cdn.betterttv.net/emote/658f28f95e7e78960777148d/3x.webp" alt="PlaceHolder" />
                             <h1 className='text-[#414141]'><span>Cesta básica</span></h1>
@@ -73,7 +73,7 @@ function home() {
                                 <button className='rounded-full bg-[#F7F3ED] p-6'><Plus size={32} color="#407C44" /></button>
                             </div>
                         </div>
-                        <div className='bg-white w-2/7 sm:w-1/7 lg:w-2/7 shadow-2xl flex flex-col gap-4 justify-center box-border p-12 px-24 rounded-3xl text-center'>
+                        <div className='w-2/7 sm:w-1/7 lg:w-2/7 shadow-2xl flex flex-col gap-4 justify-center box-border p-12 px-24 rounded-3xl text-center bg-[#FFFFFF]'>
                             <Heart className='ml-auto' size={64} color="#407C44" />
                             <img className='rounded-full' src="https://cdn.betterttv.net/emote/658f28f95e7e78960777148d/3x.webp" alt="PlaceHolder" />
                             <h1 className='text-[#414141]'><span>Cesta básica</span></h1>
@@ -82,7 +82,7 @@ function home() {
                                 <button className='rounded-full bg-[#F7F3ED] p-6'><Plus size={32} color="#407C44" /></button>
                             </div>
                         </div>
-                        <div className='bg-white w-2/7 sm:w-1/7 lg:w-2/7 shadow-2xl flex flex-col gap-4 justify-center box-border p-12 px-24 rounded-3xl text-center'>
+                        <div className='w-2/7 sm:w-1/7 lg:w-2/7 shadow-2xl flex flex-col gap-4 justify-center box-border p-12 px-24 rounded-3xl text-center bg-[#FFFFFF]'>
                             <Heart className='ml-auto' size={64} color="#407C44" />
                             <img className='rounded-full' src="https://cdn.betterttv.net/emote/658f28f95e7e78960777148d/3x.webp" alt="PlaceHolder" />
                             <h1 className='text-[#414141]'><span>Cesta básica</span></h1>
