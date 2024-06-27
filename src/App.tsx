@@ -1,8 +1,9 @@
 import React from 'react'
+import Home from './paginas/home/home'
 
 function App() {
   return (
-    <div>App</div>
+    <Home/>
   )
 }
 
