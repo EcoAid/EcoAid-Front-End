@@ -1,35 +1,100 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import "tailwindcss/tailwind.css";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
-import { useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { SlSocialFacebook } from "react-icons/sl";
 import { SlSocialLinkedin } from "react-icons/sl";
 import { SlSocialGoogle } from "react-icons/sl";
 import { TfiApple } from "react-icons/tfi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Usuario from "../../models/Usuario";
+import { cadastrarUsuario } from "../../services/Service";
 
 function Cadastro() {
+    const navigate = useNavigate();
+
+    const [usuario, setUsuario] = useState<Usuario>({
+        id: 0,
+        nome: '',
+        usuario: '',
+        senha: '',
+        foto: 'https://voxnews.com.br/wp-content/uploads/2017/04/unnamed.png'
+    })
+
+    const [usuarioResposta, setUsuarioResposta] = useState<Usuario>({
+        id: 0,
+        nome: '',
+        usuario: '',
+        senha: '',
+        foto: 'https://voxnews.com.br/wp-content/uploads/2017/04/unnamed.png'
+    });
 
     const [senha, setSenha] = useState("");
     const [mostraSenha, setMostraSenha] = useState(false);
 
+
+    function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
+        setUsuario({
+            ...usuario,
+            [e.target.name]: e.target.value
+        })
+        setSenha(e.target.value)
+    }
+
+    async function cadastrarNovoUsuario(e: ChangeEvent<HTMLFormElement>) {
+        e.preventDefault()
+
+        if (usuario.senha.length >= 8) {
+            try {
+                await cadastrarUsuario('/usuarios/cadastrar', usuario, setUsuarioResposta)
+                alert('Usuário cadastrado com sucesso')
+
+            } catch (error) {
+                alert('Erro ao cadastrar o Usuário')
+            }
+        } else {
+            alert('Dados inconsistentes. Verifique as informações de cadastro.')
+            setUsuario({ ...usuario, senha: "" }) // Reinicia o campo de Senha
+        }
+    }
+
+    function back() {
+        navigate('/login')
+    }
+
+    useEffect(() => {
+        if (usuarioResposta.id !== 0) {
+            back()
+        }
+    }, [usuarioResposta])
+
     return (
         <div className="flex flex-col items-center justify-center h-screen w-screen bg-isabelline">
             <div className="absolute top-0 h-full w-96">
-                <form className="flex flex-col items-center justify-center h-full text-center">
+                <form className="flex flex-col items-center justify-center h-full text-center" onSubmit={cadastrarNovoUsuario}>
                     <h1 className="font-bold text-5xl mb-8 text-ferngreen">Crie sua conta!</h1>
 
-                    <input type="text" placeholder="Nome Completo" className="rounded-md bg-gray-200 border-none p-3 mb-4 w-full" />
-                    <input type="email" placeholder="E-mail" className="rounded-md bg-gray-200 border-none p-3 mb-4 w-full" />
-                    
+                    <input id="nome" name="nome" type="text" placeholder="Nome Completo" className="rounded-md bg-gray-200 border-none p-3 mb-4 w-full"
+                        value={usuario.nome}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)} />
+                    <input id="usuario" name="usuario" type="text" placeholder="E-mail" className="rounded-md bg-gray-200 border-none p-3 mb-4 w-full"
+                        value={usuario.usuario}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)} />
+
                     <div className="relative w-full mb-4">
-                        <input 
+                        <input
+                            id="senha" name="senha"
                             placeholder="Senha"
                             className="rounded-md bg-gray-200 border-none p-3 w-full pr-10"
-                            id="pass"
+
                             type={mostraSenha ? "text" : "password"}
-                            value={senha}
-                            onChange={(e) => setSenha(e.target.value)}
+                            value={usuario.senha}
+
+                            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                atualizarEstado(e)}
+
                         />
                         <span
                             onClick={() => setMostraSenha(prev => !prev)}
@@ -38,13 +103,13 @@ function Cadastro() {
                             {mostraSenha ? <FaRegEyeSlash /> : <FaRegEye />}
                         </span>
                     </div>
-                    
+
                     <div className="flex gap-4 w-full items-baseline text-onyx">
                         <p className="whitespace-nowrap">Data de nascimento:</p>
                         <input type="date" placeholder="Nascimento" className="rounded-md bg-gray-200 border-none p-3 mb-4 w-full" />
                     </div>
 
-                    <button className="rounded-md border-2 border-ferngreen bg-ferngreen text-isabelline text-xs font-bold py-3 w-full uppercase mt-4 transform transition-transform duration-80 active:scale-95">
+                    <button type="submit" className="rounded-md border-2 border-ferngreen bg-ferngreen text-isabelline text-xs font-bold py-3 w-full uppercase mt-4 transform transition-transform duration-80 active:scale-95">
                         Cadastrar
                     </button>
                     <div className="my-8 text-onyx flex gap-1.5">

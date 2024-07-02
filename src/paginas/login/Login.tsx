@@ -1,32 +1,64 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import "tailwindcss/tailwind.css";
 import { SlSocialFacebook } from "react-icons/sl";
 import { SlSocialLinkedin } from "react-icons/sl";
 import { SlSocialGoogle } from "react-icons/sl";
 import { TfiApple } from "react-icons/tfi";
-import { useState } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import UsuarioLogin from "../../models/UsuarioLogin";
+import { AuthContext } from "../../context/AuthContext";
 
 function Login() {
     const [senha, setSenha] = useState("");
     const [mostraSenha, setMostraSenha] = useState(false);
 
+    const navigate = useNavigate();
+
+    const [usuarioLogin, setUsuarioLogin] = useState<UsuarioLogin>(
+        {} as UsuarioLogin
+    );
+
+    const { usuario, handleLogin } = useContext(AuthContext);
+
+    const { isLoading } = useContext(AuthContext)
+
+    useEffect(() => {
+        if (usuario.token !== "") {
+            navigate('/home')
+        }
+    }, [usuario])
+
+    function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
+        setUsuarioLogin({
+            ...usuarioLogin,
+            [e.target.name]: e.target.value
+        })
+        setSenha(e.target.value)
+    }
+
+    function login(e: ChangeEvent<HTMLFormElement>) {
+        e.preventDefault()
+        handleLogin(usuarioLogin)
+    }
+
     return (
         <div className="flex flex-col items-center justify-center h-screen w-screen bg-isabelline">
             <div className="absolute top-0 h-full w-96">
-                <form className="flex flex-col items-center justify-center h-full text-center">
+                <form onSubmit={login} className="flex flex-col items-center justify-center h-full text-center">
                     <h1 className="font-bold text-5xl mb-8 text-ferngreen">Bem vindo de volta!</h1>
-                    <input type="email" placeholder="E-mail" className="rounded-md bg-gray-200 border-none p-3 mb-4 w-full" />
+                    <input id="usuario" name="usuario" type="text" placeholder="E-mail" className="rounded-md bg-gray-200 border-none p-3 mb-4 w-full" value={usuarioLogin.usuario}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}/>
 
                     <div className="relative w-full">
-                        <input 
+                        <input id="senha" name="senha"
                             placeholder="Senha"
                             className="rounded-md bg-gray-200 border-none p-3 w-full pr-10"
-                            id="pass"
                             type={mostraSenha ? "text" : "password"}
-                            value={senha}
-                            onChange={(e) => setSenha(e.target.value)}
+                            value={usuarioLogin.senha}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                         />
                         <span
                             onClick={() => setMostraSenha(prev => !prev)}

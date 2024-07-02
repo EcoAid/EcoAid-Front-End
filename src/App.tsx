@@ -6,11 +6,13 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Login from './paginas/login/Login'
 import Footer from './components/footer/Footer'
 import Cadastro from './paginas/cadastro/Cadastro'
+import { AuthProvider } from './context/AuthContext'
 
 function App() {
   return (
     <>
-    <BrowserRouter>
+      <AuthProvider>
+        <BrowserRouter>
           <Navbar />
           <div className='min-h-[80vh]'>
             <Routes>
@@ -23,6 +25,7 @@ function App() {
           </div>
           <Footer />
         </BrowserRouter>
+      </AuthProvider>
     </>
   )
 }
