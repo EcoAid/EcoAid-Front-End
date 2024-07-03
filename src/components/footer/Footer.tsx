@@ -3,8 +3,8 @@ import { PiLinktreeLogoBold } from 'react-icons/pi';
 
 function Footer() {
   return (
-    <div className="flex justify-center bg-green-500 text-white">
-      <div className="container flex flex-col items-center py-4">
+    <div className="flex p-8 justify-center bg-[#407C44] text-white">
+      <div className="container gap-4 flex flex-col items-center py-4">
         <p className="text-xl font-bold">Projeto Eco Aid | Copyright:</p>
         <p className="text-xl font-bold">Generation Brasil</p>
         <p className="text-lg">Acesse nosso Linktree</p>

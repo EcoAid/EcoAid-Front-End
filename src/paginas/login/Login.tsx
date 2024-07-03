@@ -46,7 +46,7 @@ function Login() {
 
     return (
         <div className="flex flex-col items-center justify-center h-screen w-screen bg-isabelline">
-            <div className="absolute top-0 h-full w-96">
+            <div className="h-full w-96">
                 <form onSubmit={login} className="flex flex-col items-center justify-center h-full text-center">
                     <h1 className="font-bold text-5xl mb-8 text-ferngreen">Bem vindo de volta!</h1>
                     <input id="usuario" name="usuario" type="text" placeholder="E-mail" className="rounded-md bg-gray-200 border-none p-3 mb-4 w-full" value={usuarioLogin.usuario}
