@@ -1,6 +1,7 @@
 import React from 'react'
 import './Home.css';
 import { SlidersHorizontal, Heart, Plus } from '@phosphor-icons/react'
+import ListaProdutos from '../../components/listaProdutos/ListaProdutos';
 
 function home() {
     return (
@@ -26,44 +27,9 @@ function home() {
                 <section className='w-full part-white text-[#407C44] p-20 flex flex-col gap-8 overflow-visible'>
                     <h1 className='text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'>Doações recomendadas</h1>
                     <h2 className='text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#3D4DA6]'>Novas doações</h2>
-                    <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-11'>
-                        <div className='shadow-2xl flex flex-col items-center gap-4 box-border p-12 rounded-3xl text-center bg-[#FFFFFF]'>
-                            <Heart className='ml-auto' size={34} color="#407C44" />
-                            <img className='rounded-full w-8/12' src="https://cdn.betterttv.net/emote/658f28f95e7e78960777148d/3x.webp" alt="PlaceHolder" />
-                            <h1 className='text-[#414141] text-3xl'><span>Cesta básica</span></h1>
-                            <div className='flex w-full align-middle gap-8'>
-                                <button className='rounded-full bg-[#F7F3ED] w-full text-2xl py-4'>DOAR</button>
-                                <button className='rounded-full bg-[#F7F3ED] p-6'><Plus size={24} color="#407C44" /></button>
-                            </div>
-                        </div>
-                        <div className='shadow-2xl flex flex-col items-center gap-4 box-border p-12 rounded-3xl text-center bg-[#FFFFFF]'>
-                            <Heart className='ml-auto' size={34} color="#407C44" />
-                            <img className='rounded-full w-8/12' src="https://cdn.betterttv.net/emote/658f28f95e7e78960777148d/3x.webp" alt="PlaceHolder" />
-                            <h1 className='text-[#414141] text-3xl'><span>Cesta básica</span></h1>
-                            <div className='flex w-full align-middle gap-8'>
-                                <button className='rounded-full bg-[#F7F3ED] w-full text-2xl py-4'>DOAR</button>
-                                <button className='rounded-full bg-[#F7F3ED] p-6'><Plus size={24} color="#407C44" /></button>
-                            </div>
-                        </div>
-                        <div className='shadow-2xl flex flex-col items-center gap-4 box-border p-12 rounded-3xl text-center bg-[#FFFFFF]'>
-                            <Heart className='ml-auto' size={34} color="#407C44" />
-                            <img className='rounded-full w-8/12' src="https://cdn.betterttv.net/emote/658f28f95e7e78960777148d/3x.webp" alt="PlaceHolder" />
-                            <h1 className='text-[#414141] text-3xl'><span>Cesta básica</span></h1>
-                            <div className='flex w-full align-middle gap-8'>
-                                <button className='rounded-full bg-[#F7F3ED] w-full text-2xl py-4'>DOAR</button>
-                                <button className='rounded-full bg-[#F7F3ED] p-6'><Plus size={24} color="#407C44" /></button>
-                            </div>
-                        </div>
-                        <div className='shadow-2xl flex flex-col items-center gap-4 box-border p-12 rounded-3xl text-center bg-[#FFFFFF]'>
-                            <Heart className='ml-auto' size={34} color="#407C44" />
-                            <img className='rounded-full w-8/12' src="https://cdn.betterttv.net/emote/658f28f95e7e78960777148d/3x.webp" alt="PlaceHolder" />
-                            <h1 className='text-[#414141] text-3xl'><span>Cesta básica</span></h1>
-                            <div className='flex w-full align-middle gap-8'>
-                                <button className='rounded-full bg-[#F7F3ED] w-full text-2xl py-4'>DOAR</button>
-                                <button className='rounded-full bg-[#F7F3ED] p-6'><Plus size={24} color="#407C44" /></button>
-                            </div>
-                        </div>
-                    </div>
+
+                    <ListaProdutos/>
+                    
                 </section>
 
                 <section className='w-full part-white text-[#407C44] p-20 flex flex-col gap-16 overflow-visible'>
@@ -72,44 +38,8 @@ function home() {
                         <button className='text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#3D4DA6]'>Mais populares</button>
                         <button className='text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#3D4DA6]'>Top doações</button>
                     </div>
-                    <div className='grid grid-cols-4 gap-11'>
-                        <div className='shadow-2xl flex flex-col items-center gap-4 box-border p-12 rounded-3xl text-center bg-[#FFFFFF]'>
-                            <Heart className='ml-auto' size={34} color="#407C44" />
-                            <img className='rounded-full w-8/12' src="https://cdn.betterttv.net/emote/658f28f95e7e78960777148d/3x.webp" alt="PlaceHolder" />
-                            <h1 className='text-[#414141] text-3xl'><span>Cesta básica</span></h1>
-                            <div className='flex w-full align-middle gap-8'>
-                                <button className='rounded-full bg-[#F7F3ED] w-full text-2xl py-4'>DOAR</button>
-                                <button className='rounded-full bg-[#F7F3ED] p-6'><Plus size={24} color="#407C44" /></button>
-                            </div>
-                        </div>
-                        <div className='shadow-2xl flex flex-col items-center gap-4 box-border p-12 rounded-3xl text-center bg-[#FFFFFF]'>
-                            <Heart className='ml-auto' size={34} color="#407C44" />
-                            <img className='rounded-full w-8/12' src="https://cdn.betterttv.net/emote/658f28f95e7e78960777148d/3x.webp" alt="PlaceHolder" />
-                            <h1 className='text-[#414141] text-3xl'><span>Cesta básica</span></h1>
-                            <div className='flex w-full align-middle gap-8'>
-                                <button className='rounded-full bg-[#F7F3ED] w-full text-2xl py-4'>DOAR</button>
-                                <button className='rounded-full bg-[#F7F3ED] p-6'><Plus size={24} color="#407C44" /></button>
-                            </div>
-                        </div>
-                        <div className='shadow-2xl flex flex-col items-center gap-4 box-border p-12 rounded-3xl text-center bg-[#FFFFFF]'>
-                            <Heart className='ml-auto' size={34} color="#407C44" />
-                            <img className='rounded-full w-8/12' src="https://cdn.betterttv.net/emote/658f28f95e7e78960777148d/3x.webp" alt="PlaceHolder" />
-                            <h1 className='text-[#414141] text-3xl'><span>Cesta básica</span></h1>
-                            <div className='flex w-full align-middle gap-8'>
-                                <button className='rounded-full bg-[#F7F3ED] w-full text-2xl py-4'>DOAR</button>
-                                <button className='rounded-full bg-[#F7F3ED] p-6'><Plus size={24} color="#407C44" /></button>
-                            </div>
-                        </div>
-                        <div className='shadow-2xl flex flex-col items-center gap-4 box-border p-12 rounded-3xl text-center bg-[#FFFFFF]'>
-                            <Heart className='ml-auto' size={34} color="#407C44" />
-                            <img className='rounded-full w-8/12' src="https://cdn.betterttv.net/emote/658f28f95e7e78960777148d/3x.webp" alt="PlaceHolder" />
-                            <h1 className='text-[#414141] text-3xl'><span>Cesta básica</span></h1>
-                            <div className='flex w-full align-middle gap-8'>
-                                <button className='rounded-full bg-[#F7F3ED] w-full text-2xl py-4'>DOAR</button>
-                                <button className='rounded-full bg-[#F7F3ED] p-6'><Plus size={24} color="#407C44" /></button>
-                            </div>
-                        </div>
-                    </div>
+                    
+                    <ListaProdutos/>
                     
                 </section>
             </main>

@@ -10,9 +10,9 @@ import { FaRegEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import UsuarioLogin from "../../models/UsuarioLogin";
 import { AuthContext } from "../../context/AuthContext";
+import { RotatingLines } from 'react-loader-spinner';
 
 function Login() {
-    const [senha, setSenha] = useState("");
     const [mostraSenha, setMostraSenha] = useState(false);
 
     const navigate = useNavigate();
@@ -36,7 +36,6 @@ function Login() {
             ...usuarioLogin,
             [e.target.name]: e.target.value
         })
-        setSenha(e.target.value)
     }
 
     function login(e: ChangeEvent<HTMLFormElement>) {
@@ -45,9 +44,9 @@ function Login() {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center h-screen w-screen bg-isabelline">
-            <div className="h-full w-96">
-                <form onSubmit={login} className="flex flex-col items-center justify-center h-full text-center">
+        <div className="flex flex-col items-center justify-center h-screen w-screen">
+            <div className="px-24 py-36 bg-white rounded-lg border border-gray-100 shadow-xl">
+                <form onSubmit={login} className="w-96 flex flex-col items-center justify-center h-full text-center">
                     <h1 className="font-bold text-5xl mb-8 text-ferngreen">Bem vindo de volta!</h1>
                     <input id="usuario" name="usuario" type="text" placeholder="E-mail" className="rounded-md bg-gray-200 border-none p-3 mb-4 w-full" value={usuarioLogin.usuario}
                             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}/>
@@ -73,8 +72,15 @@ function Login() {
                         Esqueceu sua senha?
                     </a>
 
-                    <button className="rounded-md border-2 border-ferngreen bg-ferngreen text-isabelline text-xs font-bold py-3 w-full uppercase mt-4 transform transition-transform duration-80 active:scale-95">
-                        Entrar
+                    <button className="flex justify-center rounded-md border-2 border-ferngreen bg-ferngreen text-isabelline text-xs font-bold py-3 w-full uppercase mt-4 transform transition-transform duration-80 active:scale-95">
+                    {isLoading ? <RotatingLines
+                            strokeColor="white"
+                            strokeWidth="5"
+                            animationDuration="0.75"
+                            width="24"
+                            visible={true}
+                        /> :
+                            <span>Entrar</span>}
                     </button>
                     <div className="my-8 text-onyx flex gap-1.5">
                         <p>Não tem uma conta?</p>

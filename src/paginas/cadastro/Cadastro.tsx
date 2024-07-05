@@ -31,7 +31,6 @@ function Cadastro() {
         foto: 'https://voxnews.com.br/wp-content/uploads/2017/04/unnamed.png'
     });
 
-    const [senha, setSenha] = useState("");
     const [mostraSenha, setMostraSenha] = useState(false);
 
 
@@ -40,7 +39,6 @@ function Cadastro() {
             ...usuario,
             [e.target.name]: e.target.value
         })
-        setSenha(e.target.value)
     }
 
     async function cadastrarNovoUsuario(e: ChangeEvent<HTMLFormElement>) {
@@ -72,8 +70,8 @@ function Cadastro() {
 
     return (
         <div className="flex flex-col items-center justify-center h-screen w-screen bg-isabelline">
-            <div className="absolute top-0 h-full w-96">
-                <form className="flex flex-col items-center justify-center h-full text-center" onSubmit={cadastrarNovoUsuario}>
+            <div className="px-24 py-36 bg-white rounded-lg border border-gray-100 shadow-xl">
+                <form className="w-96 flex flex-col items-center justify-center h-full text-center" onSubmit={cadastrarNovoUsuario}>
                     <h1 className="font-bold text-5xl mb-8 text-ferngreen">Crie sua conta!</h1>
 
                     <input id="nome" name="nome" type="text" placeholder="Nome Completo" className="rounded-md bg-gray-200 border-none p-3 mb-4 w-full"
