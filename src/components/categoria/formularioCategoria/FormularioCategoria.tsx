@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext';
@@ -102,29 +103,29 @@ function FormularioCategoria() {
                 {id === undefined ? 'Cadastre uma nova categoria' : 'Editar categoria'}
             </h1>
 
-            <form className="w-1/2 flex flex-col gap-4" onSubmit={gerarNovoCategoria}>
+            <form className="w-1/3 flex flex-col gap-4" onSubmit={gerarNovoCategoria}>
                 <div className="flex flex-col gap-2">
-                    <label htmlFor="descricao">Tipo da categoria</label>
+                    <label htmlFor="descricao">Tipo da categoria:</label>
                     <input
                         type="text"
                         placeholder="Tipo"
                         name='tipo'
-                        className="border-2 border-slate-700 rounded p-2"
+                        className="border-2 border-black rounded p-2"
                         value={categoria.tipo}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                     />
-                    <label htmlFor="descricao">Descrição da categoria</label>
+                    <label htmlFor="descricao" className='mt-2'>Descrição da categoria: </label>
                     <input
                         type="text"
                         placeholder="Descrição"
                         name='descricao'
-                        className="border-2 border-slate-700 rounded p-2"
+                        className="border-2 border-black rounded p-2 h-16"
                         value={categoria.descricao}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                     />
                 </div>
                 <button
-                    className="rounded text-slate-100 bg-teal-400 hover:bg-teal-800 w-1/2 py-2 mx-auto block"
+                    className="rounded text-slate-100 bg-ferngreen hover:bg-green-900 w-full py-2 mx-auto block"
                     type="submit"
                 >
                     {id === undefined ? 'Cadastrar' : 'Editar'}

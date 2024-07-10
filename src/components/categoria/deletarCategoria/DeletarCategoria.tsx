@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { AuthContext } from '../../../context/AuthContext'
 import Categoria from '../../../models/Categoria'
 import { buscar, deletar } from '../../../services/Service'
+import { Tag } from '@phosphor-icons/react'
 // import { alert } from '../../../utils/alert'
 
 function DeletarCategoria() {
@@ -69,12 +71,28 @@ function DeletarCategoria() {
 
             <p className='text-center font-semibold mb-4'>Você tem certeza de que deseja apagar a categoria a seguir?</p>
 
-            <div className='border flex flex-col rounded-2xl overflow-hidden justify-between'>
-                <header className='py-2 px-6 bg-teal-600 text-white font-bold text-2xl'>Categoria</header>
-                <p className='p-8 text-3xl bg-slate-200 h-full'>{categoria.descricao}</p>
+            <div className='border flex flex-col rounded-2xl overflow-hidden justify-between '>
+                <div className='bg-white bg-opacity-75 flex items-center p-4'>
+                    <div
+                        className="bg-isabelline border-solid border-2 border-ferngreen rounded-full w-16 h-16 flex justify-center items-center text-ferngreen shadow-2xl"
+                    >
+                        <Tag size={32} />
+                    </div>
+                    <div className='h-auto ml-4'>
+                        <h2 className="uppercase text-ferngreen font-medium mb-2">
+                            {categoria.tipo}
+                        </h2>
+                        <p className="font-light text-sm text-gray-800 line-clamp-3">
+                            {categoria.descricao}
+                        </p>
+                    </div>
+
+                </div>
+
+
                 <div className="flex">
-                    <button className='text-slate-100 bg-red-400 hover:bg-red-600 w-full py-2' onClick={retornar}>Não</button>
-                    <button className='w-full text-slate-100 bg-teal-400 hover:bg-teal-600 flex items-center justify-center' onClick={deletarCategoria}>
+                    <button className='text-slate-100 bg-ferngreen hover:bg-green-900 w-full py-2' onClick={retornar}>Não</button>
+                    <button className='w-full text-slate-100 bg-red-500 hover:bg-red-700 flex items-center justify-center' onClick={deletarCategoria}>
                         Sim
                     </button>
                 </div>

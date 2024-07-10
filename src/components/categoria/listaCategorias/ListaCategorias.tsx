@@ -1,11 +1,12 @@
 import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { DNA } from 'react-loader-spinner';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext';
 import Categoria from '../../../models/Categoria';
 import { buscar } from '../../../services/Service';
 import CardCategorias from '../cardCategoria/CardCategoria';
 import BarraDeBusca from '../../barraDeBusca/BarraDeBusca';
+import { PlusCircle } from '@phosphor-icons/react'
 // import { alert } from '../../../utils/alert';
 
 function ListaCategorias() {
@@ -50,7 +51,14 @@ function ListaCategorias() {
     }, []);
     return (
         <>
-            <BarraDeBusca/>
+            <BarraDeBusca />
+
+            <div className='flex justify-center items-center'>
+                <div className='flex items-center gap-2 bg-ferngreen p-4 rounded-md mb-4'>
+                    <PlusCircle size={32} color="#f5f4f4" />
+                    <Link to='/cadastroCategoria' className='text-white'>Cadastrar Categoria</Link>
+                </div>
+            </div>
 
             {categorias.length === 0 && (
                 <DNA
@@ -74,6 +82,8 @@ function ListaCategorias() {
                     </div>
                 </div>
             </div>
+
+
         </>
     );
 }
