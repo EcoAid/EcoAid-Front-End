@@ -8,6 +8,9 @@ import Footer from './components/footer/Footer'
 import Cadastro from './paginas/cadastro/Cadastro'
 import { AuthProvider } from './context/AuthContext'
 import ListaProdutos from './components/produto/listaProdutos/ListaProdutos'
+import ListaCategorias from './components/categoria/listaCategorias/ListaCategorias'
+import FormularioCategoria from './components/categoria/formularioCategoria/FormularioCategoria'
+import DeletarCategoria from './components/categoria/deletarCategoria/DeletarCategoria'
 
 function App() {
   return (
@@ -23,6 +26,10 @@ function App() {
               <Route path="/home" element={<Home />} />
               <Route path="/sobre" element={<Sobre />} />
               <Route path="/doacoes" element={<ListaProdutos />} />
+              <Route path="/categorias" element={<ListaCategorias />} />
+              <Route path="/cadastroCategoria" element={<FormularioCategoria />} />
+              <Route path="/editarCategoria/:id" element={<FormularioCategoria />} />
+              <Route path="/deletarCategoria/:id" element={<DeletarCategoria />} />
             </Routes>
           </div>
           <Footer />
