@@ -3,7 +3,7 @@ import CardProduto from '../cardProduto/CardProduto'
 
 function ListaProdutos() {
   return (
-    <div className='grid grid-cols-4 gap-11'>
+    <div className='grid grid-cols-4 gap-11 m-16'>
         <CardProduto/>
         <CardProduto/>
         <CardProduto/>

@@ -7,6 +7,7 @@ import Login from './paginas/login/Login'
 import Footer from './components/footer/Footer'
 import Cadastro from './paginas/cadastro/Cadastro'
 import { AuthProvider } from './context/AuthContext'
+import ListaProdutos from './components/produto/listaProdutos/ListaProdutos'
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
               <Route path="/cadastro" element={<Cadastro />} />
               <Route path="/home" element={<Home />} />
               <Route path="/sobre" element={<Sobre />} />
+              <Route path="/doacoes" element={<ListaProdutos />} />
             </Routes>
           </div>
           <Footer />

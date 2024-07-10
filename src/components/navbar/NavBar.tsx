@@ -57,7 +57,7 @@ function Navbar() {
           <div className='flex items-center gap-8'>
             <Link to='/home' className='hover:underline'>Home</Link>
             <Link to='/sobre' className='hover:underline'>Sobre-nos</Link>
-            <Link to='/home' className='hover:underline'>Doações</Link>
+            <Link to='/doacoes' className='hover:underline'>Doações</Link>
             <Link to='/home' className='hover:underline'>Devoluções e Cancelamentos</Link>
             <Link to='/home' className='hover:underline font-bold'><TiShoppingCart size={38} /></Link>
             {usuarioProfile}

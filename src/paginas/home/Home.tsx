@@ -1,7 +1,7 @@
 import React from 'react'
 import './Home.css';
 import { SlidersHorizontal, Heart, Plus } from '@phosphor-icons/react'
-import ListaProdutos from '../../components/listaProdutos/ListaProdutos';
+import ListaProdutos from '../../components/produto/listaProdutos/ListaProdutos';
 
 function home() {
     return (
