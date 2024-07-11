@@ -2,8 +2,11 @@
 export default {
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx}"
   ],
+  
+  plugins: [ ],
+
   theme: {
     extend: {colors:{
       'ferngreen': '#407C44',
@@ -13,5 +16,4 @@ export default {
       'violetblue': '#3D4DA6',
     }},
   },
-  plugins: [],
 }
