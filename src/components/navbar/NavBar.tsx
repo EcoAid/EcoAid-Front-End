@@ -32,7 +32,7 @@ function Navbar() {
         </div>
         <div className="py-2">
           <MenuItem>
-            <Link to='/home' className='px-4 py-1 text-base font-medium hover:underline'>Home</Link>
+            <Link to='/perfil' className='px-4 py-1 text-base font-medium hover:underline'>Perfil</Link>
           </MenuItem>
         </div>
         <div className="py-2">
@@ -60,7 +60,6 @@ function Navbar() {
             <Link to='/categorias' className='hover:underline'>Categorias</Link>
             <Link to='/home' className='hover:underline'>Devoluções e Cancelamentos</Link>
             <Link to='/home' className='hover:underline font-bold'><TiShoppingCart size={38} /></Link>
-            <Link to='/perfil' className='hover:underline'>Perfil</Link>
             {usuarioProfile}
           </div>
         </div>

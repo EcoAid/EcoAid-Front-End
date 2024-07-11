@@ -1,41 +1,33 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ChangeEvent, useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { ChangeEvent, useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Usuario from "../../models/Usuario";
-import { atualizar, buscar } from "../../services/Service";
+import { atualizar } from "../../services/Service";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../../context/AuthContext";
 
 function AtualizarUsuario() {
     const [mostraSenha, setMostraSenha] = useState(false);
+    const [mostraConfirmaSenha, setConfirmaSenha] = useState(false);
+
     const [usuarioPerfil, setUsuario] = useState<Usuario>({
         foto: 'https://voxnews.com.br/wp-content/uploads/2017/04/unnamed.png'
     } as Usuario);
 
     const navigate = useNavigate();
-    const { id } = useParams<{ id: string }>();
+
     const { usuario, handleLogout } = useContext(AuthContext);
-    const token = usuario?.token || ""; 
 
-    async function buscarPorId(id: string) {
-        await buscar(`/usuarios/${id}`, setUsuario, {
-            headers: {
-                Authorization: token,
-            },
-        });
-    }
+    const token = usuario?.token || "";
 
-    useEffect(() => {
-        if (id !== undefined) {
-            buscarPorId(id);
-        }
-    }, [id]);
+    const [confirmaSenha, setConfirmaSenhaTexto] = useState("");
 
     function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
         setUsuario({
             ...usuarioPerfil,
             [e.target.name]: e.target.value,
+            id: usuario.id
         });
 
         console.log(JSON.stringify(usuarioPerfil));
@@ -50,15 +42,14 @@ function AtualizarUsuario() {
             return;
         }
 
+        if (usuarioPerfil.senha !== confirmaSenha) {
+            alert("As senhas não coincidem. Por favor, verifique e tente novamente.");
+            return;
+        }
+
         try {
-            if (id !== undefined && usuarioPerfil.senha.length >= 8) {
-                await atualizar(`/usuarios/${id}`, usuarioPerfil, setUsuario, {
-                    headers: {
-                        Authorization: token,
-                    },
-                });
-            } else {
-                await atualizar(`/usuarios`, usuarioPerfil, setUsuario, {
+            if (usuarioPerfil.senha.length >= 8) {
+                await atualizar(`/usuarios/atualizar`, usuarioPerfil, setUsuario, {
                     headers: {
                         Authorization: token,
                     },
@@ -66,7 +57,8 @@ function AtualizarUsuario() {
             }
 
             alert("Dados atualizados com sucesso");
-            retornar();
+            handleLogout();
+            login();
         } catch (error: any) {
             if (error.toString().includes("403")) {
                 alert("O token expirou, favor logar novamente");
@@ -79,6 +71,10 @@ function AtualizarUsuario() {
 
     function retornar() {
         navigate("/usuarios");
+    }
+
+    function login() {
+        navigate('/login')
     }
 
     return (
@@ -115,6 +111,24 @@ function AtualizarUsuario() {
                                 {mostraSenha ? <FaRegEyeSlash /> : <FaRegEye />}
                             </span>
                         </div>
+
+                        <div className="relative w-full mb-4">
+                            <input
+                                id="confirmaSenha" name="confirmaSenha"
+                                placeholder="Confirme a senha"
+                                className="rounded-md bg-gray-200 border-none p-3 w-full pr-10"
+                                type={mostraConfirmaSenha ? "text" : "password"}
+                                value={confirmaSenha}
+                                onChange={(e: ChangeEvent<HTMLInputElement>) => setConfirmaSenhaTexto(e.target.value)}
+                            />
+                            <span
+                                onClick={() => setConfirmaSenha(prev => !prev)}
+                                className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer h-full"
+                            >
+                                {mostraConfirmaSenha ? <FaRegEyeSlash /> : <FaRegEye />}
+                            </span>
+                        </div>
+
 
                         <button type="submit" className="rounded-md border-2 border-ferngreen bg-ferngreen text-isabelline text-xs font-bold py-3 w-full uppercase mt-4 transform transition-transform duration-80 active:scale-95">
                             Atualizar

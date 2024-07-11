@@ -17,7 +17,7 @@ function Perfil() {
   const { usuario, handleLogout } = useContext(AuthContext);
   const token = usuario.token;
 
-  const fotoDefault = 'https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg'
+  const fotoDefault = 'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'
 
   async function buscarUsuario() {
     try {
