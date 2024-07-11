@@ -39,19 +39,14 @@ function ListaProdutos() {
 
     return (
         <>
-            {produtos.length === 0 && (
-                <DNA
-                    visible={true}
-                    height="200"
-                    width="200"
-                    ariaLabel="dna-loading"
-                    wrapperStyle={{}}
-                    wrapperClass="dna-wrapper mx-auto"
-                />
-            )}
-            <div className='container mx-auto my-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+            <div className='container mx-auto my-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12'>
+            {produtos.length === 0 && (<>
+                            {Array.from({ length: 12 }).map((_, index) => (
+                                <CardProduto key={index} produto={{} as Produto} carregando={true} />
+                            ))}
+                        </>)}
                 {produtos.map((produto) => (
-                    <CardProduto key={produto.id} produto={produto} />
+                    <CardProduto key={produto.id} produto={produto} carregando={false}/>
                 ))}
             </div>
         </>

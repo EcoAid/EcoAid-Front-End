@@ -3,26 +3,28 @@ import { Link } from 'react-router-dom'
 import Categoria from '../../../models/Categoria';
 import { DotsThree, Tag } from '@phosphor-icons/react';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css'
 
 interface CardCategoriaProps {
     categoria: Categoria
+    carregando: boolean
 }
 
-function CardCategoria({ categoria }: CardCategoriaProps) {
+function CardCategoria({ categoria, carregando }: CardCategoriaProps) {
     return (
         <div className='border flex flex-col rounded-2xl overflow-hidden justify-center'>
 
             <div className="p-8 bg-white h-full ">
                 <div className="flex justify-between">
-                    <div
-                        className="bg-isabelline border-solid border-2 border-ferngreen rounded-full w-16 h-16 flex justify-center items-center text-ferngreen shadow-2xl"
-                    >
-                        <Tag size={32} />
-                    </div>
+                {carregando ? <Skeleton style={{ borderRadius: 10 }} circle={true} width={64} height={64} /> :
+                    (<div className="bg-isabelline border-solid border-2 border-ferngreen rounded-full w-16 h-16 flex justify-center items-center text-ferngreen shadow-2xl">
+                            <Tag size={32} /> 
+                    </div>)}
                     <Menu as="div" className="relative inline-block text-left">
                         <div className='flex items-center'>
                             <MenuButton>
-                                <DotsThree size={28} />
+                            {carregando ? <Skeleton style={{ borderRadius: 10 }} width={28} /> : <DotsThree size={28} />}
                             </MenuButton>
                         </div>
                         <MenuItems
@@ -48,11 +50,13 @@ function CardCategoria({ categoria }: CardCategoriaProps) {
                 </div>
                 <div className='flex flex-col items-left justify-center'>
                     <h2 className="uppercase mt-6 text-ferngreen font-medium mb-3">
-                        {categoria.tipo}
+                        {categoria.tipo || <Skeleton style={{ borderRadius: 10 }}/>}
                     </h2>
                     <p className="font-light text-sm text-gray-800 mb-3 h-16 line-clamp-3">
-                        {categoria.descricao}
+                        {categoria.descricao || <Skeleton style={{ borderRadius: 10 }} count={2}/>}
                     </p>
+                    {carregando ? <Skeleton style={{ borderRadius: 10 }} width={225} /> 
+                    :
                     <a className="text-ferngreen flex items-center hover:text-ferngreen" href="/">
                         Mais sobre essa categoria
                         <svg
@@ -67,7 +71,7 @@ function CardCategoria({ categoria }: CardCategoriaProps) {
                                 clip-rule="evenodd"
                             />
                         </svg>
-                    </a>
+                    </a>}
                 </div>
             </div>
         </div>

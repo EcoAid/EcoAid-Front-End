@@ -11,6 +11,8 @@ import ListaProdutos from './components/produto/listaProdutos/ListaProdutos'
 import ListaCategorias from './components/categoria/listaCategorias/ListaCategorias'
 import FormularioCategoria from './components/categoria/formularioCategoria/FormularioCategoria'
 import DeletarCategoria from './components/categoria/deletarCategoria/DeletarCategoria'
+import DeletarProduto from './components/produto/deletarProduto/DeletarProduto'
+import FormularioProduto from './components/produto/formularioProduto/FormularioProduto'
 
 function App() {
   return (
@@ -26,6 +28,9 @@ function App() {
               <Route path="/home" element={<Home />} />
               <Route path="/sobre" element={<Sobre />} />
               <Route path="/doacoes" element={<ListaProdutos />} />
+              <Route path="/cadastroDoacao" element={<FormularioProduto />} />
+              <Route path="/editarDoacao/:id" element={<FormularioProduto />} />
+              <Route path="/deletarDoacao/:id" element={<DeletarProduto />} />
               <Route path="/categorias" element={<ListaCategorias />} />
               <Route path="/cadastroCategoria" element={<FormularioCategoria />} />
               <Route path="/editarCategoria/:id" element={<FormularioCategoria />} />
