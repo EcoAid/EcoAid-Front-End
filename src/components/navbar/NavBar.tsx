@@ -60,6 +60,7 @@ function Navbar() {
             <Link to='/categorias' className='hover:underline'>Categorias</Link>
             <Link to='/home' className='hover:underline'>Devoluções e Cancelamentos</Link>
             <Link to='/home' className='hover:underline font-bold'><TiShoppingCart size={38} /></Link>
+            <Link to='/perfil' className='hover:underline'>Perfil</Link>
             {usuarioProfile}
           </div>
         </div>
