@@ -17,8 +17,6 @@ function Perfil() {
   const { usuario, handleLogout } = useContext(AuthContext);
   const token = usuario.token;
 
-  const fotoDefault = 'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'
-
   async function buscarUsuario() {
     try {
       await buscar(`/usuario/${usuario.id}`, setUsuario, {
@@ -58,7 +56,7 @@ function Perfil() {
             <div className="absolute -mt-20 w-full flex justify-center">
               <div className="h-32 w-32">
                 <img key={usuario.id}
-                  src={usuario.foto === '' ? usuario.foto : fotoDefault}
+                  src={usuario.foto !== '' ? usuario.foto : 'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'}
                   className="rounded-full object-cover h-full w-full shadow-md"
                   alt="User Avatar"
                 />
