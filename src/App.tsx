@@ -13,6 +13,8 @@ import FormularioCategoria from './components/categoria/formularioCategoria/Form
 import DeletarCategoria from './components/categoria/deletarCategoria/DeletarCategoria'
 import Perfil from './paginas/perfil/Perfil'
 import AtualizarUsuario from './components/atualizarUsuario/AtualizarUsuario'
+import DeletarProduto from './components/produto/deletarProduto/DeletarProduto'
+import FormularioProduto from './components/produto/formularioProduto/FormularioProduto'
 
 function App() {
   return (
@@ -28,6 +30,9 @@ function App() {
               <Route path="/home" element={<Home />} />
               <Route path="/sobre" element={<Sobre />} />
               <Route path="/doacoes" element={<ListaProdutos />} />
+              <Route path="/cadastroDoacao" element={<FormularioProduto />} />
+              <Route path="/editarDoacao/:id" element={<FormularioProduto />} />
+              <Route path="/deletarDoacao/:id" element={<DeletarProduto />} />
               <Route path="/categorias" element={<ListaCategorias />} />
               <Route path="/cadastroCategoria" element={<FormularioCategoria />} />
               <Route path="/editarCategoria/:id" element={<FormularioCategoria />} />

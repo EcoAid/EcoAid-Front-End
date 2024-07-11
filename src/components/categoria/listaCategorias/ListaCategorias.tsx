@@ -61,23 +61,18 @@ function ListaCategorias() {
                 </div>
             </div>
 
-            {categorias.length === 0 && (
-                <DNA
-                    visible={true}
-                    height="200"
-                    width="200"
-                    ariaLabel="dna-loading"
-                    wrapperStyle={{}}
-                    wrapperClass="dna-wrapper mx-auto"
-                />
-            )}
-
             <div className="flex justify-center w-full my-16">
                 <div className="container flex flex-col">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center content-center">
+                        {categorias.length === 0 && (<>
+                            {Array.from({ length: 12 }).map((_, index) => (
+                                <CardCategorias key={index} categoria={{} as Categoria} carregando={true} />
+                            ))}
+                        </>)}
+
                         {filteredList.map((categoria) => (
                             <>
-                                <CardCategorias key={categoria.id} categoria={categoria} />
+                                <CardCategorias key={categoria.id} categoria={categoria} carregando={false} />
                             </>
                         ))}
                     </div>

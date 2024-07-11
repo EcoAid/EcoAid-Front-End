@@ -1,15 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './Home.css';
-import { SlidersHorizontal, Heart, Plus } from '@phosphor-icons/react'
 import ListaProdutos from '../../components/produto/listaProdutos/ListaProdutos';
 import BarraDeBusca from '../../components/barraDeBusca/BarraDeBusca';
+import { AuthContext } from '../../context/AuthContext';
 
 function home() {
+
+    const { usuario } = useContext(AuthContext)
+
     return (
         <>
             <main>
                 <div className='w-full p-20 text-6xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-[#333333] bg-white'>
-                    <h1 className='w-2/5'><span className='text-[#407C44]'>Bom dia pessoa x,</span> gostaria de receber ou enviar doações</h1>
+                    <h1 className='w-2/5'><span className='text-[#407C44]'>Bom dia {usuario.nome}, <br/></span> gostaria de receber ou enviar doações</h1>
                 </div>
 
                 <BarraDeBusca/>

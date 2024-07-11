@@ -5,6 +5,7 @@ import { AuthContext } from '../../../context/AuthContext'
 import Categoria from '../../../models/Categoria'
 import { buscar, deletar } from '../../../services/Service'
 import { Tag } from '@phosphor-icons/react'
+import Skeleton from 'react-loading-skeleton'
 // import { alert } from '../../../utils/alert'
 
 function DeletarCategoria() {
@@ -80,10 +81,10 @@ function DeletarCategoria() {
                     </div>
                     <div className='h-auto ml-4'>
                         <h2 className="uppercase text-ferngreen font-medium mb-2">
-                            {categoria.tipo}
+                            {categoria.tipo || <Skeleton width={250} style={{ borderRadius: 10 }} />}
                         </h2>
                         <p className="font-light text-sm text-gray-800 line-clamp-3">
-                            {categoria.descricao}
+                            {categoria.descricao || <Skeleton width={250} style={{ borderRadius: 10 }} />}
                         </p>
                     </div>
 
