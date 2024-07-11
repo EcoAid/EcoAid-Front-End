@@ -32,7 +32,7 @@ function Navbar() {
         </div>
         <div className="py-2">
           <MenuItem>
-            <Link to='/home' className='px-4 py-1 text-base font-medium hover:underline'>Home</Link>
+            <Link to='/perfil' className='px-4 py-1 text-base font-medium hover:underline'>Perfil</Link>
           </MenuItem>
         </div>
         <div className="py-2">
