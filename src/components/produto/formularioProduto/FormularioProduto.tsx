@@ -16,19 +16,9 @@ function FormularioProduto() {
 
     const [categorias, setCategorias] = useState<Categoria[]>([]);
 
-    const [categoria, setCategoria] = useState<Categoria>({
-        id: 0,
-        descricao: '',
-    });
+    const [categoria, setCategoria] = useState<Categoria>({} as Categoria);
 
-    const [produto, setProduto] = useState<Produto>({
-        id: 0,
-        titulo: '',
-        texto: '',
-        data: '',
-        categoria: null,
-        usuario: null,
-    });
+    const [produto, setProduto] = useState<Produto>({} as Produto);
 
     async function buscarProdutoPorId(id: string) {
         await buscar(`/produto/${id}`, setProduto, {
@@ -57,7 +47,7 @@ function FormularioProduto() {
     useEffect(() => {
         if (token === '') {
             alert('Você precisa estar logado');
-            navigate('/');
+            navigate('/login');
         }
     }, [token]);
 
@@ -141,61 +131,61 @@ function FormularioProduto() {
 
             <form onSubmit={gerarNovaProduto} className="flex flex-col w-1/2 gap-4">
                 <div className="flex flex-col gap-2">
-                    <label htmlFor="titulo">Titulo da produto</label>
+                    <label htmlFor="nome">Nome do produto</label>
                     <input
                         value={produto.nome}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                         type="text"
-                        placeholder="Titulo"
-                        name="titulo"
+                        placeholder="nome"
+                        name="nome"
                         required
                         className="border-2 border-slate-700 rounded p-2"
                     />
-                    <label htmlFor="titulo">Texto da produto</label>
+                    <label htmlFor="titulo">Foto do produto</label>
                     <input
                         value={produto.foto}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                         type="text"
-                        placeholder="Texto"
-                        name="texto"
+                        placeholder="foto"
+                        name="foto"
                         required
                         className="border-2 border-slate-700 rounded p-2"
                     />
-                    <label htmlFor="titulo">Texto da produto</label>
+                    <label htmlFor="titulo">Descrição do produto</label>
                     <input
                         value={produto.descricao}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                         type="text"
-                        placeholder="Texto"
-                        name="texto"
+                        placeholder="descricao"
+                        name="descricao"
                         required
                         className="border-2 border-slate-700 rounded p-2"
                     />
-                    <label htmlFor="titulo">Texto da produto</label>
+                    <label htmlFor="titulo">Condição do produto</label>
                     <input
                         value={produto.condicao}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                         type="text"
-                        placeholder="Texto"
-                        name="texto"
+                        placeholder="condicao"
+                        name="condicao"
                         required
                         className="border-2 border-slate-700 rounded p-2"
                     />
-                    <label htmlFor="titulo">Texto da produto</label>
+                    <label htmlFor="titulo">Valor do produto</label>
                     <input
                         value={produto.valor}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                         type="number"
-                        placeholder="Texto"
-                        name="texto"
+                        placeholder="valor"
+                        name="valor"
                         required
                         className="border-2 border-slate-700 rounded p-2"
                     />
                 </div>
                 <div className="flex flex-col gap-2">
-                    <p>Categoria da produto</p>
+                    <p>Categoria do produto</p>
                     <select name="categoria" id="categoria" className='border p-2 border-slate-800 rounded' onChange={(e) => buscarCategoriaPorId(e.currentTarget.value)}>
-                        <option value="" selected disabled>Selecione um categoria</option>
+                        <option value="" selected disabled>Selecione uma categoria</option>
                         {categorias.map((categoria) => (
                             <>
                                 <option value={categoria.id} >{categoria.descricao}</option>
@@ -203,7 +193,7 @@ function FormularioProduto() {
                         ))}
                     </select>
                 </div>
-                <button disabled={carregandoCategoria} type='submit' className='rounded disabled:bg-slate-200 bg-teal-400 hover:bg-teal-800 text-white font-bold w-1/2 mx-auto block py-2'>
+                <button disabled={carregandoCategoria} type='submit' className='rounded disabled:bg-slate-200 bg-ferngreen hover:bg-green-900 text-white font-bold w-1/2 mx-auto block py-2 mt-4'>
                     {carregandoCategoria ? <span>Carregando</span> : id !== undefined ? 'Editar' : 'Cadastrar'}
                 </button>
             </form>
