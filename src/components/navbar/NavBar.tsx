@@ -51,7 +51,7 @@ function Navbar() {
       <div className='w-full bg-white text-[#407C44] flex justify-center py-4 border-b-2 border-gray-200'>
         <div className="container flex justify-between text-lg ">
           <div className='flex items-center'>
-          <Link to='/home'><h1 className='text-2xl font-bold uppercase'>EcoAid</h1></Link>
+          <Link to='/home'><h1 className='text-2xl font-bold uppercase bg-isabelline'>EcoAid</h1></Link>
           </div>
 
           <div className='flex items-center gap-8'>
