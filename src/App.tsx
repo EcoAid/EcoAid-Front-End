@@ -16,11 +16,16 @@ import AtualizarUsuario from './components/atualizarUsuario/AtualizarUsuario'
 import DeletarProduto from './components/produto/deletarProduto/DeletarProduto'
 import FormularioProduto from './components/produto/formularioProduto/FormularioProduto'
 import DetalhesProduto from './components/detalhesProduto/DetalhesProduto'
+import { useState } from 'react'
+import BarraDeBusca from './components/barraDeBusca/BarraDeBusca'
+import { CarrinhoProvider } from './context/CarrinhoContext'
 
 function App() {
+  const [inputText, setInputText] = useState<string>("");
+
   return (
     <>
-      <AuthProvider>
+      <AuthProvider><CarrinhoProvider>
         <BrowserRouter>
           <Navbar />
           <div className='min-h-[80vh]'>
@@ -44,7 +49,8 @@ function App() {
             </Routes>
           </div>
           <Footer />
-        </BrowserRouter>
+            </BrowserRouter>
+          </CarrinhoProvider>
       </AuthProvider>
     </>
   )
