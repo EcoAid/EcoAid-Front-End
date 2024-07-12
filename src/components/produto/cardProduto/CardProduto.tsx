@@ -54,7 +54,7 @@ function CardProduto({ produto, carregando }: CardProdutoProps) {
                     {carregando ? <Skeleton circle={true} className="w-12 h-12" style={{ borderRadius: 10 }} /> : <img className="rounded-full w-12 h-12" src={produto.usuario?.foto} alt="" />}
                     <h1 className='text-[#414141] text-md'>{produto.usuario?.nome || <Skeleton width={150} style={{ borderRadius: 10 }} />}</h1>
                 </div>
-                <h1 className='text-[#414141] text-md h-36 px-8 line-clamp-2 leading-9'>{produto.descricao || <Skeleton count={2} style={{ borderRadius: 10 }} />}</h1>
+                <h1 className='text-[#414141] text-md h-16 px-8 line-clamp-2 leading-9'>{produto.descricao || <Skeleton count={2} style={{ borderRadius: 10 }} />}</h1>
                 {carregando ? <Skeleton className='mx-8 h-6 w-36' style={{ borderRadius: 10 }} /> : <Link to={`/detalhesProduto/${produto.id}`} className='flex flex-1 gap-1 items-center px-8 py-1 text-ferngreen hover:text-green-900'>
                     <button>Mais detalhes</button> <ArrowSquareOut size={24} className='mb-1' />
                 </Link>}
