@@ -55,7 +55,6 @@ function FormularioProduto() {
         buscarCategorias();
         if (id !== undefined) {
             buscarProdutoPorId(id);
-            console.log(categoria);
 
         }
     }, [id]);
@@ -83,7 +82,6 @@ function FormularioProduto() {
     async function gerarNovaProduto(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
 
-        console.log({ produto });
 
         if (id != undefined) {
             try {

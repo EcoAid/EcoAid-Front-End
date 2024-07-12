@@ -45,19 +45,19 @@ function CardProduto({ produto, carregando }: CardProdutoProps) {
                     </div>
                 </div>}
                 {carregando ? <Skeleton className='mx-8 text-md' height={25} width={200} style={{ borderRadius: 10 }} /> : <h1 className='text-[#414141] w-fit text-md mx-8 px-4 py-1 border-2 border-solid border-violetblue text-white bg-violetblue bg-opacity-75 rounded-full'>{produto.categoria?.tipo}</h1>}
-                <h1 className='text-[#414141] w-auto mx-8 text-3xl font-bold'>{produto.nome || <Skeleton style={{ borderRadius: 10 }} />}</h1>
+                <h1 className='text-[#414141] w-auto line-clamp-2 break-words mx-8 text-3xl font-bold'>{produto.nome || <Skeleton style={{ borderRadius: 10 }} />}</h1>
                 <div className='flex gap-4 items-center px-8'>
                     {carregando ? <Skeleton circle={true} className="w-12 h-12" style={{ borderRadius: 10 }} /> : <img className="rounded-full w-12 h-12" src={produto.usuario?.foto} alt="" />}
                     <h1 className='text-[#414141] text-md'>{produto.usuario?.nome || <Skeleton width={150} style={{ borderRadius: 10 }} />}</h1>
                 </div>
-                <h1 className='text-[#414141] text-md px-8 h-16 flex-1 line-clamp-2 leading-9'>{produto.descricao || <Skeleton count={2} style={{ borderRadius: 10 }} />}</h1>
+                <h1 className='text-[#414141] text-md px-8 flex-1 line-clamp-2 leading-9'>{produto.descricao || <Skeleton count={2} style={{ borderRadius: 10 }} />}</h1>
                 {carregando ? <Skeleton className='mx-8 h-6 w-36' style={{ borderRadius: 10 }} /> : <Link to={`/detalhesProduto/${produto.id}`} className='flex gap-1 items-center px-8 py-1 text-ferngreen hover:text-green-900'>
                     <button>Mais detalhes</button> <ArrowSquareOut size={24} className='mb-1' />
                 </Link>}
             </div>
             <div className='p-4 flex flex-col gap-4'>
                 {carregando ? <Skeleton className='w-full h-12' style={{ borderRadius: 10 }} /> : <button className='rounded-lg bg-[#407C44] text-white w-full text-xl py-2'>DOAR</button>}
-                {carregando ? <Skeleton className='w-full h-14' style={{ borderRadius: 10 }} /> : <button className='rounded-lg bg-[#407C44] py-4 flex justify-center w-full gap-4 text-white'><Plus size={24} /> Adicionar ao carrinho</button>}
+                {carregando ? <Skeleton className='w-full h-14' style={{ borderRadius: 10 }} /> : <button className='rounded-lg bg-[#407C44] py-4 flex items-center justify-center gap-4 text-white'><Plus size={24} /> Adicionar ao carrinho</button>}
             </div>
         </div>
     )
