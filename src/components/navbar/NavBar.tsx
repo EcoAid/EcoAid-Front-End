@@ -59,7 +59,7 @@ function Navbar() {
             <Link to='/sobre' className='hover:underline hover:text-onyx  transition ease-in-out'>Sobre nós</Link>
             <Link to='/doacoes' className='hover:underline hover:text-onyx  transition ease-in-out'>Doações</Link>
             {usuario.token !== "" && <Link to='/categorias' className='hover:underline hover:text-onyx transition ease-in-out'>Categorias</Link>}
-            {usuario.token !== "" && <Link to='/home' className='hover:underline hover:text-onyx  transition ease-in-out'>Devoluções e Cancelamentos</Link>
+            {usuario.token !== "" && <Link to='/home' className='hover:underline hover:text-onyx  transition ease-in-out'>Devoluções e Cancelamentos</Link>}
             <Carrinho/>
             {usuarioProfile}
           </div>

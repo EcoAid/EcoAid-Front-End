@@ -16,7 +16,7 @@ function Carrinho() {
         <Menu as="div" className="relative w-fit inline-block text-left">
             <div className='flex items-center text-white'>
                 <MenuButton as={Fragment}>
-                    {({ active }) => <button className={clsx(active ? 'text-green-900' : 'text-ferngreen')}><TiShoppingCart size={38} /></button>}
+                    {({ active }) => <button className={clsx(active ? 'text-green-900' : 'text-ferngreen')}><TiShoppingCart className="hover:text-onyx transition ease-in-out" size={38} /></button>}
                 </MenuButton>
             </div>
             <MenuItems

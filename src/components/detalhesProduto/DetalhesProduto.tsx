@@ -5,7 +5,7 @@ import { FaInfoCircle, FaTags } from "react-icons/fa";
 import { TiShoppingCart } from 'react-icons/ti';
 import { LuHelpingHand } from "react-icons/lu";
 import Produto from "../../models/Produto";
-import { buscar } from "../../services/Service";
+import { buscarSemHeader } from "../../services/Service";
 import { AuthContext } from "../../context/AuthContext";
 import ListaProdutos from "../produto/listaProdutos/ListaProdutos";
 
@@ -20,30 +20,17 @@ function DetalhesProduto() {
     const { usuario } = useContext(AuthContext);
     const token = usuario.token;
 
-    async function buscarProduto(id: string) {
+    async function buscarProdutoPorId(id: string) {
         try {
-            await buscar(`/produto/${id}`, setProduto, {
-                headers: {
-                    'Authorization': token
-                },
-            });
+            await buscarSemHeader(`/produto/${id}`, setProduto,);
         } catch (error: any) {
             alert('Algo de errado ocorreu, tente novamente');
         }
     }
 
-
-    useEffect(() => {
-        if (token === '') {
-            alert('Você precisa estar logado');
-            navigate('/login');
-        }
-    }, [token, navigate]);
-
     useEffect(() => {
         if (id !== undefined) {
             buscarProduto(id)
-            console.log(produto)
         }
     }, [id])
 
@@ -98,7 +85,7 @@ function DetalhesProduto() {
                 <h2 className="text-5xl text-ferngreen font-semibold md:mt-2 text-center">
                     Doações recomendadas
                 </h2>
-                <ListaProdutos />
+                <ListaProdutos inputText={""}/>
             </div>
 
         </div>
