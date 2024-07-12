@@ -8,17 +8,16 @@ import Produto from "../../models/Produto";
 import { buscarSemHeader } from "../../services/Service";
 import { AuthContext } from "../../context/AuthContext";
 import ListaProdutos from "../produto/listaProdutos/ListaProdutos";
+import { Navigation } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import CardProduto from "../produto/cardProduto/CardProduto";
 
 function DetalhesProduto() {
 
     const [produto, setProduto] = useState<Produto>({} as Produto);
-
-    const navigate = useNavigate();
+    const [produtos, setProdutos] = useState<Produto[]>([]);
 
     const { id } = useParams<{ id: string }>()
-
-    const { usuario } = useContext(AuthContext);
-    const token = usuario.token;
 
     async function buscarProdutoPorId(id: string) {
         try {
@@ -28,15 +27,24 @@ function DetalhesProduto() {
         }
     }
 
+    async function buscarProdutos() {
+        try {
+            await buscarSemHeader(`/produto`, setProdutos,);
+        } catch (error: any) {
+            alert('Algo de errado ocorreu, tente novamente');
+        }
+    }
+
     useEffect(() => {
         if (id !== undefined) {
-            buscarProduto(id)
+            buscarProdutoPorId(id)
+            buscarProdutos()
         }
     }, [id])
 
     return (
-        <div>
-            <div className="justify-left pl-16 flex max-sm:flex-col bg-isabelline p-8 gap-8">
+        <div className="px-16 pt-8">
+            <div className="justify-left p-16 flex max-sm:flex-col bg-isabelline gap-8">
                 <img src={produto.foto} alt={produto.nome} className="rounded-lg object-cover w-96 h-96" />
 
 
@@ -81,11 +89,31 @@ function DetalhesProduto() {
                 </div>
             </div>
 
-            <div>
-                <h2 className="text-5xl text-ferngreen font-semibold md:mt-2 text-center">
+            <div className="p-24">
+                <h2 className="text-5xl text-ferngreen mb-16 font-semibold md:mt-2 text-center">
                     Doações recomendadas
                 </h2>
-                <ListaProdutos inputText={""}/>
+                <Swiper
+                        navigation={true}
+                        modules={[Navigation]}
+                        pagination={{ clickable: true }}
+                        slidesPerView={4}
+                        spaceBetween={50}
+                        className='overflow-visible'
+                    >
+                        {produtos.length === 0 && (<>
+                            {Array.from({ length: 12 }).map((_, index) => (
+                                <SwiperSlide key={index}>
+                                    <CardProduto key={index} produto={{} as Produto} carregando={true} />
+                                </SwiperSlide>
+                            ))}
+                        </>)}
+                        {produtos.map((produto) => (
+                            <SwiperSlide key={produto.id}>
+                                <CardProduto key={produto.id} produto={produto} carregando={false} />
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
             </div>
 
         </div>

@@ -44,7 +44,7 @@ function Navbar() {
       </MenuItems>
     </Menu>)
   } else {
-    usuarioProfile = (<Link to='/login' className='hover:underline'>Entre</Link>)
+    usuarioProfile = (<Link to='/login' className='hover:text-onyx transition ease-in-out hover:underline'>Entre</Link>)
   }
 
   return (
