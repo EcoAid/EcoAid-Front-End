@@ -99,7 +99,7 @@ function DetalhesProduto() {
                         pagination={{ clickable: true }}
                         slidesPerView={4}
                         spaceBetween={50}
-                        className='overflow-hidden'
+                        className='overflow-y-visible'
                     >
                         {produtos.length === 0 && (<>
                             {Array.from({ length: 12 }).map((_, index) => (
