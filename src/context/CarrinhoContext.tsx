@@ -6,7 +6,7 @@ interface CarrinhoContextProps {
     adicionarItem: (produto: Produto) => void;
     diminuirQuantidade: (produto: Produto) => void;
     removerItem: (produto: Produto) => void;
-    finalizarCompra: (produto: Produto) => void;
+    finalizarCompra: () => void;
 }
 
 interface CarrinhoProviderProps {

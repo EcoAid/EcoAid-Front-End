@@ -1,16 +1,16 @@
 import { ArrowRight, SlidersHorizontal } from '@phosphor-icons/react'
 import React, { ChangeEvent, useContext, useEffect, useState } from 'react'
-import Produto from '../../models/Produto';
 import { AuthContext } from '../../context/AuthContext';
-import { buscar, buscarSemHeader } from '../../services/Service';
+import { buscarSemHeader } from '../../services/Service';
 import { useNavigate } from 'react-router-dom';
+import Produto from '../../models/Produto';
 
 
 function BarraDeBusca(props: any) {
 
     const { usuario, handleLogout } = useContext(AuthContext)
     const [inputTextIntern, setInputTextIntern] = useState<string>("");
-    const [produtos, setProdutos] = useState<any[]>([]);
+    const [produtos, setProdutos] = useState<Produto[]>([]);
     const token = usuario.token;
     const [invisivel, setInvisivel] = useState<boolean>(true);
     const navigate = useNavigate();
