@@ -10,7 +10,7 @@ function BarraDeBusca(props: any) {
 
     const { usuario, handleLogout } = useContext(AuthContext)
     const [inputTextIntern, setInputTextIntern] = useState<string>("");
-    const [produtos, setProdutos] = useState<Produto[]>([]);
+    const [produtos, setProdutos] = useState<any[]>([]);
     const token = usuario.token;
     const [invisivel, setInvisivel] = useState<boolean>(true);
     const navigate = useNavigate();
