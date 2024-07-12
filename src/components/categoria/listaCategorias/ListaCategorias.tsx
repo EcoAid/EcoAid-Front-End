@@ -12,7 +12,7 @@ import { toastAlerta } from '../../../util/toastAlerta';
 
 function ListaCategorias() {
     const [categorias, setCategorias] = useState<Categoria[]>([]);
-    const [filtro, setFiltro] = useState<string>("")
+    const [inputText, setInputText] = useState<string>("");
 
     const navigate = useNavigate();
 
@@ -40,10 +40,10 @@ function ListaCategorias() {
     }, [token]);
 
     const filteredList = categorias.filter((element) => {
-        if (filtro === '') {
+        if (inputText === '') {
             return element
         } else {
-            return element.tipo.toLowerCase().includes(filtro.toLowerCase());
+            return element.tipo.toLowerCase().includes(inputText.toLowerCase());
         }
     });
 
@@ -52,7 +52,7 @@ function ListaCategorias() {
     }, []);
     return (
         <>
-            <BarraDeBusca />
+            <BarraDeBusca setInputText={setInputText} tipo={"categoria"}/>
 
             <div className='flex justify-center items-center'>
                 <div className='flex items-center gap-2 bg-ferngreen p-4 rounded-md mb-4'>

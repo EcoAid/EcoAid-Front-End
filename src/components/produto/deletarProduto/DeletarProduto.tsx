@@ -46,7 +46,7 @@ function DeletarProduto() {
     }, [id])
 
     function retornar() {
-        navigate("/produto")
+        navigate("/doacoes")
     }
 
     async function deletarProduto() {
@@ -75,7 +75,7 @@ function DeletarProduto() {
                 <div className='w-96 shadow-2xl box-border rounded-3xl overflow-hidden bg-[#FFFFFF]'>
                     <div className=" flex flex-col gap-4">
                         <div className="h-40 rounded-t-3xl overflow-hidden">
-                            {produto.id == 0 ? <Skeleton height={160}/> : <img className='object-contain' src={produto.foto } /> }
+                            {produto.id == 0 ? <Skeleton height={160}/> : <img className='w-full object-cover' src={produto.foto } /> }
                         </div>
                         {produto.id == 0 ? <Skeleton style={{ borderRadius: 10 }} className="mx-8 py-1" width={150}/> : <h1 className='text-[#414141] py-1 w-fit text-md mx-8 px-4 border-2 border-solid border-violetblue text-white bg-violetblue bg-opacity-75 rounded-full'>{produto.categoria?.tipo}</h1>}
                         <h1 className='text-[#414141] text-3xl px-8 font-bold'>{produto.nome || <Skeleton style={{ borderRadius: 10 }} />}</h1>

@@ -11,4 +11,5 @@ export default interface Produto {
     dataCadastro: string;
     categoria: Categoria | null;
     usuario: Usuario | null;
+    qtd?: number
 }

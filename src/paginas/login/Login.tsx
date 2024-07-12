@@ -44,8 +44,8 @@ function Login() {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center h-screen w-screen">
-            <div className="px-24 py-36 bg-white rounded-lg border border-gray-100 shadow-xl">
+        <div className="flex flex-col items-center justify-center w-screen">
+            <div className="my-8 px-24 py-36 bg-white rounded-lg border border-gray-100 shadow-xl">
                 <form onSubmit={login} className="w-96 flex flex-col items-center justify-center h-full text-center">
                     <h1 className="font-bold text-5xl mb-8 text-ferngreen">Bem vindo de volta!</h1>
                     <input id="usuario" name="usuario" type="text" placeholder="E-mail" className="rounded-md bg-gray-200 border-none p-3 mb-4 w-full" value={usuarioLogin.usuario}
