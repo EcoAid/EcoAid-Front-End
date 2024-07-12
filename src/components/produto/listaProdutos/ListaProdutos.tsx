@@ -5,6 +5,7 @@ import { buscar } from '../../../services/Service';
 import { DNA } from 'react-loader-spinner';
 import { AuthContext } from '../../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { toastAlerta } from '../../../util/toastAlerta';
 
 function ListaProdutos() {
     const [produtos, setProdutos] = useState<Produto[]>([]);
@@ -16,7 +17,7 @@ function ListaProdutos() {
 
     useEffect(() => {
         if (token === '') {
-            alert('Você precisa estar logado');
+            toastAlerta('Você precisa estar logado','info');
             navigate('/login');
         }
     }, [token]);
@@ -29,7 +30,7 @@ function ListaProdutos() {
                 },
             });
         } catch (error: any) {
-            alert("deu popo")
+            toastAlerta("Os produtos não foram localizados",'erro')
             }
         }
 
@@ -51,7 +52,7 @@ function ListaProdutos() {
             </div>
         </>
     );
-  }
+}
 
 
 export default ListaProdutos
