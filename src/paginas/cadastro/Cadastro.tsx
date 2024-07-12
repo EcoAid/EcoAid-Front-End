@@ -17,20 +17,12 @@ function Cadastro() {
     const navigate = useNavigate();
 
     const [usuario, setUsuario] = useState<Usuario>({
-        id: 0,
-        nome: '',
-        usuario: '',
-        senha: '',
         foto: 'https://voxnews.com.br/wp-content/uploads/2017/04/unnamed.png'
-    })
+    } as Usuario)
 
     const [usuarioResposta, setUsuarioResposta] = useState<Usuario>({
-        id: 0,
-        nome: '',
-        usuario: '',
-        senha: '',
         foto: 'https://voxnews.com.br/wp-content/uploads/2017/04/unnamed.png'
-    });
+    } as Usuario);
 
     const [mostraSenha, setMostraSenha] = useState(false);
 

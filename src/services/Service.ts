@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import axios from "axios";
 
-const api = axios.create({ baseURL: import.meta.env.VITE_API_URL })
+const api = axios.create({ baseURL: 'https://ecoaid.onrender.com'})
+    //import.meta.env.VITE_API_URL 
 
 export const cadastrarUsuario = async (url: string, dados: Object, setDados: Function) => {
     const resposta = await api.post(url, dados)

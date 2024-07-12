@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
-import { DNA } from 'react-loader-spinner';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext';
 import Categoria from '../../../models/Categoria';

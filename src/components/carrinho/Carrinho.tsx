@@ -6,14 +6,12 @@ import Produto from '../../models/Produto';
 import clsx from 'clsx'
 import { CaretDown, CaretUp, Trash } from '@phosphor-icons/react';
 
-let total = 0;
-
 function Carrinho() {
 
     const { listaCarrinho, adicionarItem, diminuirQuantidade, removerItem, finalizarCompra } = useContext(CarrinhoContext);
 
     return (
-        <Menu as="div" className="relative w-fit inline-block text-left">
+        <Menu as="div" onClick={(e) => { e.preventDefault() }} className="relative w-fit inline-block text-left">
             <div className='flex items-center text-white'>
                 <MenuButton as={Fragment}>
                     {({ active }) => <button className={clsx(active ? 'text-green-900' : 'text-ferngreen')}><TiShoppingCart className="hover:text-onyx transition ease-in-out" size={38} /></button>}
@@ -33,7 +31,7 @@ function Carrinho() {
                     }
 
                     {listaCarrinho.map((produto: Produto) => (
-                        <MenuItem onClick={(e) => { e.preventDefault() }} key={produto.id} as={Fragment}>
+                        <MenuItem key={produto.id} as={Fragment}>
 
                             {({ focus }) => (
                                 <div className={clsx('text-sm py-2 px-4 text-nowrap flex gap-8 block', focus && 'bg-green-100')}>
@@ -46,13 +44,15 @@ function Carrinho() {
                             )}
                         </MenuItem>
                     ))}
-                    <MenuItem className="text-sm flex justify-between border-t-2 pt-4 border-gray-100">
-                    <div className='flex items-center'>
+                    <MenuItem>
+                    <div className="text-sm flex justify-between border-t-2 pt-4 border-gray-100">
+                    <div className='flex items-center text-sm flex justify-between border-t-2 pt-4 border-gray-100'>
                         <button className='flex items-center w-fit h-12 rounded-md transition hover:text-ferngreen hover:bg-transparent border border-green-800 text-white bg-ferngreen p-4' onClick={() => finalizarCompra()}> Finalizar </button>
                         <p className="text-lg">Total: {new Intl.NumberFormat('pt-BR', {
                             style: 'currency',
                             currency: 'BRL',
                         }).format(listaCarrinho.reduce((total, produto)=>total+(produto.valor*produto.qtd),0))}</p>
+                    </div>
                     </div>
                     </MenuItem>
                 </div>
