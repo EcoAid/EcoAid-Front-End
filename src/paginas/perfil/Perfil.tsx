@@ -6,7 +6,7 @@ import Usuario from '../../models/Usuario';
 import { buscar } from '../../services/Service';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
-import { PlusCircle, UserCircleGear, UserSwitch } from '@phosphor-icons/react';
+import {  UserCircleGear} from '@phosphor-icons/react';
 
 function Perfil() {
 

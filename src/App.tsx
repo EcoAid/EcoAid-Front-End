@@ -15,6 +15,7 @@ import Perfil from './paginas/perfil/Perfil'
 import AtualizarUsuario from './components/atualizarUsuario/AtualizarUsuario'
 import DeletarProduto from './components/produto/deletarProduto/DeletarProduto'
 import FormularioProduto from './components/produto/formularioProduto/FormularioProduto'
+import DetalhesProduto from './components/detalhesProduto/DetalhesProduto'
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
               <Route path="/deletarCategoria/:id" element={<DeletarCategoria />} />
               <Route path="/perfil" element={<Perfil/>} />
               <Route path="/atualizarusuario" element={<AtualizarUsuario/>} />
+              <Route path="/detalhesProduto/:id" element={<DetalhesProduto/>} />
             </Routes>
           </div>
           <Footer />
