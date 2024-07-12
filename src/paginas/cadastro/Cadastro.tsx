@@ -69,9 +69,9 @@ function Cadastro() {
     }, [usuarioResposta])
 
     return (
-        <div className="flex flex-col items-center justify-center h-screen w-screen bg-isabelline">
-            <div className="px-24 py-36 bg-white rounded-lg border border-gray-100 shadow-xl">
-                <form className="w-96 flex flex-col items-center justify-center h-full text-center" onSubmit={cadastrarNovoUsuario}>
+        <div className="z-0 flex flex-col items-center justify-center h-screen w-screen bg-isabelline">
+            <div className="z-0 px-24 py-36 mt-16 bg-white rounded-lg border border-gray-100 shadow-xl">
+                <form className="z-0 w-96 flex flex-col items-center justify-center h-full text-center" onSubmit={cadastrarNovoUsuario}>
                     <h1 className="font-bold text-5xl mb-8 text-ferngreen">Crie sua conta!</h1>
 
                     <input id="nome" name="nome" type="text" placeholder="Nome Completo" className="rounded-md bg-gray-200 border-none p-3 mb-4 w-full"
