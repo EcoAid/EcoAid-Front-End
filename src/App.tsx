@@ -39,7 +39,7 @@ function App() {
               <Route path="/cadastro" element={<Cadastro />} />
               <Route path="/home" element={<Home />} />
               <Route path="/sobre" element={<Sobre />} />
-              <Route path="/doacoes" element={<ListaProdutos />} />
+              <Route path="/doacoes" element={<><BarraDeBusca setInputText={setInputText} tipo={"produto"} /><ListaProdutos inputText={inputText} /></>} />
               <Route path="/cadastroDoacao" element={<FormularioProduto />} />
               <Route path="/editarDoacao/:id" element={<FormularioProduto />} />
               <Route path="/deletarDoacao/:id" element={<DeletarProduto />} />

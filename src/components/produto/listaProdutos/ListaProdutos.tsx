@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import CardProduto from '../cardProduto/CardProduto'
 import Produto from '../../../models/Produto';
-import { buscar, buscarSemHeader } from '../../../services/Service';
+import { buscarSemHeader } from '../../../services/Service';
 import { AuthContext } from '../../../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
 import { toastAlerta } from '../../../util/toastAlerta';
 
 let filter = "";

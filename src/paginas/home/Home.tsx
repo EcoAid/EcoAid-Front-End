@@ -40,7 +40,7 @@ function Home() {
         <>
             <main>
                 <div className='w-full p-20 text-6xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-[#333333] bg-white'>
-                    <h1 className='w-2/5'><span className='text-[#407C44]'>Bom dia {usuario.nome}, <br/></span> gostaria de receber ou enviar doações?</h1>
+                    <h1 className='w-2/5'><span className='text-[#407C44]'>Bom dia {usuario.nome}, <br /></span> gostaria de receber ou enviar doações?</h1>
                 </div>
 
                 <BarraDeBusca setInputText={() => { }} tipo={"produto"} />
@@ -51,12 +51,20 @@ function Home() {
                         <h2 className='text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#3D4DA6]'>Novas doações</h2>
                     </div>
                     <Swiper
-                        navigation={true} 
+                        navigation={true}
                         modules={[Navigation]}
                         slidesPerView={4}
                         spaceBetween={50}
                         className='overflow-visible mySwiper'
                     >
+                        {produtos.length === 0 && (<>
+                            {Array.from({ length: 12 }).map((_, index) => (
+                                <SwiperSlide key={index}>
+                                    <CardProduto key={index} produto={{} as Produto} carregando={true} />
+                                </SwiperSlide>
+                            ))}
+                        </>)}
+
                         {produtos.map((produto) => (
                             <SwiperSlide key={produto.id}>
                                 <CardProduto key={produto.id} produto={produto} carregando={false} />
@@ -74,13 +82,20 @@ function Home() {
                     </div>
 
                     <Swiper
-                        navigation={true} 
+                        navigation={true}
                         modules={[Navigation]}
                         pagination={{ clickable: true }}
                         slidesPerView={4}
                         spaceBetween={50}
                         className='overflow-visible'
                     >
+                        {produtos.length === 0 && (<>
+                            {Array.from({ length: 12 }).map((_, index) => (
+                                <SwiperSlide key={index}>
+                                    <CardProduto key={index} produto={{} as Produto} carregando={true} />
+                                </SwiperSlide>
+                            ))}
+                        </>)}
                         {produtos.map((produto) => (
                             <SwiperSlide key={produto.id}>
                                 <CardProduto key={produto.id} produto={produto} carregando={false} />

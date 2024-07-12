@@ -3,7 +3,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext';
 import Produto from '../../../models/Produto';
 import Categoria from '../../../models/Categoria';
-import { buscar, atualizar, cadastrar } from '../../../services/Service';
 import { toastAlerta } from '../../../util/toastAlerta';
 import { buscar, atualizar, cadastrar, buscarSemHeader } from '../../../services/Service';
 
