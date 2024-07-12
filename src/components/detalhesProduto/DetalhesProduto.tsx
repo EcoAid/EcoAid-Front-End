@@ -96,7 +96,6 @@ function DetalhesProduto() {
                 <Swiper
                         navigation={true}
                         modules={[Navigation]}
-                        pagination={{ clickable: true }}
                         slidesPerView={4}
                         spaceBetween={50}
                         className='overflow-visible'
