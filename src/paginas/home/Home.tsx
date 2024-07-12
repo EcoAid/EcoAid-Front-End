@@ -12,6 +12,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 
 import { Navigation } from 'swiper/modules';
+import { toastAlerta } from '../../util/toastAlerta';
 
 function Home() {
 
@@ -26,7 +27,7 @@ function Home() {
             await buscarSemHeader('/produto', setProdutos);
         } catch (error: any) {
             if (error.toString().includes('403')) {
-                alert('O token expirou, favor logar novamente')
+                toastAlerta('O token expirou, favor logar novamente', "info")
                 handleLogout()
             }
         }
@@ -43,7 +44,7 @@ function Home() {
                     <h1 className='w-2/5'><span className='text-[#407C44]'>Bom dia {usuario.nome}, <br /></span> gostaria de receber ou enviar doações?</h1>
                 </div>
 
-                <BarraDeBusca setInputText={() => { }} tipo={"produto"} />
+                <BarraDeBusca setInputText={() => {}} tipo={"produto"} />
 
                 <section className='text-[#407C44] part-white p-20 gap-8 overflow-visible'>
                     <div className="flex flex-col gap-8 mb-16">
