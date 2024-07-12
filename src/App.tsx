@@ -7,7 +7,6 @@ import Login from './paginas/login/Login'
 import Footer from './components/footer/Footer'
 import Cadastro from './paginas/cadastro/Cadastro'
 import { AuthProvider } from './context/AuthContext'
-import ListaProdutos from './components/produto/listaProdutos/ListaProdutos'
 import ListaCategorias from './components/categoria/listaCategorias/ListaCategorias'
 import FormularioCategoria from './components/categoria/formularioCategoria/FormularioCategoria'
 import DeletarCategoria from './components/categoria/deletarCategoria/DeletarCategoria'
@@ -18,12 +17,10 @@ import FormularioProduto from './components/produto/formularioProduto/Formulario
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import DetalhesProduto from './components/detalhesProduto/DetalhesProduto'
-import { useState } from 'react'
-import BarraDeBusca from './components/barraDeBusca/BarraDeBusca'
 import { CarrinhoProvider } from './context/CarrinhoContext'
+import Doacoes from './paginas/doacoes/Doacoes'
 
 function App() {
-  const [inputText, setInputText] = useState<string>("");
 
   return (
     <>
@@ -39,7 +36,7 @@ function App() {
               <Route path="/cadastro" element={<Cadastro />} />
               <Route path="/home" element={<Home />} />
               <Route path="/sobre" element={<Sobre />} />
-              <Route path="/doacoes" element={<><BarraDeBusca setInputText={setInputText} tipo={"produto"} /><ListaProdutos inputText={inputText} /></>} />
+              <Route path="/doacoes" element={<Doacoes />} />
               <Route path="/cadastroDoacao" element={<FormularioProduto />} />
               <Route path="/editarDoacao/:id" element={<FormularioProduto />} />
               <Route path="/deletarDoacao/:id" element={<DeletarProduto />} />
