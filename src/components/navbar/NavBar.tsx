@@ -3,6 +3,7 @@ import { TiShoppingCart } from 'react-icons/ti'
 import { Link } from 'react-router-dom'
 import { AuthContext } from "../../context/AuthContext";
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
+import Carrinho from '../carrinho/Carrinho';
 
 function Navbar() {
 
@@ -60,7 +61,7 @@ function Navbar() {
             {usuario.token !== "" && <Link to='/cadastroDoacao' className='hover:underline'>Cadastrar Doação</Link>}
             {usuario.token !== "" && <Link to='/categorias' className='hover:underline'>Categorias</Link>}
             {usuario.token !== "" && <Link to='/home' className='hover:underline'>Devoluções e Cancelamentos</Link>}
-            <Link to='/home' className='hover:underline font-bold'><TiShoppingCart size={38} /></Link>
+            <Carrinho/>
             {usuarioProfile}
           </div>
         </div>

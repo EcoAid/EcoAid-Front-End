@@ -170,6 +170,7 @@ function FormularioProduto() {
                         value={produto.valor}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                         type="number"
+                        step="0.01"
                         placeholder="valor"
                         name="valor"
                         required
