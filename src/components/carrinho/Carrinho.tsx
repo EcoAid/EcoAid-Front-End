@@ -11,7 +11,7 @@ function Carrinho() {
     const { listaCarrinho, adicionarItem, diminuirQuantidade, removerItem, finalizarCompra } = useContext(CarrinhoContext);
 
     return (
-        <Menu as="div" onClick={(e) => { e.preventDefault() }} className="relative w-fit inline-block text-left">
+        <Menu as="div" className="relative w-fit inline-block text-left">
             <div className='flex items-center text-white'>
                 <MenuButton as={Fragment}>
                     {({ active }) => <button className={clsx(active ? 'text-green-900' : 'text-ferngreen')}><TiShoppingCart className="hover:text-onyx transition ease-in-out" size={38} /></button>}
@@ -20,6 +20,7 @@ function Carrinho() {
             <MenuItems
                 modal={false}
                 transition
+                onClick={(e) => { e.preventDefault() }}
                 className="overflow-hidden absolute right-0 z-10 mt-2 w-[550px] p-4 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
             >
                 <div className='flex flex-col gap-4 rounded-md'>
@@ -46,7 +47,7 @@ function Carrinho() {
                     ))}
                     <MenuItem>
                     <div className="text-sm flex justify-between border-t-2 pt-4 border-gray-100">
-                    <div className='flex items-center text-sm justify-between border-t-2 pt-4 border-gray-100'>
+                    <div className='w-full flex items-center text-sm justify-between border-t-2 pt-4'>
                         <button className='flex items-center w-fit h-12 rounded-md transition hover:text-ferngreen hover:bg-transparent border border-green-800 text-white bg-ferngreen p-4' onClick={() => finalizarCompra()}> Finalizar </button>
                         <p className="text-lg">Total: {new Intl.NumberFormat('pt-BR', {
                             style: 'currency',
