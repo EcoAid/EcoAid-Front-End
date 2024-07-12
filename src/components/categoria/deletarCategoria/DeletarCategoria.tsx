@@ -6,7 +6,8 @@ import Categoria from '../../../models/Categoria'
 import { buscar, deletar } from '../../../services/Service'
 import { Tag } from '@phosphor-icons/react'
 import Skeleton from 'react-loading-skeleton'
-// import { alert } from '../../../utils/alert'
+import { toastAlerta } from '../../../util/toastAlerta'
+// import { toastAlerta } from '../../../utils/toastAlerta'
 
 function DeletarCategoria() {
     const [categoria, setCategoria] = useState<Categoria>({} as Categoria)
@@ -27,7 +28,7 @@ function DeletarCategoria() {
             })
         } catch (error: any) {
             if (error.toString().includes('403')) {
-                alert('O token expirou, favor logar novamente')
+                toastAlerta('O token expirou, favor logar novamente', "info")
                 handleLogout()
             }
         }
@@ -35,7 +36,7 @@ function DeletarCategoria() {
 
     useEffect(() => {
         if (token === '') {
-            alert('Você precisa estar logado')
+            toastAlerta('Você precisa estar logado', "info")
             navigate('/login')
         }
     }, [token])
@@ -58,10 +59,10 @@ function DeletarCategoria() {
                 }
             })
 
-            alert('Categoria apagada com sucesso')
+            toastAlerta('Categoria apagada com sucesso', 'sucesso')
 
         } catch (error) {
-            alert('Erro ao apagar a Categoria')
+            toastAlerta('Erro ao apagar a Categoria', 'erro')
         }
 
         retornar()
@@ -70,7 +71,7 @@ function DeletarCategoria() {
         <div className='container w-1/3 mx-auto'>
             <h1 className='text-4xl text-center my-4'>Deletar categoria</h1>
 
-            <p className='text-center font-semibold mb-4'>Você tem certeza de que deseja apagar a categoria a seguir?</p>
+            <p className='text-center font-semibold mb-4'>Você tem certeza de que deseja deletar a categoria a seguir?</p>
 
             <div className='border flex flex-col rounded-2xl overflow-hidden justify-between '>
                 <div className='bg-white bg-opacity-75 flex items-center p-4'>

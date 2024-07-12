@@ -3,6 +3,7 @@ import { TiShoppingCart } from 'react-icons/ti'
 import { Link } from 'react-router-dom'
 import { AuthContext } from "../../context/AuthContext";
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
+import Carrinho from '../carrinho/Carrinho';
 
 function Navbar() {
 
@@ -32,7 +33,7 @@ function Navbar() {
         </div>
         <div className="py-2">
           <MenuItem>
-            <Link to='/home' className='px-4 py-1 text-base font-medium hover:underline'>Home</Link>
+            <Link to='/perfil' className='px-4 py-1 text-base font-medium hover:underline'>Perfil</Link>
           </MenuItem>
         </div>
         <div className="py-2">
@@ -48,7 +49,7 @@ function Navbar() {
 
   return (
     <>
-      <div className='w-full bg-white text-[#407C44] flex justify-center py-4 border-b-2 border-gray-200'>
+      <div className='relative z-10 w-full bg-white text-[#407C44] flex justify-center py-4 border-b-2 border-gray-200'>
         <div className="container flex justify-between text-lg ">
           <div className='flex items-center'>
           <Link to='/home'><h1 className='text-2xl font-bold uppercase bg-isabelline  hover:text-onyx transition ease-in-out'>EcoAid</h1></Link>
@@ -57,9 +58,9 @@ function Navbar() {
           <div className='flex items-center gap-8'>
             <Link to='/sobre' className='hover:underline hover:text-onyx  transition ease-in-out'>Sobre nós</Link>
             <Link to='/doacoes' className='hover:underline hover:text-onyx  transition ease-in-out'>Doações</Link>
-            <Link to='/categorias' className='hover:underline hover:text-onyx transition ease-in-out'>Categorias</Link>
-            <Link to='/home' className='hover:underline hover:text-onyx  transition ease-in-out'>Devoluções e Cancelamentos</Link>
-            <Link to='/home' className='hover:text-onyx transition ease-in-out font-bold'><TiShoppingCart size={38} /></Link>
+            {usuario.token !== "" && <Link to='/categorias' className='hover:underline hover:text-onyx transition ease-in-out'>Categorias</Link>}
+            {usuario.token !== "" && <Link to='/home' className='hover:underline hover:text-onyx  transition ease-in-out'>Devoluções e Cancelamentos</Link>
+            <Carrinho/>
             {usuarioProfile}
           </div>
         </div>

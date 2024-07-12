@@ -4,7 +4,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext';
 import Categoria from '../../../models/Categoria';
 import { atualizar, buscar, cadastrar } from '../../../services/Service';
-//import { alert } from '../../../utils/alert';
+import { toastAlerta } from '../../../util/toastAlerta';
+//import { toastAlerta } from '../../../utils/toastAlerta';
 
 function FormularioCategoria() {
     const [categoria, setCategoria] = useState<Categoria>({} as Categoria);
@@ -50,15 +51,15 @@ function FormularioCategoria() {
                     }
                 })
 
-                alert('Categoria atualizada com sucesso')
+                toastAlerta('Categoria atualizada com sucesso', 'sucesso')
                 retornar()
 
             } catch (error: any) {
                 if (error.toString().includes('403')) {
-                    alert('O token expirou, favor logar novamente')
+                    toastAlerta('O token expirou, favor logar novamente', 'info')
                     handleLogout()
                 } else {
-                    alert('Erro ao atualizar a Categoria')
+                    toastAlerta('Erro ao atualizar a categoria', 'erro')
                 }
 
             }
@@ -71,14 +72,14 @@ function FormularioCategoria() {
                     }
                 })
 
-                alert('Categoria cadastrada com sucesso')
+                toastAlerta('Categoria cadastrada com sucesso', 'sucesso')
 
             } catch (error: any) {
                 if (error.toString().includes('403')) {
-                    alert('O token expirou, favor logar novamente')
+                    toastAlerta('O token expirou, favor logar novamente', 'info')
                     handleLogout()
                 } else {
-                    alert('Erro ao cadastrar a Categoria')
+                    toastAlerta('Erro ao cadastrar a Categoria', 'erro')
                 }
             }
         }
@@ -92,18 +93,18 @@ function FormularioCategoria() {
 
     useEffect(() => {
         if (token === '') {
-            alert('Você precisa estar logado');
+            toastAlerta('Você precisa estar logado', 'info');
             navigate('/login');
         }
     }, [token]);
 
     return (
         <div className="container flex flex-col items-center justify-center mx-auto">
-            <h1 className="text-4xl text-center my-8">
+            <h1 className="text-5xl text-center my-8 font-semibold text-ferngreen">
                 {id === undefined ? 'Cadastre uma nova categoria' : 'Editar categoria'}
             </h1>
 
-            <form className="w-1/3 flex flex-col gap-4" onSubmit={gerarNovoCategoria}>
+            <form className="w-1/3 max-sm:w-2/3 flex flex-col gap-4" onSubmit={gerarNovoCategoria}>
                 <div className="flex flex-col gap-2">
                     <label htmlFor="descricao">Tipo da categoria:</label>
                     <input
@@ -125,7 +126,7 @@ function FormularioCategoria() {
                     />
                 </div>
                 <button
-                    className="rounded text-slate-100 bg-ferngreen hover:bg-green-900 w-full py-2 mx-auto block"
+                    className="rounded font-semibold text-slate-100 bg-ferngreen hover:bg-green-900 w-full py-2 mx-auto block"
                     type="submit"
                 >
                     {id === undefined ? 'Cadastrar' : 'Editar'}

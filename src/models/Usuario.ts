@@ -1,6 +1,7 @@
 import Produto from './Produto';
 
 export default interface Usuario {
+    token: any;
     id: number;
     nome: string;
     usuario: string;

@@ -1,4 +1,4 @@
-import React from 'react'
+
 import Home from './paginas/home/Home'
 import Sobre from './paginas/sobre/Sobre'
 import Navbar from './components/navbar/NavBar'
@@ -11,13 +11,25 @@ import ListaProdutos from './components/produto/listaProdutos/ListaProdutos'
 import ListaCategorias from './components/categoria/listaCategorias/ListaCategorias'
 import FormularioCategoria from './components/categoria/formularioCategoria/FormularioCategoria'
 import DeletarCategoria from './components/categoria/deletarCategoria/DeletarCategoria'
+import Perfil from './paginas/perfil/Perfil'
+import AtualizarUsuario from './components/atualizarUsuario/AtualizarUsuario'
 import DeletarProduto from './components/produto/deletarProduto/DeletarProduto'
 import FormularioProduto from './components/produto/formularioProduto/FormularioProduto'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+import DetalhesProduto from './components/detalhesProduto/DetalhesProduto'
+import { useState } from 'react'
+import BarraDeBusca from './components/barraDeBusca/BarraDeBusca'
+import { CarrinhoProvider } from './context/CarrinhoContext'
 
 function App() {
+  const [inputText, setInputText] = useState<string>("");
+
   return (
     <>
       <AuthProvider>
+      <ToastContainer />
+        <CarrinhoProvider>
         <BrowserRouter>
           <Navbar />
           <div className='min-h-[80vh]'>
@@ -35,10 +47,14 @@ function App() {
               <Route path="/cadastroCategoria" element={<FormularioCategoria />} />
               <Route path="/editarCategoria/:id" element={<FormularioCategoria />} />
               <Route path="/deletarCategoria/:id" element={<DeletarCategoria />} />
+              <Route path="/perfil" element={<Perfil/>} />
+              <Route path="/atualizarusuario" element={<AtualizarUsuario/>} />
+              <Route path="/detalhesProduto/:id" element={<DetalhesProduto/>} />
             </Routes>
           </div>
           <Footer />
-        </BrowserRouter>
+            </BrowserRouter>
+          </CarrinhoProvider>
       </AuthProvider>
     </>
   )

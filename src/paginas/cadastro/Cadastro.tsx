@@ -11,6 +11,7 @@ import { TfiApple } from "react-icons/tfi";
 import { Link, useNavigate } from "react-router-dom";
 import Usuario from "../../models/Usuario";
 import { cadastrarUsuario } from "../../services/Service";
+import { toastAlerta } from "../../util/toastAlerta";
 
 function Cadastro() {
     const navigate = useNavigate();
@@ -47,13 +48,13 @@ function Cadastro() {
         if (usuario.senha.length >= 8) {
             try {
                 await cadastrarUsuario('/usuarios/cadastrar', usuario, setUsuarioResposta)
-                alert('Usuário cadastrado com sucesso')
+                toastAlerta('Usuário cadastrado com sucesso','sucesso')
 
             } catch (error) {
-                alert('Erro ao cadastrar o Usuário')
+                toastAlerta('Erro ao cadastrar o Usuário','erro')
             }
         } else {
-            alert('Dados inconsistentes. Verifique as informações de cadastro.')
+            toastAlerta('Dados inconsistentes. Verifique as informações de cadastro.','info')
             setUsuario({ ...usuario, senha: "" }) // Reinicia o campo de Senha
         }
     }
@@ -69,9 +70,9 @@ function Cadastro() {
     }, [usuarioResposta])
 
     return (
-        <div className="flex flex-col items-center justify-center h-screen w-screen bg-isabelline">
-            <div className="px-24 py-36 bg-white rounded-lg border border-gray-100 shadow-xl">
-                <form className="w-96 flex flex-col items-center justify-center h-full text-center" onSubmit={cadastrarNovoUsuario}>
+        <div className="flex flex-col items-center justify-center w-screen bg-isabelline">
+            <div className="m-8 px-24 py-36 bg-white rounded-lg border border-gray-100 shadow-xl h-3/6">
+                <form className="w-96 flex flex-col items-center h-full text-center" onSubmit={cadastrarNovoUsuario}>
                     <h1 className="font-bold text-5xl mb-8 text-ferngreen">Crie sua conta!</h1>
 
                     <input id="nome" name="nome" type="text" placeholder="Nome Completo" className="rounded-md bg-gray-200 border-none p-3 mb-4 w-full"
