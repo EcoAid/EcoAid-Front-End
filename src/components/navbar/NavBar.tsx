@@ -48,7 +48,7 @@ function Navbar() {
 
   return (
     <>
-      <div className='w-full bg-white text-[#407C44] flex justify-center py-4 border-b-2 border-gray-200'>
+      <div className='z-50 w-full bg-white text-[#407C44] flex justify-center py-4 border-b-2 border-gray-200'>
         <div className="container flex justify-between text-lg ">
           <div className='flex items-center'>
           <Link to='/home'><h1 className='text-2xl font-bold uppercase'>EcoAid</h1></Link>
@@ -57,9 +57,9 @@ function Navbar() {
           <div className='flex items-center gap-8'>
             <Link to='/sobre' className='hover:underline'>Sobre nós</Link>
             <Link to='/doacoes' className='hover:underline'>Doações</Link>
-            <Link to='/cadastroDoacao' className='hover:underline'>Cadastrar Doação</Link>
-            <Link to='/categorias' className='hover:underline'>Categorias</Link>
-            <Link to='/home' className='hover:underline'>Devoluções e Cancelamentos</Link>
+            {usuario.token !== "" && <Link to='/cadastroDoacao' className='hover:underline'>Cadastrar Doação</Link>}
+            {usuario.token !== "" && <Link to='/categorias' className='hover:underline'>Categorias</Link>}
+            {usuario.token !== "" && <Link to='/home' className='hover:underline'>Devoluções e Cancelamentos</Link>}
             <Link to='/home' className='hover:underline font-bold'><TiShoppingCart size={38} /></Link>
             {usuarioProfile}
           </div>

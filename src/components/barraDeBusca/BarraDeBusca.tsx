@@ -2,7 +2,7 @@ import { ArrowRight, SlidersHorizontal } from '@phosphor-icons/react'
 import React, { ChangeEvent, useContext, useEffect, useState } from 'react'
 import Produto from '../../models/Produto';
 import { AuthContext } from '../../context/AuthContext';
-import { buscar } from '../../services/Service';
+import { buscar, buscarSemHeader } from '../../services/Service';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -17,11 +17,7 @@ function BarraDeBusca(props: any) {
 
     async function buscarProdutos() {
         try {
-            await buscar(`/${props.tipo}`, setProdutos, {
-                headers: {
-                    Authorization: token,
-                },
-            });
+            await buscarSemHeader(`/${props.tipo}`, setProdutos);
         } catch (error: any) {
             if (error.toString().includes('403')) {
                 alert('O token expirou, favor logar novamente')
@@ -31,11 +27,11 @@ function BarraDeBusca(props: any) {
     }
 
     useEffect(() => {
-        if (token === '') {
+        if (token === '' &&  props.tipo === "categoria" ) {
             alert('Você precisa estar logado');
             navigate('/login');
-        }
-    }, [token]);
+            }
+        }, [token]);
 
     const filteredList = props.tipo === "produto" ? (produtos.filter((element) => {
             if (inputTextIntern === '') {
@@ -60,8 +56,6 @@ function BarraDeBusca(props: any) {
         }
     }
 
-    console.log(inputTextIntern)
-
     return (
         <div className='w-3/5 mx-auto p-12'>
             <div className='flex flex-row justify-center gap-8'>
@@ -80,7 +74,6 @@ function BarraDeBusca(props: any) {
                             props.setInputText(event.target.value); 
                             setInputTextIntern(event.target.value);
                             buscaFocada(true); }} 
-                        onMouseLeave={() => setTimeout(() => buscaFocada(false), 5000)}
                         type="search" 
                         id="default-search" 
                         className=" outline-none border focus:outline-1 border-gray-300 focus:border-violetblue blue block w-full p-4 ps-24 text-2xl sm:text-xl text-[#414141] rounded-3xl bg-white placeholder-[#414141]" 

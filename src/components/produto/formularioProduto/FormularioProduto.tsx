@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext';
 import Produto from '../../../models/Produto';
 import Categoria from '../../../models/Categoria';
-import { buscar, atualizar, cadastrar } from '../../../services/Service';
+import { buscar, atualizar, cadastrar, buscarSemHeader } from '../../../services/Service';
 
 
 function FormularioProduto() {
@@ -21,11 +21,7 @@ function FormularioProduto() {
     const [produto, setProduto] = useState<Produto>({} as Produto);
 
     async function buscarProdutoPorId(id: string) {
-        await buscar(`/produto/${id}`, setProduto, {
-            headers: {
-                Authorization: token,
-            },
-        });
+        await buscarSemHeader(`/produto/${id}`, setProduto);
     }
 
     async function buscarCategoriaPorId(id: string) {
