@@ -4,6 +4,7 @@ import Produto from '../../../models/Produto';
 import { buscar, buscarSemHeader } from '../../../services/Service';
 import { AuthContext } from '../../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { toastAlerta } from '../../../util/toastAlerta';
 
 let filter = "";
 
@@ -17,10 +18,7 @@ function ListaProdutos(props: any) {
         try {
             await buscarSemHeader('/produto', setProdutos);
         } catch (error: any) {
-            if (error.toString().includes('403')) {
-                alert('O token expirou, favor logar novamente')
-                handleLogout()
-            }
+            toastAlerta("Os produtos não foram localizados",'erro')
         }
     }
 

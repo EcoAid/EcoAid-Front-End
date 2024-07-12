@@ -6,6 +6,7 @@ import Usuario from "../../models/Usuario";
 import { atualizar } from "../../services/Service";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../../context/AuthContext";
+import { toastAlerta } from "../../util/toastAlerta";
 
 function AtualizarUsuario() {
     const [mostraSenha, setMostraSenha] = useState(false);
@@ -37,13 +38,13 @@ function AtualizarUsuario() {
         e.preventDefault();
 
         if (token === "") {
-            alert("Token não encontrado, favor logar novamente");
+            toastAlerta("Token não encontrado, favor logar novamente", "info");
             handleLogout();
             return;
         }
 
         if (usuarioPerfil.senha !== confirmaSenha) {
-            alert("As senhas não coincidem. Por favor, verifique e tente novamente.");
+            toastAlerta("As senhas não coincidem. Por favor, verifique e tente novamente.", "info");
             return;
         }
 
@@ -56,15 +57,15 @@ function AtualizarUsuario() {
                 });
             }
 
-            alert("Dados atualizados com sucesso");
+            toastAlerta("Dados atualizados com sucesso", "sucesso");
             handleLogout();
             login();
         } catch (error: any) {
             if (error.toString().includes("403")) {
-                alert("O token expirou, favor logar novamente");
+                toastAlerta("O token expirou, favor logar novamente", "info");
                 handleLogout();
             } else {
-                alert("Erro ao atualizar dados!");
+                toastAlerta("Erro ao atualizar dados!", "erro");
             }
         }
     }

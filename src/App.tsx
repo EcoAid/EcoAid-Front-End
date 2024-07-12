@@ -15,6 +15,8 @@ import Perfil from './paginas/perfil/Perfil'
 import AtualizarUsuario from './components/atualizarUsuario/AtualizarUsuario'
 import DeletarProduto from './components/produto/deletarProduto/DeletarProduto'
 import FormularioProduto from './components/produto/formularioProduto/FormularioProduto'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 import DetalhesProduto from './components/detalhesProduto/DetalhesProduto'
 import { useState } from 'react'
 import BarraDeBusca from './components/barraDeBusca/BarraDeBusca'
@@ -25,7 +27,9 @@ function App() {
 
   return (
     <>
-      <AuthProvider><CarrinhoProvider>
+      <AuthProvider>
+      <ToastContainer />
+        <CarrinhoProvider>
         <BrowserRouter>
           <Navbar />
           <div className='min-h-[80vh]'>

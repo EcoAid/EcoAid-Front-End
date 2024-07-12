@@ -8,7 +8,7 @@ import { buscar } from '../../../services/Service';
 import CardCategorias from '../cardCategoria/CardCategoria';
 import BarraDeBusca from '../../barraDeBusca/BarraDeBusca';
 import { PlusCircle } from '@phosphor-icons/react'
-// import { alert } from '../../../utils/alert';
+import { toastAlerta } from '../../../util/toastAlerta';
 
 function ListaCategorias() {
     const [categorias, setCategorias] = useState<Categoria[]>([]);
@@ -26,7 +26,7 @@ function ListaCategorias() {
             });
         } catch (error: any) {
             if (error.toString().includes('403')) {
-                alert('O token expirou, favor logar novamente')
+                toastAlerta('O token expirou, favor logar novamente','info')
                 handleLogout()
             }
         }
@@ -34,7 +34,7 @@ function ListaCategorias() {
 
     useEffect(() => {
         if (token === '') {
-            alert('Você precisa estar logado');
+            toastAlerta('Você precisa estar logado','info');
             navigate('/login');
         }
     }, [token]);

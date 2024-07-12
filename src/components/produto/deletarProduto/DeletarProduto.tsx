@@ -5,6 +5,7 @@ import Produto from '../../../models/Produto'
 import { buscar, deletar } from '../../../services/Service'
 import { ArrowSquareOut } from '@phosphor-icons/react'
 import Skeleton from 'react-loading-skeleton'
+import { toastAlerta } from '../../../util/toastAlerta'
 
 function DeletarProduto() {
     const [produto, setProduto] = useState<Produto>({id: 0} as Produto)
@@ -25,7 +26,7 @@ function DeletarProduto() {
             })
         } catch (error: any) {
             if (error.toString().includes('403')) {
-                alert('O token expirou, favor logar novamente')
+                toastAlerta('O token expirou, favor logar novamente','info')
                 handleLogout()
             }
         }
@@ -33,7 +34,7 @@ function DeletarProduto() {
 
     useEffect(() => {
         if (token === '') {
-            alert('Você precisa estar logado')
+            toastAlerta('Você precisa estar logado', 'info')
             navigate('/login')
         }
     }, [token])
@@ -56,10 +57,10 @@ function DeletarProduto() {
                 }
             })
 
-            alert('Produto apagada com sucesso')
+            toastAlerta('Produto apagado com sucesso', 'sucesso')
 
         } catch (error) {
-            alert('Erro ao apagar a Produto')
+            toastAlerta('Erro ao apagar o produto', 'erro')
         }
 
         retornar()
