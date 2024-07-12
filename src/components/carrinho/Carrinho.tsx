@@ -47,7 +47,7 @@ function Carrinho() {
                     ))}
                     <MenuItem>
                     <div className="text-sm flex justify-between border-t-2 pt-4">
-                    <div className='w-full flex items-center text-sm justify-between border-t-2'>
+                    <div className='w-full flex items-center text-sm justify-between'>
                         <button className='flex items-center w-fit h-12 rounded-md transition hover:text-ferngreen hover:bg-transparent border border-green-800 text-white bg-ferngreen p-4' onClick={() => finalizarCompra()}> Finalizar </button>
                         <p className="text-lg">Total: {new Intl.NumberFormat('pt-BR', {
                             style: 'currency',
