@@ -15,6 +15,7 @@ import Perfil from './paginas/perfil/Perfil'
 import AtualizarUsuario from './components/atualizarUsuario/AtualizarUsuario'
 import DeletarProduto from './components/produto/deletarProduto/DeletarProduto'
 import FormularioProduto from './components/produto/formularioProduto/FormularioProduto'
+import DetalhesProduto from './components/detalhesProduto/DetalhesProduto'
 import { useState } from 'react'
 import BarraDeBusca from './components/barraDeBusca/BarraDeBusca'
 import { CarrinhoProvider } from './context/CarrinhoContext'
@@ -24,32 +25,32 @@ function App() {
 
   return (
     <>
-      <AuthProvider>
-        <CarrinhoProvider>
-          <BrowserRouter>
-            <Navbar />
-            <div className='min-h-[80vh]'>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/cadastro" element={<Cadastro />} />
-                <Route path="/home" element={<Home />} />
-                <Route path="/sobre" element={<Sobre />} />
-                <Route path="/doacoes" element={<><BarraDeBusca setInputText={setInputText} tipo={"produto"} /><ListaProdutos inputText={inputText} /></>} />
-                <Route path="/cadastroDoacao" element={<FormularioProduto />} />
-                <Route path="/editarDoacao/:id" element={<FormularioProduto />} />
-                <Route path="/deletarDoacao/:id" element={<DeletarProduto />} />
-                <Route path="/categorias" element={<ListaCategorias />} />
-                <Route path="/cadastroCategoria" element={<FormularioCategoria />} />
-                <Route path="/editarCategoria/:id" element={<FormularioCategoria />} />
-                <Route path="/deletarCategoria/:id" element={<DeletarCategoria />} />
-                <Route path="/perfil" element={<Perfil />} />
-                <Route path="/atualizarusuario" element={<AtualizarUsuario />} />
-              </Routes>
-            </div>
-            <Footer />
-          </BrowserRouter>
-        </CarrinhoProvider>
+      <AuthProvider><CarrinhoProvider>
+        <BrowserRouter>
+          <Navbar />
+          <div className='min-h-[80vh]'>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/cadastro" element={<Cadastro />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/sobre" element={<Sobre />} />
+              <Route path="/doacoes" element={<ListaProdutos />} />
+              <Route path="/cadastroDoacao" element={<FormularioProduto />} />
+              <Route path="/editarDoacao/:id" element={<FormularioProduto />} />
+              <Route path="/deletarDoacao/:id" element={<DeletarProduto />} />
+              <Route path="/categorias" element={<ListaCategorias />} />
+              <Route path="/cadastroCategoria" element={<FormularioCategoria />} />
+              <Route path="/editarCategoria/:id" element={<FormularioCategoria />} />
+              <Route path="/deletarCategoria/:id" element={<DeletarCategoria />} />
+              <Route path="/perfil" element={<Perfil/>} />
+              <Route path="/atualizarusuario" element={<AtualizarUsuario/>} />
+              <Route path="/detalhesProduto/:id" element={<DetalhesProduto/>} />
+            </Routes>
+          </div>
+          <Footer />
+            </BrowserRouter>
+          </CarrinhoProvider>
       </AuthProvider>
     </>
   )
