@@ -61,7 +61,7 @@ function CardProduto({ produto, carregando }: CardProdutoProps) {
             </div>
             <div className=' p-4 flex flex-col gap-4'>
                 {carregando ? <Skeleton className='w-full h-12' style={{ borderRadius: 10 }} /> : <button className='rounded-lg bg-[#407C44] text-white w-full text-xl py-2'>DOAR</button>}
-                {carregando ? <Skeleton className='w-full h-14' style={{ borderRadius: 10 }} /> : <button onClick={() => {adicionarItem(produto); console.log(listaCarrinho)}} className='rounded-lg bg-[#407C44] py-4 flex items-center justify-center gap-4 text-white'><Plus size={24} /> Adicionar ao carrinho</button>}
+                {carregando ? <Skeleton className='w-full h-14' style={{ borderRadius: 10 }} /> : <button onClick={() => {adicionarItem(produto)}} className='rounded-lg bg-[#407C44] py-4 flex items-center justify-center gap-4 text-white'><Plus size={24} /> Adicionar ao carrinho</button>}
             </div>
         </div>
     )
