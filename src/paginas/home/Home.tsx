@@ -56,7 +56,7 @@ function Home() {
                         modules={[Navigation]}
                         slidesPerView={4}
                         spaceBetween={50}
-                        className='overflow-visible mySwiper'
+                        className='overflow-hidden'
                     >
                         {produtos.length === 0 && (<>
                             {Array.from({ length: 12 }).map((_, index) => (
@@ -88,7 +88,7 @@ function Home() {
                         pagination={{ clickable: true }}
                         slidesPerView={4}
                         spaceBetween={50}
-                        className='overflow-visible'
+                        className='overflow-hidden'
                     >
                         {produtos.length === 0 && (<>
                             {Array.from({ length: 12 }).map((_, index) => (
