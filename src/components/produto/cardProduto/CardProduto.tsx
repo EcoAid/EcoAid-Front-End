@@ -16,7 +16,7 @@ function CardProduto({ produto, carregando }: CardProdutoProps) {
     const { adicionarItem, listaCarrinho } = useContext(CarrinhoContext);
 
     return (
-        <div className='shadow-2xl h-[675px] gap-4 box-border rounded-3xl bg-[#FFFFFF] leading-none flex flex-col'>
+        <div className='shadow-2xl h-[650px] gap-4 box-border rounded-3xl bg-[#FFFFFF] leading-none flex flex-col'>
             <div className="w-full flex-1 flex flex-col gap-4">
                 {carregando ? <Skeleton className="h-40 rounded-t-3xl" /> : <div className='bg-cover h-40 rounded-t-3xl overflow-hidden p-4'
                 style={{backgroundImage: `linear-gradient(45deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 70%,rgba(0,0,0,0.4) 100%), url(${produto.foto})`}}>
