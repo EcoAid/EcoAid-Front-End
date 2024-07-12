@@ -39,7 +39,7 @@ function Home() {
 
     return (
         <>
-            <main>
+            <main className='overflow-hidden'>
                 <div className='w-full p-20 text-6xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-[#333333] bg-white'>
                     <h1 className='w-2/5'><span className='text-[#407C44]'>Bom dia {usuario.nome}, <br /></span> gostaria de receber ou enviar doações?</h1>
                 </div>
@@ -56,7 +56,7 @@ function Home() {
                         modules={[Navigation]}
                         slidesPerView={4}
                         spaceBetween={50}
-                        className='overflow-y-hidden'
+                        className='overflow-visible'
                     >
                         {produtos.length === 0 && (<>
                             {Array.from({ length: 12 }).map((_, index) => (
@@ -88,7 +88,7 @@ function Home() {
                         pagination={{ clickable: true }}
                         slidesPerView={4}
                         spaceBetween={50}
-                        className='overflow-y-visible'
+                        className='overflow-visible'
                     >
                         {produtos.length === 0 && (<>
                             {Array.from({ length: 12 }).map((_, index) => (

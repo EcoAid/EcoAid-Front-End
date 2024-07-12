@@ -43,7 +43,7 @@ function DetalhesProduto() {
     }, [id])
 
     return (
-        <div className="px-16 pt-8">
+        <div className="px-16 pt-8 overflow-hidden">
             <div className="justify-left p-16 flex max-sm:flex-col bg-isabelline gap-8">
                 <img src={produto.foto} alt={produto.nome} className="rounded-lg object-cover w-96 h-96" />
 
@@ -99,7 +99,7 @@ function DetalhesProduto() {
                         pagination={{ clickable: true }}
                         slidesPerView={4}
                         spaceBetween={50}
-                        className='overflow-y-visible'
+                        className='overflow-visible'
                     >
                         {produtos.length === 0 && (<>
                             {Array.from({ length: 12 }).map((_, index) => (
