@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { AuthContext } from "../../context/AuthContext";
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import Carrinho from '../carrinho/Carrinho';
+import ecoaid from"../assets/ecoaid.png";
 
 function Navbar() {
 
@@ -52,9 +53,8 @@ function Navbar() {
       <div className='relative z-10 w-full bg-white text-[#407C44] flex justify-center py-4 border-b-2 border-gray-200'>
         <div className="container flex justify-between text-lg ">
           <div className='flex items-center'>
-          <Link to='/home'><h1 className='text-2xl font-bold uppercase bg-isabelline  hover:text-onyx transition ease-in-out'>EcoAid</h1></Link>
+          <Link to='/home'><img className='hover:opacity-50 transition ease-in-out delay-50 object-cover h-12 w-max' src="https://i.imgur.com/FteiExS.png" alt='logo id'/></Link>
           </div>
-
           <div className='flex items-center gap-8'>
             <Link to='/sobre' className='hover:underline hover:text-onyx  transition ease-in-out'>Sobre nós</Link>
             <Link to='/doacoes' className='hover:underline hover:text-onyx  transition ease-in-out'>Doações</Link>

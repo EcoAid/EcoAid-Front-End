@@ -21,39 +21,39 @@ function Sobre() {
 
             <div className="grid grid-cols-7 justify-center  gap-16">
                 <div className="flex flex-col gap-4">
-                <img className="rounded-full object-contain" src="https://avatars.githubusercontent.com/u/125198871?v=4"/>
+                <img className="rounded-full object-contain hover:opacity-50 " src="https://avatars.githubusercontent.com/u/125198871?v=4"/>
                 <h3 className="text-2xl text-gray-500 border-indigo-600 uppercase">Daniel</h3>
-                <a className=" hover:text-[#407C44] hover:underline transition ease-in-out" href="https://GitHub.com/danielthx23">GitHub</a> 
+                <a className=" hover:text-[#407C44] hover:underline hover:opacity-50 transition ease-in-out delay-50" href="https://GitHub.com/danielthx23" target="_blank">GitHub</a> 
                 </div>
                 <div className="flex flex-col gap-4">
-                <img className="rounded-full object-contain" src="https://avatars.githubusercontent.com/u/86036550?v=4"/>
+                <img className="rounded-full object-contain hover:opacity-50 " src="https://avatars.githubusercontent.com/u/86036550?v=4"/>
                 <h3 className="text-2xl text-gray-500 border-indigo-600 uppercase">Desyrre</h3>
-                <a className=" hover:text-[#407C44] hover:underline transition ease-in-out" href="https://github.com/ddesyrre">GitHub</a> 
+                <a className=" hover:text-[#407C44] hover:underline hover:opacity-50 transition ease-in-out delay-50" href="https://github.com/ddesyrre" target="_blank">GitHub</a> 
                 </div>
                 <div className="flex flex-col gap-4">
-                <img className="rounded-full object-contain" src="https://avatars.githubusercontent.com/u/165588697?v=4"/>
+                <img className="rounded-full object-contain hover:opacity-50 " src="https://avatars.githubusercontent.com/u/165588697?v=4"/>
                 <h3 className="text-2xl text-gray-500 border-indigo-600 uppercase">Gabriela</h3>
-                <a className=" hover:text-[#407C44] hover:underline transition ease-in-out" href="https://GitHub.com/gabyrsas">GitHub</a> 
+                <a className=" hover:text-[#407C44] hover:underline hover:opacity-50 transition ease-in-out delay-50" href="https://GitHub.com/gabyrsas" target="_blank">GitHub</a> 
                 </div>
                 <div className="flex flex-col gap-4">
-                <img className="rounded-full object-contain" src="https://avatars.githubusercontent.com/u/165532742?v=4"/>
+                <img className="rounded-full object-contain hover:opacity-50 " src="https://avatars.githubusercontent.com/u/165532742?v=4"/>
                 <h3 className="text-2xl text-gray-500 border-indigo-600 uppercase">Giulia</h3>
-                <a className=" hover:text-[#407C44] hover:underline transition ease-in-out" href="https://GitHub.com/GiuDestro">GitHub</a> 
+                <a className=" hover:text-[#407C44] hover:underline hover:opacity-50 transition ease-in-out delay-50" href="https://GitHub.com/GiuDestro" target="_blank">GitHub</a> 
                 </div>
                 <div className="flex flex-col gap-4">
-                <img className="rounded-full object-contain" src="https://avatars.githubusercontent.com/u/126731122?v=4"/>
+                <img className="rounded-full object-contain hover:opacity-50 " src="https://avatars.githubusercontent.com/u/126731122?v=4"/>
                 <h3 className="text-2xl text-gray-500 border-indigo-600 uppercase">Hellmat</h3>
-                <a className=" hover:text-[#407C44] hover:underline transition ease-in-out" href="https://GitHub.com/HellmatGa">GitHub</a> 
+                <a className=" hover:text-[#407C44] hover:underline hover:opacity-50 transition ease-in-out delay-50" href="https://GitHub.com/HellmatGa" target="_blank">GitHub</a> 
                 </div>
                 <div className="flex flex-col gap-4">
-                <img className="rounded-full object-contain" src="https://avatars.githubusercontent.com/u/156537929?v=4"/>
+                <img className="rounded-full object-contain hover:opacity-50 " src="https://avatars.githubusercontent.com/u/156537929?v=4"/>
                 <h3 className="text-2xl text-gray-500 border-indigo-600 uppercase">Laura</h3>
-                <a className=" hover:text-[#407C44] hover:underline transition ease-in-out" href="https://GitHub.com/laumariano">GitHub</a> 
+                <a className=" hover:text-[#407C44] hover:underline hover:opacity-50 transition ease-in-out delay-50" href="https://GitHub.com/laumariano" target="_blank">GitHub</a> 
                 </div>
                 <div className="flex flex-col gap-4">
-                <img className="rounded-full object-contain" src="https://avatars.githubusercontent.com/u/139519050?v=4"/>
+                <img className="rounded-full object-contain hover:opacity-50 " src="https://avatars.githubusercontent.com/u/139519050?v=4"/>
                 <h3 className="text-2xl text-gray-500 border-indigo-600 uppercase">Sayuri</h3>
-                <a className=" hover:text-[#407C44] hover:underline transition ease-in-out" href="https://GitHub.com/SayuriCristina">GitHub</a> 
+                <a className=" hover:text-[#407C44] hover:underline hover:opacity-50 transition ease-in-out delay-50" href="https://GitHub.com/SayuriCristina" target="_blank">GitHub</a> 
                 </div>
             </div>
         </div>
@@ -61,9 +61,9 @@ function Sobre() {
                 <div className="d-flex justify-content-center p-16">
                     <h2 className="my-4 font-bold text-4xl sm:text-5xl mb-16 bg-white">Acesse o repositório do <span className="bg-clip-content bg-isabelline text-green-700">projeto</span>
                     </h2>
-                    <a className="text-lg hover:text-[#407C44] transition ease-in-out" href="https://github.com/EcoAid">
+                    <a className="text-lg hover:text-[#407C44] hover:opacity-50 transition ease-in-out delay-50" href="https://github.com/EcoAid" target="_blank">
                         <div className="flex items-center justify-center  ">
-                            <FaGithub size={80} />
+                            <FaGithub size={120} />
                         </div>
                     </a>
 

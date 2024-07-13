@@ -40,7 +40,7 @@ function Home() {
     return (
         <>
             <main className='overflow-hidden'>
-                <div className='w-full p-20 text-6xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-[#333333] bg-white'>
+                <div className='w-full p-20 font-bold text-6xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-[#333333] bg-white'>
                     <h1 className='w-2/5'><span className='text-[#407C44]'>Bom dia {usuario.nome}, <br /></span> gostaria de receber ou enviar doações?</h1>
                 </div>
 
@@ -48,7 +48,7 @@ function Home() {
 
                 <section className='text-[#407C44] part-white p-20 gap-8 overflow-visible'>
                     <div className="flex flex-col gap-8 mb-16">
-                        <h1 className='text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'>Doações recomendadas</h1>
+                        <h1 className='text-xl font-bold sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'>Doações recomendadas</h1>
                         <h2 className='text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#3D4DA6]'>Novas doações</h2>
                     </div>
                     <Swiper
@@ -77,7 +77,7 @@ function Home() {
 
                 <section className='part-white text-[#407C44] p-20 gap-8 overflow-visible'>
                     <div className='flex flex-row items-center gap-8 mb-16'>
-                        <h1 className='text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'>Minhas doações</h1>
+                        <h1 className='text-xl font-bold sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'>Minhas doações</h1>
                         <button className='text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#3D4DA6]'>Mais populares</button>
                         <button className='text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#3D4DA6]'>Top doações</button>
                     </div>
