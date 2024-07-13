@@ -12,13 +12,17 @@ function AtualizarUsuario() {
     const [mostraSenha, setMostraSenha] = useState(false);
     const [mostraConfirmaSenha, setConfirmaSenha] = useState(false);
 
-    const [usuarioPerfil, setUsuario] = useState<Usuario>({
-        foto: 'https://voxnews.com.br/wp-content/uploads/2017/04/unnamed.png'
-    } as Usuario);
 
     const navigate = useNavigate();
 
     const { usuario, handleLogout } = useContext(AuthContext);
+
+    const [usuarioPerfil, setUsuario] = useState<Usuario>({
+        id: usuario.id,
+        nome: usuario.nome,
+        usuario: usuario.usuario,
+        foto: usuario.foto
+    } as Usuario);
 
     const token = usuario?.token || "";
 
@@ -28,7 +32,6 @@ function AtualizarUsuario() {
         setUsuario({
             ...usuarioPerfil,
             [e.target.name]: e.target.value,
-            id: usuario.id
         });
 
         console.log(JSON.stringify(usuarioPerfil));
@@ -90,6 +93,9 @@ function AtualizarUsuario() {
                             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)} />
                         <input id="usuario" name="usuario" type="text" placeholder="E-mail" className="rounded-md bg-gray-200 border-none p-3 mb-4 w-full"
                             value={usuarioPerfil.usuario}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)} />
+                        <input id="foto" name="foto" type="text" placeholder="Foto" className="rounded-md bg-gray-200 border-none p-3 mb-4 w-full"
+                            value={usuarioPerfil.foto}
                             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)} />
 
                         <div className="relative w-full mb-4">
