@@ -1,4 +1,3 @@
-import React from 'react';
 import { PiLinktreeLogoBold } from 'react-icons/pi';
 import { Link } from 'react-router-dom'
 

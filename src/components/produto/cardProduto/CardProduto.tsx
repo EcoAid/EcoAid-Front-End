@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ArrowSquareOut, DotsThreeVertical, Plus } from '@phosphor-icons/react'
 import React, { useContext } from 'react'
 import Produto from '../../../models/Produto'

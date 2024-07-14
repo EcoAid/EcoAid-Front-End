@@ -1,10 +1,8 @@
 import React, { useContext } from 'react'
-import { TiShoppingCart } from 'react-icons/ti'
 import { Link } from 'react-router-dom'
 import { AuthContext } from "../../context/AuthContext";
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import Carrinho from '../carrinho/Carrinho';
-import ecoaid from"../assets/ecoaid.png";
 
 function Navbar() {
 

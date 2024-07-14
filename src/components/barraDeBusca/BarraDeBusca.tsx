@@ -1,9 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ArrowRight, SlidersHorizontal } from '@phosphor-icons/react'
-import React, { ChangeEvent, useContext, useEffect, useState } from 'react'
+import { ChangeEvent, useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../context/AuthContext';
 import { buscarSemHeader } from '../../services/Service';
 import { useNavigate } from 'react-router-dom';
-import Produto from '../../models/Produto';
 
 
 function BarraDeBusca(props: any) {

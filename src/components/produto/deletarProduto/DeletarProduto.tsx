@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { AuthContext } from '../../../context/AuthContext'
 import Produto from '../../../models/Produto'
 import { buscar, deletar } from '../../../services/Service'
-import { ArrowSquareOut } from '@phosphor-icons/react'
 import Skeleton from 'react-loading-skeleton'
 import { toastAlerta } from '../../../util/toastAlerta'
 

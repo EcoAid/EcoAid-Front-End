@@ -1,21 +1,22 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState, useContext } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { FaInfoCircle, FaTags } from "react-icons/fa";
 import { TiShoppingCart } from 'react-icons/ti';
 import { LuHelpingHand } from "react-icons/lu";
 import Produto from "../../models/Produto";
 import { buscarSemHeader } from "../../services/Service";
-import { AuthContext } from "../../context/AuthContext";
-import ListaProdutos from "../produto/listaProdutos/ListaProdutos";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import CardProduto from "../produto/cardProduto/CardProduto";
+import { CarrinhoContext } from "../../context/CarrinhoContext";
 
 function DetalhesProduto() {
 
     const [produto, setProduto] = useState<Produto>({} as Produto);
     const [produtos, setProdutos] = useState<Produto[]>([]);
+    const { adicionarItem, listaCarrinho } = useContext(CarrinhoContext);
 
     const { id } = useParams<{ id: string }>()
 
@@ -72,18 +73,18 @@ function DetalhesProduto() {
                         Crédito ganho pela doação: {produto.valor}
                     </p>
                     <div className="flex gap-4">
-                        <button
+                        <button onClick={() => {adicionarItem(produto)}} 
                             className="gap-2 rounded-full border border-green-200 py-2 px-4 bg-ferngreen text-white hover:bg-green-900 mt-4 flex items-center justify-center"
                         >
                             Adicionar ao carrinho
                             <TiShoppingCart size={24} />
                         </button>
-                        <button
+                        <Link to='/cadastroDoacao'
                             className="gap-2 rounded-full border border-green-200 py-2 px-4 bg-ferngreen text-white hover:bg-green-900 mt-4 flex items-center justify-center"
                         >
                             Doar
                             <LuHelpingHand size={24} />
-                        </button>
+                        </Link>
                     </div>
 
                 </div>
