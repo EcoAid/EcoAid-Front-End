@@ -51,11 +51,11 @@ function Home() {
                     <div className="rounded-xl justify-left p-16 flex max-sm:flex-col bg-ferngreen bg-opacity-30 gap-8 items-center">
                         <div className="flex-col space-y-4 md:w-4/6">
                             <h1 className="text-5xl text-onyx font-bold md:mt-2">
-                                Olá, seja bem vindo ao EcoAid, <span className='text-ferngreen'>{usuario.nome}</span><br />
+                                Olá, seja bem vindo ao EcoAid, <span className='text-ferngreen'>{usuario.nome}</span><br/>
                                 Gostaria de receber ou enviar doações?
                             </h1>
 
-                            <p className="line-clamp-4 text-lg text-onyx">
+                            <p className="text-lg text-onyx">
                                 Alinhado com o Objetivo de Desenvolvimento Sustentável (ODS) 13 da ONU (Ação Contra a Mudança Global do Clima),
                                 o ECOAID busca mitigar esses impactos, promovendo a colaboração social e o consumo consciente através da
                                 <span className='font-semibold'> doação de produtos em bom estado para quem precisa, </span>
