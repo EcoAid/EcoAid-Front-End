@@ -7,7 +7,6 @@ import { BiSolidCategory } from "react-icons/bi";
 function Funcionamento() {
     return (
         <>
-
             <div className="px-20 mx-auto text-left">
                 <h1 className='text-xl font-bold sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-ferngreen pb-8'>Como funciona?</h1>
                 <div className="grid grid-cols-5 gap-4 items-center">
