@@ -2,11 +2,15 @@ import { PlusCircle } from "@phosphor-icons/react"
 import { Link } from "react-router-dom"
 import BarraDeBusca from "../../components/barraDeBusca/BarraDeBusca"
 import ListaProdutos from "../../components/produto/listaProdutos/ListaProdutos"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Doacoes() {  
     
     const [inputText, setInputText] = useState<string>("");
+
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, []);
 
     return (
         <>

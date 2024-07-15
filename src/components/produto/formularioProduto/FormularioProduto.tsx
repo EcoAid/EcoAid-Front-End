@@ -129,6 +129,10 @@ function FormularioProduto() {
         }
     }
 
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, []);
+
     return (
         <div className="container flex flex-col mx-auto justify-center items-center">
             <h1 className="text-5xl text-center my-8 font-semibold text-ferngreen">

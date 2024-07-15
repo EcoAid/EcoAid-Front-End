@@ -58,6 +58,10 @@ function DeletarProduto() {
         navigate("/doacoes")
     }
 
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, []);
+
     async function deletarProduto() {
         try {
             await deletar(`/produto/${id}`, {

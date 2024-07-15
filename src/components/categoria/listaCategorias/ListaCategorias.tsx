@@ -57,6 +57,11 @@ function ListaCategorias() {
     useEffect(() => {
         buscarCategorias();
     }, []);
+
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, []);
+    
     return (
         <>
             <BarraDeBusca setInputText={setInputText} tipo={"categoria"}/>
