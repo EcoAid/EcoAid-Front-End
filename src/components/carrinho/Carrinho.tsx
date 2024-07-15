@@ -48,7 +48,7 @@ function Carrinho() {
                     <MenuItem>
                     <div onClick={(e) => { e.preventDefault() }} className="text-sm flex justify-between border-t-2 pt-4">
                     <div className='w-full flex items-center text-sm justify-between'> 
-                        <ModalCheckout/>
+                        <ModalCheckout disabled={listaCarrinho.length === 0}/>
                         <p className="text-lg">Total: {new Intl.NumberFormat('pt-BR', {
                             style: 'currency',
                             currency: 'BRL',
