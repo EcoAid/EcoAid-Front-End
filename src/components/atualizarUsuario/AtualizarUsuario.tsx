@@ -1,17 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ChangeEvent, useContext, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Usuario from "../../models/Usuario";
-import { atualizar } from "../../services/Service";
+import { atualizar, buscarSemHeader } from "../../services/Service";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../../context/AuthContext";
 import { toastAlerta } from "../../util/toastAlerta";
+import Produto from "../../models/Produto";
 
 function AtualizarUsuario() {
     const [mostraSenha, setMostraSenha] = useState(false);
     const [mostraConfirmaSenha, setConfirmaSenha] = useState(false);
-
 
     const navigate = useNavigate();
 
@@ -33,8 +33,6 @@ function AtualizarUsuario() {
             ...usuarioPerfil,
             [e.target.name]: e.target.value,
         });
-
-        console.log(JSON.stringify(usuarioPerfil));
     }
 
     async function attUsuario(e: ChangeEvent<HTMLFormElement>) {

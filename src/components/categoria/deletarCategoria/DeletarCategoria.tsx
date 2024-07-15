@@ -11,6 +11,7 @@ import { toastAlerta } from '../../../util/toastAlerta'
 
 function DeletarCategoria() {
     const [categoria, setCategoria] = useState<Categoria>({} as Categoria)
+    const [carregando, setCarregando] = useState<boolean>(false);
 
     const navigate = useNavigate()
 
@@ -25,7 +26,7 @@ function DeletarCategoria() {
                 headers: {
                     'Authorization': token
                 }
-            })
+            }, setCarregando)
         } catch (error: any) {
             if (error.toString().includes('403')) {
                 toastAlerta('O token expirou, favor logar novamente', "info")

@@ -9,6 +9,7 @@ import { toastAlerta } from '../../../util/toastAlerta';
 
 function FormularioCategoria() {
     const [categoria, setCategoria] = useState<Categoria>({} as Categoria);
+    const [carregando, setCarregando] = useState<boolean>(false);
 
     const navigate = useNavigate();
 
@@ -21,8 +22,8 @@ function FormularioCategoria() {
         await buscar(`/categoria/${id}`, setCategoria, {
             headers: {
                 Authorization: token,
-            },
-        });
+            }
+        }, setCarregando);
     }
 
     useEffect(() => {

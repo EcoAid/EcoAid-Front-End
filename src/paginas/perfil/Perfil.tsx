@@ -2,34 +2,40 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useContext, useEffect, useState } from 'react';
-import Usuario from '../../models/Usuario';
-import { buscar } from '../../services/Service';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
-import { PlusCircle, UserCircleGear, UserSwitch } from '@phosphor-icons/react';
+import {  UserCircleGear } from '@phosphor-icons/react';
 import { toastAlerta } from '../../util/toastAlerta';
+import Produto from '../../models/Produto';
+import { buscarSemHeader } from '../../services/Service';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import CardProduto from '../../components/produto/cardProduto/CardProduto';
+import { Navigation } from 'swiper/modules';
 
 function Perfil() {
 
-  const [usuarios, setUsuario] = useState<Usuario[]>([]);
+  const [produtos, setProdutos] = useState<Produto[]>([]);
+  const [carregando, setCarregando] = useState<boolean>(true);
+
+  async function buscarProdutos() {
+      try {
+          await buscarSemHeader('/produto', setProdutos, setCarregando);
+      } catch (error: any) {
+          if (error.toString().includes('403')) {
+              toastAlerta('O token expirou, favor logar novamente', "info")
+              handleLogout()
+          }
+      }
+  }
+
+  useEffect(() => {
+      buscarProdutos();
+  }, [produtos.length]);
 
   const navigate = useNavigate();
 
   const { usuario, handleLogout } = useContext(AuthContext);
   const token = usuario.token;
-
-  async function buscarUsuario() {
-    try {
-      await buscar(`/usuario/${usuario.id}`, setUsuario, {
-        headers: { Authorization: token },
-      });
-    } catch (error: any) {
-      if (error.toString().includes('403')) {
-        toastAlerta('O token expirou, favor logar novamente','info')
-        handleLogout()
-      }
-    }
-  }
 
   useEffect(() => {
     if (token === '') {
@@ -38,15 +44,11 @@ function Perfil() {
     }
   }, [token]);
 
-  useEffect(() => {
-    buscarUsuario();
-  }, []);
-
   return (
     <>
 
-      <div className="w-full h-screen bg-isabelline px-10 pt-10">
-        <div className="relative mb-32 max-w-3xl mx-auto mt-24">
+      <div className="w-full h-fit bg-isabelline px-10 pt-10">
+        <div className="relative max-w-3xl mx-auto mt-24">
           <div className="w-full mx-auto">
             <img
               src="https://htmlcolorcodes.com/assets/images/colors/fern-green-color-solid-background-1920x1080.png"
@@ -78,6 +80,36 @@ function Perfil() {
           </div>
         </div>
       </div>
+
+      {token !== '' &&
+                    <div className='px-32 pt-12 mt-12 part-white'> <div className='flex flex-row items-center gap-8 mb-16 text-[#407C44] overflow-visible'>
+                        <h1 className='text-xl font-bold sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'>Minhas doações</h1>
+                    </div>
+
+                    <Swiper
+                        navigation={true}
+                        modules={[Navigation]}
+                        pagination={{ clickable: true }}
+                        slidesPerView={4}
+                        spaceBetween={50}
+                        className='overflow-visible'
+                    >
+                        {(carregando === true) && (<>
+                            {Array.from({ length: 12 }).map((_, index) => (
+                                <SwiperSlide key={index}>
+                                    <CardProduto key={index} produto={{} as Produto} carregando={true} />
+                                </SwiperSlide>
+                            ))}
+                        </>)}
+                        {(produtos.filter((produto) => produto.usuario.usuario === usuario.usuario).length === 0 && carregando === false) && (
+                            <h1 className='text-3xl p-16 rounded-3xl bg-white text-onyx'>Você não cadastrou nenhum produto ainda.</h1>
+                        )}
+                        {produtos.filter((produto) => produto.usuario.usuario === usuario.usuario).slice(0, 12).map((produto) => (
+                            <SwiperSlide key={produto.id}>
+                                <CardProduto key={produto.id} produto={produto} carregando={false} />
+                            </SwiperSlide>
+                        ))}
+                    </Swiper> </div>}
 
     </>
   );

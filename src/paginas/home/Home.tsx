@@ -3,7 +3,7 @@ import './Home.css';
 import BarraDeBusca from '../../components/barraDeBusca/BarraDeBusca';
 import { AuthContext } from '../../context/AuthContext';
 import 'swiper/css';
-import { buscarSemHeader } from '../../services/Service';
+import { buscar, buscarSemHeader } from '../../services/Service';
 import Produto from '../../models/Produto';
 import CardProduto from '../../components/produto/cardProduto/CardProduto';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -16,15 +16,14 @@ import { toastAlerta } from '../../util/toastAlerta';
 
 function Home() {
 
-    const { usuario, } = useContext(AuthContext);
-
     const [produtos, setProdutos] = useState<Produto[]>([]);
-
-    const { handleLogout } = useContext(AuthContext);
+    const [carregando, setCarregando] = useState<boolean>(true);
+    const { usuario, handleLogout } = useContext(AuthContext);
+    const token = usuario.token;
 
     async function buscarProdutos() {
         try {
-            await buscarSemHeader('/produto', setProdutos);
+            await buscarSemHeader('/produto', setProdutos, setCarregando);
         } catch (error: any) {
             if (error.toString().includes('403')) {
                 toastAlerta('O token expirou, favor logar novamente', "info")
@@ -58,7 +57,7 @@ function Home() {
                         spaceBetween={50}
                         className='overflow-visible'
                     >
-                        {produtos.length === 0 && (<>
+                        {carregando !== false && (<>
                             {Array.from({ length: 12 }).map((_, index) => (
                                 <SwiperSlide key={index}>
                                     <CardProduto key={index} produto={{} as Produto} carregando={true} />
@@ -66,7 +65,7 @@ function Home() {
                             ))}
                         </>)}
 
-                        {produtos.map((produto) => (
+                        {produtos.sort((produtoa, produtob) => produtob.id - produtoa.id).slice(0, 12).map((produto) => (
                             <SwiperSlide key={produto.id}>
                                 <CardProduto key={produto.id} produto={produto} carregando={false} />
                             </SwiperSlide>
@@ -75,7 +74,7 @@ function Home() {
                 </section>
 
 
-                <section className='part-white text-[#407C44] p-20 gap-8 overflow-visible'>
+                {token !== '' && <section className='part-white text-[#407C44] p-20 gap-8 overflow-visible'>
                     <div className='flex flex-row items-center gap-8 mb-16'>
                         <h1 className='text-xl font-bold sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'>Minhas doações</h1>
                         <button className='text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#3D4DA6]'>Mais populares</button>
@@ -90,20 +89,23 @@ function Home() {
                         spaceBetween={50}
                         className='overflow-visible'
                     >
-                        {produtos.length === 0 && (<>
+                        {(carregando === true) && (<>
                             {Array.from({ length: 12 }).map((_, index) => (
                                 <SwiperSlide key={index}>
                                     <CardProduto key={index} produto={{} as Produto} carregando={true} />
                                 </SwiperSlide>
                             ))}
                         </>)}
-                        {produtos.map((produto) => (
+                        {(produtos.filter((produto) => produto.usuario.usuario === usuario.usuario).length === 0 && carregando === false) && (
+                            <h1 className='text-3xl p-16 rounded-3xl bg-white text-onyx'>Você não cadastrou nenhum produto ainda.</h1>
+                        )}
+                        {produtos.filter((produto) => produto.usuario.usuario === usuario.usuario).slice(0, 12).map((produto) => (
                             <SwiperSlide key={produto.id}>
                                 <CardProduto key={produto.id} produto={produto} carregando={false} />
                             </SwiperSlide>
                         ))}
                     </Swiper>
-                </section>
+                </section>}
             </main>
         </>
     )

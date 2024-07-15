@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import Categoria from '../../../models/Categoria';
 import { DotsThree, Tag } from '@phosphor-icons/react';
@@ -12,6 +11,7 @@ interface CardCategoriaProps {
 }
 
 function CardCategoria({ categoria, carregando }: CardCategoriaProps) {
+    
     return (
         <div className='border flex flex-col rounded-2xl overflow-hidden justify-center'>
 

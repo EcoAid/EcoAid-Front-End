@@ -1,27 +1,28 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState, useContext } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState} from "react";
+import { useParams } from "react-router-dom";
 import { FaInfoCircle, FaTags } from "react-icons/fa";
 import { TiShoppingCart } from 'react-icons/ti';
 import { LuHelpingHand } from "react-icons/lu";
-import Produto from "../../models/Produto";
-import { buscarSemHeader } from "../../services/Service";
-import { AuthContext } from "../../context/AuthContext";
-import ListaProdutos from "../produto/listaProdutos/ListaProdutos";
+import Produto from "../../../models/Produto";
+import { buscarSemHeader } from "../../../services/Service";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import CardProduto from "../produto/cardProduto/CardProduto";
+import CardProduto from "../cardProduto/CardProduto";
+import { CarrinhoContext } from "../../../context/CarrinhoContext";
 
 function DetalhesProduto() {
 
     const [produto, setProduto] = useState<Produto>({} as Produto);
     const [produtos, setProdutos] = useState<Produto[]>([]);
+    const [carregando, setCarregando] = useState<boolean>(true);
+    const {adicionarItem} = useContext(CarrinhoContext);
 
     const { id } = useParams<{ id: string }>()
 
     async function buscarProdutoPorId(id: string) {
         try {
-            await buscarSemHeader(`/produto/${id}`, setProduto,);
+            await buscarSemHeader(`/produto/${id}`, setProduto, setCarregando);
         } catch (error: any) {
             alert('Algo de errado ocorreu, tente novamente');
         }
@@ -29,7 +30,7 @@ function DetalhesProduto() {
 
     async function buscarProdutos() {
         try {
-            await buscarSemHeader(`/produto`, setProdutos,);
+            await buscarSemHeader(`/produto`, setProdutos, setCarregando);
         } catch (error: any) {
             alert('Algo de errado ocorreu, tente novamente');
         }
@@ -73,6 +74,7 @@ function DetalhesProduto() {
                     </p>
                     <div className="flex gap-4">
                         <button
+                        onClick={() => adicionarItem(produto)}
                             className="gap-2 rounded-full border border-green-200 py-2 px-4 bg-ferngreen text-white hover:bg-green-900 mt-4 flex items-center justify-center"
                         >
                             Adicionar ao carrinho
@@ -100,7 +102,7 @@ function DetalhesProduto() {
                         spaceBetween={50}
                         className='overflow-visible'
                     >
-                        {produtos.length === 0 && (<>
+                        {carregando === true && (<>
                             {Array.from({ length: 12 }).map((_, index) => (
                                 <SwiperSlide key={index}>
                                     <CardProduto key={index} produto={{} as Produto} carregando={true} />

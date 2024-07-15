@@ -1,23 +1,26 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CardProduto from '../cardProduto/CardProduto'
 import Produto from '../../../models/Produto';
 import { buscarSemHeader } from '../../../services/Service';
-import { AuthContext } from '../../../context/AuthContext';
 import { toastAlerta } from '../../../util/toastAlerta';
-
-let filter = "";
 
 function ListaProdutos(props: any) {
     const [produtos, setProdutos] = useState<Produto[]>([]);
-    filter = props.inputText;
+    const [carregando, setCarregando] = useState<boolean>(true);
 
-    const { handleLogout } = useContext(AuthContext);
+    const cardsDisplay = 12;
+
+    const [next, setNext] = useState(cardsDisplay);
+
+    const handleMoreCards = () => {
+        setNext(next + cardsDisplay);
+    };
 
     async function buscarProdutos() {
         try {
-            await buscarSemHeader('/produto', setProdutos);
+            await buscarSemHeader('/produto', setProdutos, setCarregando);
         } catch (error: any) {
-            toastAlerta("Os produtos não foram localizados",'erro')
+            toastAlerta("Os produtos não foram localizados", 'erro')
         }
     }
 
@@ -26,10 +29,10 @@ function ListaProdutos(props: any) {
     }, [produtos.length]);
 
     const filteredList = produtos.filter((element) => {
-        if (props.inputText === '') {
+        if (props?.inputText === '') {
             return element
         } else {
-            return element.nome.toLowerCase().includes(filter.toLowerCase());
+            return element.nome.toLowerCase().includes(props?.inputText.toLowerCase());
         }
     });
 
@@ -37,15 +40,25 @@ function ListaProdutos(props: any) {
         <>
 
             <div className='container mx-auto my-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12'>
-                {produtos.length === 0 && (<>
+                {carregando !== false && (<>
                     {Array.from({ length: 12 }).map((_, index) => (
                         <CardProduto key={index} produto={{} as Produto} carregando={true} />
                     ))}
                 </>)}
-                {filteredList.map((produto) => (
+                {filteredList?.slice(0, next)?.map((produto) => (
                     <CardProduto key={produto.id} produto={produto} carregando={false} />
                 ))}
             </div>
+            {next < filteredList?.length && (
+                <div className='flex justify-center'>
+                    <button
+                        className="bg-ferngreen p-4 rounded-md my-16 text-white"
+                        onClick={handleMoreCards}
+                    >
+                        Carregar Mais
+                    </button>
+                </div>
+            )}
         </>
     );
 }

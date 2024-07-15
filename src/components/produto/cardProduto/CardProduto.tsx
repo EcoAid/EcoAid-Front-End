@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import Skeleton from 'react-loading-skeleton'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { CarrinhoContext } from '../../../context/CarrinhoContext'
+import { AuthContext } from '../../../context/AuthContext'
 
 interface CardProdutoProps {
     produto: Produto
@@ -13,15 +14,16 @@ interface CardProdutoProps {
 
 function CardProduto({ produto, carregando }: CardProdutoProps) {
 
-    const { adicionarItem, listaCarrinho } = useContext(CarrinhoContext);
+    const { adicionarItem } = useContext(CarrinhoContext);
+
+    const { usuario } = useContext(AuthContext);
 
     return (
-        <div className='shadow-2xl h-[650px] gap-4 box-border rounded-3xl bg-[#FFFFFF] leading-none flex flex-col'>
-            <div className="w-full flex-1 flex flex-col gap-4">
+        <div className='shadow-2xl h-[670px] gap-4 box-border rounded-3xl bg-[#FFFFFF] leading-none flex flex-col'>
+            <div className="w-full flex flex-1 flex-col gap-4">
                 {carregando ? <Skeleton className="h-40 rounded-t-3xl" /> : <div className='bg-cover h-40 rounded-t-3xl overflow-hidden p-4'
                 style={{backgroundImage: `linear-gradient(45deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 70%,rgba(0,0,0,0.4) 100%), url(${produto.foto})`}}>
-                    <div>
-                    <Menu as="div" className="relative w-full inline-block text-left">
+                    {produto.usuario?.usuario === usuario.usuario && <Menu as="div" className="relative w-full inline-block text-left">
                     <div className='w-full flex items-center text-white'>
                         <MenuButton className='w-full flex justify-end'>
                             {carregando ? <Skeleton style={{ borderRadius: 10 }} width={46} /> : <DotsThreeVertical size={40} />}
@@ -45,21 +47,21 @@ function CardProduto({ produto, carregando }: CardProdutoProps) {
                             </MenuItem>
                         </div>
                     </MenuItems>
-                </Menu>
-                    </div>
+                </Menu>}
                 </div>}
                 {carregando ? <Skeleton className='mx-8 text-md' height={25} width={200} style={{ borderRadius: 10 }} /> : <h1 className='text-[#414141] w-fit text-md mx-8 px-4 py-1 border-2 border-solid border-violetblue text-white bg-violetblue bg-opacity-75 rounded-full'>{produto.categoria?.tipo}</h1>}
                 <h1 className='text-[#414141] w-auto line-clamp-2 break-words mx-8 text-3xl font-bold'>{produto.nome || <Skeleton style={{ borderRadius: 10 }} />}</h1>
+                {carregando ? <Skeleton className="text-md mx-8" width={250} style={{ borderRadius: 10 }} /> : <h1 className='text-[#414141] text-md px-8'>Data de cadastro: {new Date(produto.dataCadastro).toLocaleDateString()}</h1>}
                 <div className='flex gap-4 items-center px-8'>
                     {carregando ? <Skeleton circle={true} className="w-12 h-12" style={{ borderRadius: 10 }} /> : <img className="rounded-full w-12 h-12" src={produto.usuario?.foto} alt="" />}
                     <h1 className='text-[#414141] text-md'>{produto.usuario?.nome || <Skeleton width={150} style={{ borderRadius: 10 }} />}</h1>
                 </div>
-                <h1 className='text-[#414141] text-md h-16 px-8 line-clamp-2 leading-9'>{produto.descricao || <Skeleton count={2} style={{ borderRadius: 10 }} />}</h1>
-                {carregando ? <Skeleton className='mx-8 h-6 w-36' style={{ borderRadius: 10 }} /> : <Link to={`/detalhesProduto/${produto.id}`} className='flex flex-1 gap-1 items-center px-8 py-1 text-ferngreen hover:text-green-900'>
-                    <button>Mais detalhes</button> <ArrowSquareOut size={24} className='mb-1' />
+                <h1 className='text-[#414141] text-md h-fit px-8 break-words line-clamp-2 leading-9'>{produto.descricao || <Skeleton count={2} style={{ borderRadius: 10 }} />}</h1>
+                {carregando ? <Skeleton className='mb-8 h-4 w-36' style={{ borderRadius: 10 }} /> : <Link to={`/detalhesProduto/${produto.id}`} className='flex gap-1 items-center px-8 text-ferngreen hover:text-green-900'>
+                    <button>Mais detalhes</button> <ArrowSquareOut size={24}/>
                 </Link>}
             </div>
-            <div className=' p-4 flex flex-col gap-4'>
+            <div className='mb-4 px-4 flex flex-col gap-4'>
                 {carregando ? <Skeleton className='w-full h-12' style={{ borderRadius: 10 }} /> : <button className='rounded-lg bg-[#407C44] text-white w-full text-xl py-2'>DOAR</button>}
                 {carregando ? <Skeleton className='w-full h-14' style={{ borderRadius: 10 }} /> : <button onClick={() => {adicionarItem(produto)}} className='rounded-lg bg-[#407C44] py-4 flex items-center justify-center gap-4 text-white'><Plus size={24} /> Adicionar ao carrinho</button>}
             </div>

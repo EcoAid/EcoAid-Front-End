@@ -14,14 +14,12 @@ export const login = async (url: string, dados: Object, setDados: Function) => {
     setDados(resposta.data)
 }
 
-export const buscar = async (url: string, setDados: Function, header: Object) => {
-    const resposta = await api.get(url, header)
-    setDados(resposta.data)
+export const buscar = async (url: string, setDados: Function, header: Object, setCarregando: Function) => {
+    await api.get(url, header).then((resposta) => {setCarregando(false); setDados(resposta.data)})
 }
 
-export const buscarSemHeader = async (url: string, setDados: Function) => {
-    const resposta = await api.get(url)
-    setDados(resposta.data)
+export const buscarSemHeader = async (url: string, setDados: Function, setCarregando: Function) => {
+    await api.get(url).then((resposta) => {setCarregando(false); setDados(resposta.data)})
 }
 
 export const cadastrar = async (url: string, dados: Object, setDados: Function, header: Object) => {

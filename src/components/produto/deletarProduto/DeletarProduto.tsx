@@ -1,20 +1,20 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { AuthContext } from '../../../context/AuthContext'
 import Produto from '../../../models/Produto'
 import { buscar, deletar } from '../../../services/Service'
-import { ArrowSquareOut } from '@phosphor-icons/react'
 import Skeleton from 'react-loading-skeleton'
 import { toastAlerta } from '../../../util/toastAlerta'
 
 function DeletarProduto() {
-    const [produto, setProduto] = useState<Produto>({id: 0} as Produto)
+    const [produto, setProduto] = useState<Produto>({} as Produto)
+    const [carregando, setCarregando] = useState<boolean>(true);
 
     const navigate = useNavigate()
 
     const { id } = useParams<{ id: string }>()
 
-    const { usuario, handleLogout } = useContext(AuthContext)
+    const { usuario, handleLogout } = useContext(AuthContext);
     const token = usuario.token
 
     async function buscarPorId(id: string) {
@@ -23,7 +23,7 @@ function DeletarProduto() {
                 headers: {
                     'Authorization': token
                 }
-            })
+            }, setCarregando)
         } catch (error: any) {
             if (error.toString().includes('403')) {
                 toastAlerta('O token expirou, favor logar novamente','info')
@@ -44,6 +44,13 @@ function DeletarProduto() {
             buscarPorId(id)
         }
     }, [id])
+    
+    useEffect(() => {
+        if (carregando === false && produto.usuario?.usuario !== usuario.usuario) {
+            toastAlerta('Esté produto não esta atrelado a sua conta!', 'info')
+            navigate('/home')
+        }
+    }, [produto])
 
     function retornar() {
         navigate("/doacoes")
@@ -75,19 +82,19 @@ function DeletarProduto() {
                 <div className='w-96 shadow-2xl box-border rounded-3xl overflow-hidden bg-[#FFFFFF]'>
                     <div className=" flex flex-col gap-4">
                         <div className="h-40 rounded-t-3xl overflow-hidden">
-                            {produto.id == 0 ? <Skeleton height={160}/> : <img className='w-full object-cover' src={produto.foto } /> }
+                            {carregando == true ? <Skeleton height={160}/> : <img className='w-full object-cover' src={produto.foto } /> }
                         </div>
-                        {produto.id == 0 ? <Skeleton style={{ borderRadius: 10 }} className="mx-8 py-1" width={150}/> : <h1 className='text-[#414141] py-1 w-fit text-md mx-8 px-4 border-2 border-solid border-violetblue text-white bg-violetblue bg-opacity-75 rounded-full'>{produto.categoria?.tipo}</h1>}
+                        {carregando == true ? <Skeleton style={{ borderRadius: 10 }} className="mx-8 py-1" width={150}/> : <h1 className='text-[#414141] py-1 w-fit text-md mx-8 px-4 border-2 border-solid border-violetblue text-white bg-violetblue bg-opacity-75 rounded-full'>{produto.categoria?.tipo}</h1>}
                         <h1 className='text-[#414141] text-3xl px-8 font-bold'>{produto.nome || <Skeleton style={{ borderRadius: 10 }} />}</h1>
                         <div className='flex gap-4 items-center px-8'>
-                        {produto.id == 0 ? <Skeleton circle={true} height={48} width={48}/> : <img className="rounded-full w-12 h-12" src={produto.usuario?.foto} alt="" />}
+                        {carregando == true ? <Skeleton circle={true} height={48} width={48}/> : <img className="rounded-full w-12 h-12" src={produto.usuario?.foto} alt="" />}
                             <h1 className='text-[#414141] text-md'>{produto.usuario?.nome || <Skeleton width={150} style={{ borderRadius: 10 }} />}</h1>
                         </div>
                         <h1 className='text-[#414141] text-md px-8 h-20 line-clamp-2 leading-9'>{produto.descricao || <Skeleton count={2} style={{ borderRadius: 10 }} />}</h1>
                     </div>
                 <div className="flex flex-1">
-                {produto.id == 0 ? <Skeleton containerClassName="flex-1" className="py-2"/> : <button className='text-slate-100 bg-ferngreen hover:bg-green-900 w-full py-2' onClick={retornar}>Não</button>}
-                {produto.id == 0 ? <Skeleton containerClassName="flex-1" className="py-2"/> : <button className='w-full text-slate-100 bg-red-400 hover:bg-red-600 flex items-center justify-center' onClick={deletarProduto}>
+                {carregando === true ? <Skeleton containerClassName="flex-1" className="py-2"/> : <button className='text-slate-100 bg-ferngreen hover:bg-green-900 w-full py-2' onClick={retornar}>Não</button>}
+                {carregando === true ? <Skeleton containerClassName="flex-1" className="py-2"/> : <button className='w-full text-slate-100 bg-red-400 hover:bg-red-600 flex items-center justify-center' onClick={deletarProduto}>
                         Sim
                     </button>}
                 </div>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext';
@@ -21,8 +22,11 @@ function FormularioProduto() {
 
     const [produto, setProduto] = useState<Produto>({} as Produto);
 
+    const [carregandoProduto, setCarregandoProduto] = useState<boolean>(true);
+    const [carregandoCategoria, setCarregandoCategoria] = useState<boolean>(true);
+
     async function buscarProdutoPorId(id: string) {
-        await buscarSemHeader(`/produto/${id}`, setProduto);
+        await buscarSemHeader(`/produto/${id}`, setProduto, setCarregandoProduto);
     }
 
     async function buscarCategoriaPorId(id: string) {
@@ -30,7 +34,7 @@ function FormularioProduto() {
             headers: {
                 Authorization: token,
             },
-        });
+        }, setCarregandoCategoria);
     }
 
     async function buscarCategorias() {
@@ -38,7 +42,7 @@ function FormularioProduto() {
             headers: {
                 Authorization: token,
             },
-        });
+        }, setCarregandoCategoria);
     }
 
     useEffect(() => {
@@ -62,6 +66,13 @@ function FormularioProduto() {
             categoria: categoria,
         });
     }, [categoria]);
+
+    useEffect(() => {
+        if (carregandoProduto === false && produto.usuario?.usuario !== usuario.usuario) {
+            toastAlerta('Esté produto não esta atrelado a sua conta!', 'info')
+            navigate('/home')
+        }
+    }, [produto])
 
     function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
         setProduto({
@@ -117,8 +128,6 @@ function FormularioProduto() {
             }
         }
     }
-
-    const carregandoCategoria = categoria.descricao === '';
 
     return (
         <div className="container flex flex-col mx-auto justify-center items-center">

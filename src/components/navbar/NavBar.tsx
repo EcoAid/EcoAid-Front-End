@@ -1,10 +1,8 @@
 import React, { useContext } from 'react'
-import { TiShoppingCart } from 'react-icons/ti'
 import { Link } from 'react-router-dom'
 import { AuthContext } from "../../context/AuthContext";
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import Carrinho from '../carrinho/Carrinho';
-import ecoaid from"../assets/ecoaid.png";
 
 function Navbar() {
 
@@ -16,7 +14,7 @@ function Navbar() {
     usuarioProfile = (<Menu as="div" className="relative inline-block text-left">
       <div className='flex items-center'>
         <MenuButton>
-          <img className="rounded-full w-12 hover:brightness-50 transition ease-in-out" src={usuario.foto !== '' ? usuario.foto : 'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'} />
+          <img className="rounded-full h-12 w-12 hover:brightness-50 transition ease-in-out" src={usuario.foto !== '' ? usuario.foto : 'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'} />
         </MenuButton>
       </div>
   
