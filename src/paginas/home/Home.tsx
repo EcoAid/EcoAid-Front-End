@@ -41,6 +41,10 @@ function Home() {
         buscarProdutos();
     }, [produtos.length]);
 
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, []);
+
     return (
         <>
 

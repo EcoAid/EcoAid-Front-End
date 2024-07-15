@@ -20,7 +20,7 @@ function FormularioProduto() {
 
     const [categoria, setCategoria] = useState<Categoria>({} as Categoria);
 
-    const [produto, setProduto] = useState<Produto>({} as Produto);
+    const [produto, setProduto] = useState<Produto>({foto: "https://i.imgur.com/Dw4DaqI.png"} as Produto);
 
     const [carregandoProduto, setCarregandoProduto] = useState<boolean>(true);
     const [carregandoCategoria, setCarregandoCategoria] = useState<boolean>(true);
@@ -128,6 +128,10 @@ function FormularioProduto() {
             }
         }
     }
+
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, []);
 
     return (
         <div className="container flex flex-col mx-auto justify-center items-center">

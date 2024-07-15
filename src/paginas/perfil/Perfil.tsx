@@ -4,7 +4,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
-import {  UserCircleGear } from '@phosphor-icons/react';
+import { UserCircleGear } from '@phosphor-icons/react';
 import { toastAlerta } from '../../util/toastAlerta';
 import Produto from '../../models/Produto';
 import { buscarSemHeader } from '../../services/Service';
@@ -18,18 +18,18 @@ function Perfil() {
   const [carregando, setCarregando] = useState<boolean>(true);
 
   async function buscarProdutos() {
-      try {
-          await buscarSemHeader('/produto', setProdutos, setCarregando);
-      } catch (error: any) {
-          if (error.toString().includes('403')) {
-              toastAlerta('O token expirou, favor logar novamente', "info")
-              handleLogout()
-          }
+    try {
+      await buscarSemHeader('/produto', setProdutos, setCarregando);
+    } catch (error: any) {
+      if (error.toString().includes('403')) {
+        toastAlerta('O token expirou, favor logar novamente', "info")
+        handleLogout()
       }
+    }
   }
 
   useEffect(() => {
-      buscarProdutos();
+    buscarProdutos();
   }, [produtos.length]);
 
   const navigate = useNavigate();
@@ -39,10 +39,14 @@ function Perfil() {
 
   useEffect(() => {
     if (token === '') {
-      toastAlerta('Você precisa estar logado','info');
+      toastAlerta('Você precisa estar logado', 'info');
       navigate('/login');
     }
   }, [token]);
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
 
   return (
     <>
@@ -82,34 +86,34 @@ function Perfil() {
       </div>
 
       {token !== '' &&
-                    <div className='px-32 pt-12 mt-12 part-white'> <div className='flex flex-row items-center gap-8 mb-16 text-[#407C44] overflow-visible'>
-                        <h1 className='text-xl font-bold sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'>Minhas doações</h1>
-                    </div>
+        <div className='px-32 pt-12 mt-12 part-white'> <div className='flex flex-row items-center gap-8 mb-16 text-[#407C44] overflow-visible'>
+          <h1 className='text-xl font-bold sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'>Minhas doações</h1>
+        </div>
 
-                    <Swiper
-                        navigation={true}
-                        modules={[Navigation]}
-                        pagination={{ clickable: true }}
-                        slidesPerView={4}
-                        spaceBetween={50}
-                        className='overflow-visible'
-                    >
-                        {(carregando === true) && (<>
-                            {Array.from({ length: 12 }).map((_, index) => (
-                                <SwiperSlide key={index}>
-                                    <CardProduto key={index} produto={{} as Produto} carregando={true} />
-                                </SwiperSlide>
-                            ))}
-                        </>)}
-                        {(produtos.filter((produto) => produto.usuario.usuario === usuario.usuario).length === 0 && carregando === false) && (
-                            <h1 className='text-3xl p-16 rounded-3xl bg-white text-onyx'>Você não cadastrou nenhum produto ainda.</h1>
-                        )}
-                        {produtos.filter((produto) => produto.usuario.usuario === usuario.usuario).slice(0, 12).map((produto) => (
-                            <SwiperSlide key={produto.id}>
-                                <CardProduto key={produto.id} produto={produto} carregando={false} />
-                            </SwiperSlide>
-                        ))}
-                    </Swiper> </div>}
+          <Swiper
+            navigation={true}
+            modules={[Navigation]}
+            pagination={{ clickable: true }}
+            slidesPerView={4}
+            spaceBetween={50}
+            className='overflow-visible'
+          >
+            {(carregando === true) && (<>
+              {Array.from({ length: 12 }).map((_, index) => (
+                <SwiperSlide key={index}>
+                  <CardProduto key={index} produto={{} as Produto} carregando={true} />
+                </SwiperSlide>
+              ))}
+            </>)}
+            {(produtos.filter((produto) => produto.usuario.usuario === usuario.usuario).length === 0 && carregando === false) && (
+              <h1 className='text-3xl p-16 rounded-3xl bg-white text-onyx'>Você não cadastrou nenhum produto ainda.</h1>
+            )}
+            {produtos.filter((produto) => produto.usuario.usuario === usuario.usuario).slice(0, 12).map((produto) => (
+              <SwiperSlide key={produto.id}>
+                <CardProduto key={produto.id} produto={produto} carregando={false} />
+              </SwiperSlide>
+            ))}
+          </Swiper> </div>}
 
     </>
   );

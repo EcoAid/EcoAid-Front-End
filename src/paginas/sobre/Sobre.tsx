@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FaGithub } from "react-icons/fa";
 import Funcionamento from '../../components/funcionamento/Funcionamento';
 
 function Sobre() {
+
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, []);
+    
     return (
         <div className=" mx-auto justify-center text-center text-[#414141] bg-white p-32">
 

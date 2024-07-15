@@ -20,6 +20,10 @@ function DeletarCategoria() {
     const { usuario, handleLogout } = useContext(AuthContext)
     const token = usuario.token
 
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, []);
+
     async function buscarPorId(id: string) {
         try {
             await buscar(`/categoria/${id}`, setCategoria, {
@@ -47,6 +51,10 @@ function DeletarCategoria() {
             buscarPorId(id)
         }
     }, [id])
+
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, []);
 
     function retornar() {
         navigate("/categorias")

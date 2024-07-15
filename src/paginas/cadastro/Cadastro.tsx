@@ -87,6 +87,10 @@ function Cadastro() {
         }
     }, [usuarioResposta]);
 
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, []);
+
     return (
         <div className="flex flex-col items-center justify-center w-screen bg-isabelline">
             <div className="m-8 px-24 py-36 bg-white rounded-lg border border-gray-100 shadow-xl h-3/6">

@@ -43,6 +43,10 @@ function DetalhesProduto() {
         }
     }, [id])
 
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, []);
+
     return (
         <div className="px-16 pt-8 overflow-hidden">
             <div className="justify-left p-16 flex max-sm:flex-col bg-isabelline gap-8">
@@ -74,7 +78,7 @@ function DetalhesProduto() {
                     </p>
                     <div className="flex gap-4">
 
-                        <button onClick={() => {adicionarItem(produto)}} 
+                        <button onClick={() => { adicionarItem(produto) }}
                             className="gap-2 rounded-full border border-green-200 py-2 px-4 bg-ferngreen text-white hover:bg-green-900 mt-4 flex items-center justify-center"
                         >
                             Adicionar ao carrinho
@@ -96,25 +100,25 @@ function DetalhesProduto() {
                     Doações recomendadas
                 </h2>
                 <Swiper
-                        navigation={true}
-                        modules={[Navigation]}
-                        slidesPerView={4}
-                        spaceBetween={50}
-                        className='overflow-visible'
-                    >
-                        {carregando === true && (<>
-                            {Array.from({ length: 12 }).map((_, index) => (
-                                <SwiperSlide key={index}>
-                                    <CardProduto key={index} produto={{} as Produto} carregando={true} />
-                                </SwiperSlide>
-                            ))}
-                        </>)}
-                        {produtos.map((produto) => (
-                            <SwiperSlide key={produto.id}>
-                                <CardProduto key={produto.id} produto={produto} carregando={false} />
+                    navigation={true}
+                    modules={[Navigation]}
+                    slidesPerView={4}
+                    spaceBetween={50}
+                    className='overflow-visible'
+                >
+                    {carregando === true && (<>
+                        {Array.from({ length: 12 }).map((_, index) => (
+                            <SwiperSlide key={index}>
+                                <CardProduto key={index} produto={{} as Produto} carregando={true} />
                             </SwiperSlide>
                         ))}
-                    </Swiper>
+                    </>)}
+                    {produtos.map((produto) => (
+                        <SwiperSlide key={produto.id}>
+                            <CardProduto key={produto.id} produto={produto} carregando={false} />
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
             </div>
 
         </div>
@@ -122,3 +126,7 @@ function DetalhesProduto() {
 }
 
 export default DetalhesProduto;
+function createHistory() {
+    throw new Error("Function not implemented.");
+}
+
