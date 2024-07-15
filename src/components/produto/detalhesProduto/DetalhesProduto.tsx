@@ -4,19 +4,19 @@ import { Link, useParams } from "react-router-dom";
 import { FaInfoCircle, FaTags } from "react-icons/fa";
 import { TiShoppingCart } from 'react-icons/ti';
 import { LuHelpingHand } from "react-icons/lu";
-import Produto from "../../models/Produto";
-import { buscarSemHeader } from "../../services/Service";
+import Produto from "../../../models/Produto"
+import { buscarSemHeader } from "../../../services/Service";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import CardProduto from "../produto/cardProduto/CardProduto";
-import { CarrinhoContext } from "../../context/CarrinhoContext";
+import CardProduto from "../../produto/cardProduto/CardProduto";
+import { CarrinhoContext } from "../../../context/CarrinhoContext";
 
 function DetalhesProduto() {
 
     const [produto, setProduto] = useState<Produto>({} as Produto);
     const [produtos, setProdutos] = useState<Produto[]>([]);
     const [carregando, setCarregando] = useState<boolean>(true);
-    const {adicionarItem} = useContext(CarrinhoContext);
+    const { adicionarItem } = useContext(CarrinhoContext);
 
     const { id } = useParams<{ id: string }>()
 
