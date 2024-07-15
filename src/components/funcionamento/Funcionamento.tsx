@@ -1,4 +1,8 @@
 import React from 'react'
+import { Bs1SquareFill } from "react-icons/bs";
+import { Bs2SquareFill } from "react-icons/bs";
+import { MdAccountBox } from "react-icons/md";
+import { BiSolidCategory } from "react-icons/bi";
 
 function Funcionamento() {
     return (
@@ -9,11 +13,8 @@ function Funcionamento() {
                 <div className="grid grid-cols-5 gap-4 items-center">
                     <div className="grid gap-6 grid-cols-2 col-span-3">
                         <div className="flex flex-col justify-center rounded-xl h-52 p-5 hover:bg-white border-2 border-transparent hover:border-ferngreen">
-
-                            <div className="flex items-center mb-1 font-bold">
-                                <span className="flex p-2.5 items-center justify-center w-4 h-4 mr-2 text-xs font-medium text-white rounded bg-ferngreen">
-                                    1
-                                </span>
+                            <div className="flex items-center mb-1 font-bold gap-2">
+                                <Bs1SquareFill className='text-ferngreen' size={18} />
                                 <p className="text-lg">Cadastre algo para a doação</p>
                             </div>
                             <p className="text-sm text-gray-900">
@@ -21,10 +22,8 @@ function Funcionamento() {
                                 Defina também um valor estimado para o produto.</p>
                         </div>
                         <div className="flex flex-col justify-center rounded-xl h-52 p-5 hover:bg-white border-2 border-transparent hover:border-ferngreen">
-                            <div className="flex items-center mb-1 font-bold">
-                                <span className="flex p-2.5 items-center justify-center w-4 h-4 mr-2 text-xs font-medium text-white rounded bg-ferngreen">
-                                    2
-                                </span>
+                            <div className="flex items-center mb-1 font-bold gap-2">
+                            <Bs2SquareFill className='text-ferngreen' size={18}/>
                                 <p className="text-lg">Receba uma doação</p>
                             </div>
                             <p className="text-sm text-gray-900">
@@ -32,10 +31,8 @@ function Funcionamento() {
                             </p>
                         </div>
                         <div className="flex flex-col justify-center rounded-xl h-52 p-5 hover:bg-white border-2 border-transparent hover:border-ferngreen">
-                            <div className="flex items-center mb-1 font-bold">
-                                <span className="flex p-2.5 items-center justify-center w-4 h-4 mr-2 text-xs font-medium text-white rounded bg-ferngreen">
-                                    *
-                                </span>
+                            <div className="flex items-center mb-1 font-bold gap-2">
+                            <MdAccountBox className='text-ferngreen' size={22}/>
                                 <p className="text-lg">Crie uma conta</p>
                             </div>
                             <p className="text-sm text-gray-900">
@@ -43,10 +40,8 @@ function Funcionamento() {
                             </p>
                         </div>
                         <div className="flex flex-col justify-center rounded-xl h-52 p-5 hover:bg-white border-2 border-transparent hover:border-ferngreen">
-                            <div className="flex items-center mb-1 font-bold">
-                                <span className="flex p-2.5 items-center justify-center w-4 h-4 mr-2 text-xs font-medium text-white rounded bg-ferngreen">
-                                    *
-                                </span>
+                            <div className="flex items-center mb-1 font-bold gap-2">
+                            <BiSolidCategory className='text-ferngreen' size={22}/>
                                 <p className="text-lg">Cadastre uma categoria</p>
                             </div>
                             <p className="text-sm text-gray-900">
@@ -56,7 +51,7 @@ function Funcionamento() {
                     </div>
                     <div className="relative md:col-span-2 lg:col-span-2">
                         <img
-                            className="inset-0 object-fill object-bottom w-full h-auto bg-ferngreen bg-opacity-10 rounded-3xl p-4 pl-0"
+                            className="inset-0 object-fill object-bottom w-full h-auto bg-gradient-to-t from-ferngreen/65  to-ferngreen/15 rounded-3xl p-4 pl-0"
                             src="src/assets/1720975931102.png"
                             alt=""
                         />
