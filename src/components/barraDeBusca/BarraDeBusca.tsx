@@ -71,11 +71,10 @@ function BarraDeBusca(props: any) {
 
                         <input
                             value={inputTextIntern}
-                            onFocus={() => buscaFocada(true)}
                             onChange={(event: ChangeEvent<HTMLInputElement>) => {
                                 props.setInputText(event.target.value);
                                 setInputTextIntern(event.target.value);
-                                buscaFocada(true);
+                                event.target.value.length >= 3 ? buscaFocada(true) : buscaFocada(false);
                             }}
                             type="search"
                             id="default-search"
@@ -89,7 +88,7 @@ function BarraDeBusca(props: any) {
                 <button><SlidersHorizontal size={64} color='#407C44' /></button>
             </div>
             <div className='w-full mx-auto flex justify-start'>
-                <div onMouseEnter={() => buscaFocada(true)} onMouseLeave={() => buscaFocada(false)} className={`z-10 w-3/6 flex flex-col gap-2 absolute ${invisivel ? 'invisible' : 'visible'}`}>
+                <div onMouseEnter={() => buscaFocada(true)} className={`z-10 w-3/6 flex flex-col gap-2 absolute ${invisivel ? 'invisible' : 'visible'}`}>
                     {filteredList.slice(0, 6).map((produto) => (
                         <div className='flex h-14 justify-between bg-white text-[#414141] bg-opacity-95 border border-solid border-gray-200 px-24 py-4 rounded-lg'>
                             <button onClick={() => { props.setInputText(props.tipo === "produto" ? produto.nome : produto.tipo); setInputTextIntern(props.tipo === "produto" ? produto.nome : produto.tipo); buscaFocada(false) }}>

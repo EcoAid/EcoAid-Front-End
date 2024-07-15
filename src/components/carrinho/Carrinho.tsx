@@ -14,7 +14,7 @@ function Carrinho() {
         <Menu as="div" className="relative w-fit inline-block text-left">
             <div className='flex items-center text-white'>
                 <MenuButton as={Fragment}>
-                    {({ active }) => <button className={clsx(active ? 'text-green-900' : 'text-ferngreen')}><TiShoppingCart className="hover:text-onyx transition ease-in-out" size={38} /></button>}
+                    {({ active }) => <button className={clsx(active ? 'text-green-900' : 'text-ferngreen')}><TiShoppingCart className="hover:text-onyx transition ease-in-out" size={38} /><p className='absolute top-0 ml-6 w-4 h-4 flex items-center justify-center text-xs bg-red-600 text-white rounded-full'>{listaCarrinho.reduce((total, produto)=>total+(produto.qtd),0)}</p></button>}
                 </MenuButton>
             </div>
             <MenuItems
