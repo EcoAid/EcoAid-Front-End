@@ -5,6 +5,7 @@ import { CarrinhoContext } from '../../context/CarrinhoContext';
 import Produto from '../../models/Produto';
 import clsx from 'clsx'
 import { CaretDown, CaretUp, Trash } from '@phosphor-icons/react';
+import ModalCheckout from '../modalCheckout/ModalCheckout';
 
 function Carrinho() {
 
@@ -46,8 +47,8 @@ function Carrinho() {
                     ))}
                     <MenuItem>
                     <div onClick={(e) => { e.preventDefault() }} className="text-sm flex justify-between border-t-2 pt-4">
-                    <div className='w-full flex items-center text-sm justify-between'>
-                        <button className='flex items-center w-fit h-12 rounded-md transition hover:text-ferngreen hover:bg-transparent border border-green-800 text-white bg-ferngreen p-4' onClick={() => finalizarCompra()}> Finalizar </button>
+                    <div className='w-full flex items-center text-sm justify-between'> 
+                        <ModalCheckout disabled={listaCarrinho.length === 0}/>
                         <p className="text-lg">Total: {new Intl.NumberFormat('pt-BR', {
                             style: 'currency',
                             currency: 'BRL',
