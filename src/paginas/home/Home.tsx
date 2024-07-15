@@ -8,16 +8,15 @@ import { buscarSemHeader } from '../../services/Service';
 import Produto from '../../models/Produto';
 import CardProduto from '../../components/produto/cardProduto/CardProduto';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
 import 'swiper/css';
 import 'swiper/css/navigation';
-
 import { Navigation } from 'swiper/modules';
 import { toastAlerta } from '../../util/toastAlerta';
 import { Link } from 'react-router-dom';
 import { LiaHandsHelpingSolid } from 'react-icons/lia';
 import { BsInfoCircle } from 'react-icons/bs';
 import Funcionamento from '../../components/funcionamento/Funcionamento';
+import ecoaidDonation from '../../assets/1720976241254.png';
 
 function Home() {
 
@@ -40,10 +39,6 @@ function Home() {
     useEffect(() => {
         buscarProdutos();
     }, [produtos.length]);
-
-    useEffect(() => {
-        window.scroll(0, 0);
-    }, []);
 
     return (
         <>
@@ -82,7 +77,7 @@ function Home() {
 
                         </div>
 
-                        <img src='src\assets\1720976241254.png' alt='' className="rounded-lg object-cover h-96 w-auto" />
+                        <img src={ecoaidDonation} className="rounded-lg object-cover h-96 w-auto" />
                     </div>
                 </div>
 

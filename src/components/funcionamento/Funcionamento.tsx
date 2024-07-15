@@ -3,6 +3,7 @@ import { Bs1SquareFill } from "react-icons/bs";
 import { Bs2SquareFill } from "react-icons/bs";
 import { MdAccountBox } from "react-icons/md";
 import { BiSolidCategory } from "react-icons/bi";
+import ecoaidDiscussion from'../../assets/1720975931102.png';
 
 function Funcionamento() {
     return (
@@ -51,7 +52,7 @@ function Funcionamento() {
                     <div className="relative md:col-span-2 lg:col-span-2">
                         <img
                             className="inset-0 object-fill object-bottom w-full h-auto bg-gradient-to-t from-ferngreen/65  to-ferngreen/15 rounded-3xl p-4 pl-0"
-                            src="src/assets/1720975931102.png"
+                            src={ecoaidDiscussion}
                             alt=""
                         />
                     </div>

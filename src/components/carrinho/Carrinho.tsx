@@ -9,7 +9,7 @@ import ModalCheckout from '../modalCheckout/ModalCheckout';
 
 function Carrinho() {
 
-    const { listaCarrinho, adicionarItem, diminuirQuantidade, removerItem, finalizarCompra } = useContext(CarrinhoContext);
+    const { listaCarrinho, adicionarItem, diminuirQuantidade, removerItem } = useContext(CarrinhoContext);
 
     return (
         <Menu as="div" className="relative w-fit inline-block text-left">
@@ -48,7 +48,7 @@ function Carrinho() {
                     <MenuItem>
                     <div onClick={(e) => { e.preventDefault() }} className="text-sm flex justify-between border-t-2 pt-4">
                     <div className='w-full flex items-center text-sm justify-between'> 
-                        <ModalCheckout disabled={listaCarrinho.length === 0}/>
+                        <ModalCheckout/>
                         <p className="text-lg">Total: {new Intl.NumberFormat('pt-BR', {
                             style: 'currency',
                             currency: 'BRL',
