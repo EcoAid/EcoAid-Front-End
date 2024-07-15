@@ -15,7 +15,7 @@ function Sobre() {
                         Indivíduos que possuem utensílios para doação,  disponibilizarão os itens de forma gratuita para quem quiser recebê-los
                     </p>
                 </div>
-
+                <Funcionamento />
                 <div>
                     <h2 className="mb-16 font-bold text-4xl sm:text-5xl ">Nossos <span className="text-green-700 bg-isabelline">membros</span>
                     </h2>
@@ -58,7 +58,7 @@ function Sobre() {
                         </div>
                     </div>
                 </div>
-                <Funcionamento />
+
                 <div className="d-flex justify-center">
                     <h2 className="mt-4 font-bold text-4xl sm:text-5xl mb-16 bg-white">Acesse o repositório do <span className="bg-clip-content bg-isabelline text-green-700">projeto</span>
                     </h2>
