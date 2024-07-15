@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ArrowRight, SlidersHorizontal } from '@phosphor-icons/react'
-import React, { ChangeEvent, useContext, useEffect, useState } from 'react'
+import { ChangeEvent, useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../context/AuthContext';
 import { buscarSemHeader } from '../../services/Service';
 import { Link, useNavigate } from 'react-router-dom';

@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaGithub } from "react-icons/fa";
+import Funcionamento from '../../components/funcionamento/Funcionamento';
 
 function Sobre() {
     return (
@@ -57,8 +58,8 @@ function Sobre() {
                 </div>
             </div>
         </div>
-
-                <div className="d-flex justify-content-center p-16">
+<Funcionamento/>
+                <div className="d-flex justify-content-center">
                     <h2 className="my-4 font-bold text-4xl sm:text-5xl mb-16 bg-white">Acesse o repositório do <span className="bg-clip-content bg-isabelline text-green-700">projeto</span>
                     </h2>
                     <a className="text-lg hover:text-[#407C44] hover:opacity-50 transition ease-in-out delay-50" href="https://github.com/EcoAid" target="_blank">

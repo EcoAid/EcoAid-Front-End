@@ -28,40 +28,64 @@ function Cadastro() {
 
     const [mostraSenha, setMostraSenha] = useState(false);
 
+    const [dataNascimento, setDataNascimento] = useState('');
 
     function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
-        setUsuario({
-            ...usuario,
-            [e.target.name]: e.target.value
-        })
+        const { name, value } = e.target;
+        if (name === "dataNascimento") {
+            setDataNascimento(value);
+        } else {
+            setUsuario({
+                ...usuario,
+                [name]: value
+            });
+        }
     }
 
     async function cadastrarNovoUsuario(e: ChangeEvent<HTMLFormElement>) {
-        e.preventDefault()
+        e.preventDefault();
+
+        const idade = calcularIdade(new Date(dataNascimento));
+        if (idade < 18) {
+            toastAlerta('É preciso ser maior de 18 anos para criar uma conta.', 'erro');
+            return;
+        }
 
         if (usuario.senha.length >= 8) {
             try {
                 await cadastrarUsuario('/usuarios/cadastrar', usuario, setUsuarioResposta)
-                toastAlerta('Usuário cadastrado com sucesso','sucesso')
-
+                toastAlerta('Usuário cadastrado com sucesso', 'sucesso');
             } catch (error) {
-                toastAlerta('Erro ao cadastrar o Usuário','erro')
+                toastAlerta('Erro ao cadastrar o Usuário', 'erro');
             }
         } else {
-            toastAlerta('Dados inconsistentes. Verifique as informações de cadastro.','info')
+            toastAlerta('Dados inconsistentes. Verifique as informações de cadastro.', 'info');
             setUsuario({ ...usuario, senha: "" }) // Reinicia o campo de Senha
         }
     }
 
+    function calcularIdade(dataNascimento: Date): number {
+        const hoje = new Date();
+        const anoNascimento = dataNascimento.getFullYear();
+        const mesNascimento = dataNascimento.getMonth();
+        const diaNascimento = dataNascimento.getDate();
+
+        let idade = hoje.getFullYear() - anoNascimento;
+        if (hoje.getMonth() < mesNascimento || (hoje.getMonth() === mesNascimento && hoje.getDate() < diaNascimento)) {
+            idade--;
+        }
+        return idade;
+    }
+
     function back() {
-        navigate('/login')
+        navigate('/login');
     }
 
     useEffect(() => {
         if (usuarioResposta.id !== 0) {
-            back()
+            back();
         }
-    }, [usuarioResposta])
+    }, [usuarioResposta]);
 
     return (
         <div className="flex flex-col items-center justify-center w-screen bg-isabelline">
@@ -81,13 +105,9 @@ function Cadastro() {
                             id="senha" name="senha"
                             placeholder="Senha"
                             className="rounded-md bg-gray-200 border-none p-3 w-full pr-10"
-
                             type={mostraSenha ? "text" : "password"}
                             value={usuario.senha}
-
-                            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                atualizarEstado(e)}
-
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                         />
                         <span
                             onClick={() => setMostraSenha(prev => !prev)}
@@ -99,7 +119,14 @@ function Cadastro() {
 
                     <div className="flex gap-4 w-full items-baseline text-onyx">
                         <p className="whitespace-nowrap">Data de nascimento:</p>
-                        <input type="date" placeholder="Nascimento" className="rounded-md bg-gray-200 border-none p-3 mb-4 w-full" />
+                        <input
+                            type="date"
+                            name="dataNascimento"
+                            placeholder="Nascimento"
+                            className="rounded-md bg-gray-200 border-none p-3 mb-4 w-full"
+                            value={dataNascimento}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+                        />
                     </div>
 
                     <button type="submit" className="rounded-md border-2 border-ferngreen bg-ferngreen text-isabelline text-xs font-bold py-3 w-full uppercase mt-4 transform transition-transform duration-80 active:scale-95">
@@ -107,7 +134,7 @@ function Cadastro() {
                     </button>
                     <div className="my-8 text-onyx flex gap-1.5">
                         <p>Já tem uma conta?</p>
-                        <Link to="/login" className="text-violetblue font-bold ">Faça Login</Link>
+                        <Link to="/login" className="text-violetblue font-bold">Faça Login</Link>
                     </div>
 
                     <p className="mb-4">Ou cadastre-se com </p>
@@ -129,7 +156,7 @@ function Cadastro() {
                 </form>
             </div>
         </div>
-    )
+    );
 }
 
-export default Cadastro
+export default Cadastro;
