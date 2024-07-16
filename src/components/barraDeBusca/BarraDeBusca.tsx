@@ -2,9 +2,11 @@
 import { ArrowRight, SlidersHorizontal } from '@phosphor-icons/react'
 import { ChangeEvent, useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../context/AuthContext';
-import { buscarSemHeader } from '../../services/Service';
+import { buscar, buscarSemHeader } from '../../services/Service';
 import { Link, useNavigate } from 'react-router-dom';
 import { TailSpin } from 'react-loader-spinner';
+import Popup from 'reactjs-popup';
+import ecoaidEmBreve from '../../assets/EM BREVE.png';
 
 
 function BarraDeBusca(props: any) {
@@ -12,14 +14,20 @@ function BarraDeBusca(props: any) {
     const { usuario, handleLogout } = useContext(AuthContext)
     const [inputTextIntern, setInputTextIntern] = useState<string>("");
     const [carregando, setCarregando] = useState<boolean>(false)
-    const [produtos, setProdutos] = useState<any[]>([]);
+    const [buscas, setBuscas] = useState<any[]>([]);
     const token = usuario.token;
     const [invisivel, setInvisivel] = useState<boolean>(true);
     const navigate = useNavigate();
 
-    async function buscarProdutos() {
+    async function buscarBuscas() {
         try {
-            await buscarSemHeader(`/${props.tipo}`, setProdutos, setCarregando);
+        if(props.tipo === "produto") {
+            await buscarSemHeader("/produto", setBuscas, setCarregando);
+        } else {
+            await buscar("/categoria", setBuscas, {
+                headers: { Authorization: token }
+            }, setCarregando, );
+        }
         } catch (error: any) {
             if (error.toString().includes('403')) {
                 alert('O token expirou, favor logar novamente')
@@ -35,13 +43,13 @@ function BarraDeBusca(props: any) {
         }
     }, [token]);
 
-    const filteredList = props.tipo === "produto" ? (produtos.filter((element) => {
+    const filteredList = props.tipo === "produto" ? (buscas.filter((element) => {
         if (inputTextIntern === '') {
             return element
         } else {
             return element.nome.toLowerCase().includes(inputTextIntern.toLowerCase());
         }
-    })) : (produtos.filter((element) => {
+    })) : (buscas.filter((element) => {
         if (inputTextIntern === '') {
             return element
         } else {
@@ -51,7 +59,8 @@ function BarraDeBusca(props: any) {
 
     function buscaFocada(confirm: boolean) {
         if (confirm === true) {
-            buscarProdutos();
+            buscarBuscas();
+            setCarregando(true);
             setInvisivel(false)
         } else {
             setInvisivel(true)
@@ -74,6 +83,7 @@ function BarraDeBusca(props: any) {
                             onChange={(event: ChangeEvent<HTMLInputElement>) => {
                                 props.setInputText(event.target.value);
                                 setInputTextIntern(event.target.value);
+                                console.log(buscas);
                                 event.target.value.length >= 3 ? buscaFocada(true) : buscaFocada(false);
                             }}
                             type="search"
@@ -85,7 +95,15 @@ function BarraDeBusca(props: any) {
 
                     </div>
                 </form>
-                <button><SlidersHorizontal size={64} color='#407C44' /></button>
+                <Popup
+                    trigger={
+                        <button><SlidersHorizontal size={64} color='#407C44' /></button>
+                    } modal>
+                    <div className='flex flex-col items-center gap-8 p-11'>
+                        <h1 className='text-4xl text-ferngreen text-center'>Eita! Está funcionalidade está sendo desenvolvida, obrigado por acompanhar nosso progresso!</h1>
+                        <img src={ecoaidEmBreve} alt="" />
+                    </div>
+                </Popup>
             </div>
             <div className='w-full mx-auto flex justify-start'>
                 <div onMouseEnter={() => buscaFocada(true)} className={`z-10 w-3/6 flex flex-col gap-2 absolute ${invisivel ? 'invisible' : 'visible'}`}>
@@ -95,10 +113,10 @@ function BarraDeBusca(props: any) {
                                 <p className="font-medium">{props.tipo === "produto" ? produto.nome : produto.tipo}</p>
                             </button>
                             <div className="flex gap-8 items-center">
-                                <p className="font-light">{produto.usuario?.nome}</p>
-                                <Link to={`/detalhesProduto/${produto.id}`}>
+                                {props.tipo === "produto" && <p className="font-light">{produto.usuario?.nome}</p>}
+                                {props.tipo === "produto" && <Link to={`/detalhesProduto/${produto.id}`}>
                                 <ArrowRight className="text-ferngreen hover:text-green-400" size={28} />
-                                </Link>
+                                </Link>}
                             </div>
                         </div>
                     ))}
