@@ -12,6 +12,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Usuario from "../../models/Usuario";
 import { cadastrarUsuario } from "../../services/Service";
 import { toastAlerta } from "../../util/toastAlerta";
+import { doc, setDoc } from "firebase/firestore";
+import { database } from "../../services/Firebase";
 
 function Cadastro() {
     const navigate = useNavigate();
@@ -54,13 +56,14 @@ function Cadastro() {
         if (usuario.senha.length >= 8) {
             try {
                 await cadastrarUsuario('/usuarios/cadastrar', usuario, setUsuarioResposta)
+
                 toastAlerta('Usuário cadastrado com sucesso', 'sucesso');
             } catch (error) {
                 toastAlerta('Erro ao cadastrar o Usuário', 'erro');
             }
         } else {
             toastAlerta('Dados inconsistentes. Verifique as informações de cadastro.', 'info');
-            setUsuario({ ...usuario, senha: "" }) // Reinicia o campo de Senha
+            setUsuario({ ...usuario, senha: "" })
         }
     }
 

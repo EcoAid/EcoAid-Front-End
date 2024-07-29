@@ -56,7 +56,7 @@ function ListaCategorias() {
 
     useEffect(() => {
         buscarCategorias();
-    }, []);
+    }, [categorias.length]);
 
     useEffect(() => {
         window.scroll(0, 0);

@@ -1,7 +1,9 @@
-import { ReactNode, createContext, useState } from "react"
+import { ReactNode, createContext, useEffect, useState } from "react"
 import UsuarioLogin from "../models/UsuarioLogin"
 import { login } from "../services/Service"
 import { toastAlerta } from "../util/toastAlerta"
+import { doc, getDoc, setDoc } from "firebase/firestore"
+import { database } from "../services/Firebase"
 
 
 interface AuthContextProps {
@@ -34,12 +36,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
         setIsLoading(true)
         try {
             await login(`/usuarios/logar`, userLogin, setUsuario)
-            toastAlerta("Usuário logado com sucesso","sucesso")
+            toastAlerta("Usuário logado com sucesso", "sucesso")
             setIsLoading(false)
 
         } catch (error) {
             console.log(error)
-            toastAlerta("Dados do usuário inconsistentes","info")
+            toastAlerta("Dados do usuário inconsistentes", "info")
             setIsLoading(false)
         }
     }

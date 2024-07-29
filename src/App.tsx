@@ -19,39 +19,46 @@ import 'react-toastify/dist/ReactToastify.css';
 import DetalhesProduto from './components/produto/detalhesProduto/DetalhesProduto'
 import { CarrinhoProvider } from './context/CarrinhoContext'
 import Doacoes from './paginas/doacoes/Doacoes'
+import { ChatContextProvider } from './context/ChatContext';
+import ContainerChat from './components/chat/containerChat/ContainerChat'
+// import { ChatBotContextProvider } from './context/ChatBotContext'
+
 
 function App() {
 
   return (
     <>
       <AuthProvider>
-      <ToastContainer />
+        <ChatContextProvider>
+        <ToastContainer />
         <CarrinhoProvider>
-        <BrowserRouter>
-          <Navbar />
-          <div className='min-h-[80vh]'>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/cadastro" element={<Cadastro />} />
-              <Route path="/home" element={<Home />} />
-              <Route path="/sobre" element={<Sobre />} />
-              <Route path="/doacoes" element={<Doacoes />} />
-              <Route path="/cadastroDoacao" element={<FormularioProduto />} />
-              <Route path="/editarDoacao/:id" element={<FormularioProduto />} />
-              <Route path="/deletarDoacao/:id" element={<DeletarProduto />} />
-              <Route path="/categorias" element={<ListaCategorias />} />
-              <Route path="/cadastroCategoria" element={<FormularioCategoria />} />
-              <Route path="/editarCategoria/:id" element={<FormularioCategoria />} />
-              <Route path="/deletarCategoria/:id" element={<DeletarCategoria />} />
-              <Route path="/perfil" element={<Perfil/>} />
-              <Route path="/atualizarusuario" element={<AtualizarUsuario/>} />
-              <Route path="/detalhesProduto/:id" element={<DetalhesProduto/>} />
-            </Routes>
-          </div>
-          <Footer />
-            </BrowserRouter>
-          </CarrinhoProvider>
+          <BrowserRouter>
+            <ContainerChat />
+            <Navbar />
+            <div className='min-h-[80vh]'>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/cadastro" element={<Cadastro />} />
+                <Route path="/home" element={<Home />} />
+                <Route path="/sobre" element={<Sobre />} />
+                <Route path="/doacoes" element={<Doacoes />} />
+                <Route path="/cadastroDoacao" element={<FormularioProduto />} />
+                <Route path="/editarDoacao/:id" element={<FormularioProduto />} />
+                <Route path="/deletarDoacao/:id" element={<DeletarProduto />} />
+                <Route path="/categorias" element={<ListaCategorias />} />
+                <Route path="/cadastroCategoria" element={<FormularioCategoria />} />
+                <Route path="/editarCategoria/:id" element={<FormularioCategoria />} />
+                <Route path="/deletarCategoria/:id" element={<DeletarCategoria />} />
+                <Route path="/perfil" element={<Perfil />} />
+                <Route path="/atualizarusuario" element={<AtualizarUsuario />} />
+                <Route path="/detalhesProduto/:id" element={<DetalhesProduto />} />
+              </Routes>
+            </div>
+            <Footer />
+          </BrowserRouter>
+        </CarrinhoProvider>
+        </ChatContextProvider>
       </AuthProvider>
     </>
   )
